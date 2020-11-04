@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'home.dart';
-import 'login.dart';
+import 'start.dart';
 
 class OnlyTripsApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -25,20 +25,20 @@ class OnlyTripsApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
-      initialRoute: '/login',
+      home: StartPage(),
+      initialRoute: '/start',
       onGenerateRoute: _getRoute,
     );
   }
 
   Route<dynamic> _getRoute(RouteSettings settings) {
-    if (settings.name != '/login') {
+    if (settings.name != '/start') {
       return null;
     }
 
     return MaterialPageRoute<void>(
       settings: settings,
-      builder: (BuildContext context) => LoginPage(),
+      builder: (BuildContext context) => StartPage(),
       fullscreenDialog: true,
     );
   }

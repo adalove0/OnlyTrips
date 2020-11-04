@@ -13,6 +13,9 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:onlytrips/register.dart';
+
+import 'register.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -66,10 +69,12 @@ class _LoginPageState extends State<LoginPage> {
                 FlatButton(
                   onPressed: () {
                     // TODO: Clear the text fields (101)
-                    _usernameController.clear();
-                    _passwordController.clear();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RegisterPage())
+                    );
                   },
-                  child: Text('CANCEL'),
+                  child: Text('REGISTER'),
                 ),
                 // TODO: Add an elevation to NEXT (103)
                 // TODO: Add a beveled rectangular border to NEXT (103)
