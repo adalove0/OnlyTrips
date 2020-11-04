@@ -19,10 +19,10 @@ class _StartPageState extends State<StartPage> {
             SizedBox(height: 80.0),
             Column(
               children: <Widget>[
-                Image.asset('assets/transparent_logo.png'),
+                Image.asset('assets/logo.png'),
               ],
             ),
-            SizedBox(height: 120.0),
+            SizedBox(height: 300.0),
             RaisedButton(
                 onPressed: () {
                   Navigator.push(
@@ -38,6 +38,22 @@ class _StartPageState extends State<StartPage> {
                   child: const Text('Register'),
                 ),
                 ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage())
+                );
+              },
+              child: Container(
+                decoration: const BoxDecoration(
+                  // TODO: Add decoration
+                ),
+                padding: const EdgeInsets.all(10.0),
+                child: const Text('Login'),
+              ),
+            ),
+
               ],
             ),
         ),

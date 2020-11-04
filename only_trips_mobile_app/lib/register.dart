@@ -20,7 +20,7 @@ class _RegisterPageState extends State<RegisterPage> {
             SizedBox(height: 80.0),
             Column(
               children: <Widget>[
-                Image.asset('assets/transparent_logo.png'),
+                Image.asset('assets/logo.png'),
               ],
             ),
             SizedBox(height: 120.0),
@@ -44,26 +44,22 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               obscureText: true,
             ),
-            // TODO: Add button bar (101)
             ButtonBar(
               children: <Widget>[
-                // TODO: Add buttons (101)
                 FlatButton(
+                  child: Text('Cancel'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                RaisedButton(
                   onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => HomePage())
                     );
                   },
-                  child: Text('REGISTER'),
-                ),
-                // TODO: Add an elevation to NEXT (103)
-                // TODO: Add a beveled rectangular border to NEXT (103)
-                RaisedButton(
-                  child: Text('CANCEL'),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                  child: Text('Submit'),
                 ),
               ],
             )
