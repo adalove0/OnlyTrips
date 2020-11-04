@@ -1,6 +1,6 @@
-# only_trips_mobile_app
+# onlytrips
 
-A new Flutter application.
+Group 29 OnlyTrips project
 
 ## Getting Started
 
