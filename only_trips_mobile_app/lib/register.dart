@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'home.dart';
-import 'home.dart';
-import 'login.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -12,9 +10,9 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ListView(
+    return SafeArea(
+      child: Scaffold(
+        body: ListView(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
             SizedBox(height: 80.0),

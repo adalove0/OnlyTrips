@@ -11,18 +11,19 @@ class StartPage extends StatefulWidget {
 class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
           children: <Widget>[
-            SizedBox(height: 80.0),
+            SizedBox(height: 100.0),
             Column(
               children: <Widget>[
-                Image.asset('assets/logo.png'),
+                Center(
+                    child: Image.asset('assets/logo.png')
+                ),
               ],
             ),
-            SizedBox(height: 300.0),
+            SizedBox(height: 120.0),
             RaisedButton(
                 onPressed: () {
                   Navigator.push(
