@@ -1,3 +1,3 @@
-# onlytrips
+# OnlyTrips
 
-Group 29 OnlyTrips project
+Mobile app for Group 29's OnlyTrips. Developed with Flutter.
