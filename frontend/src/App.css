@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body
+{
+  background: url(images/Plane.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#title
+{
+  max-width: 360px;
+  min-height: 400px;
+  margin: auto;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.6);
+  border-radius : 10px;
+   width: 600px;
+   padding-top: 10px;
+   text-align: center;
+}
+
+#loginDiv
+{
+  max-width: 360px;
+  min-height: 400px;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  -ms-transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.6);
+  transform: translate(-50%, -50%);
+  border-radius : 10px;
+  width: 600px;
+  padding-top: 10px;
+  align-items: center;
+  border: none;
+}
+
+#loginName
+{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 35px;
+  width: 70%;
+  border: none;
+  background: inherit;
+  border-bottom: 1px solid black;
+}
+
+#loginForm
+{
+  margin-left: 5px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#loginPassword
+{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 35px;
+  width: 70%;
+  border: none;
+  background: inherit;
+  border-bottom: 1px solid black;
+}
+
+#inner-title
+{
+  text-align: center;
+  background-color: lawngreen;
+  
+}
+
+#loginButton
+{
+  width: 70%;
+  background: #59BFFF;
+  color: white;
+  height: 50px;
+  outline: none;
+  border: none; 
+  margin-top : 15px;
+  margin-bottom : 13px;
+  border-radius : 12px;
+  font-family: 'Fjalla One', sans-serif;  
+}
+
+#logo
+{
+  margin-bottom: -70px;
+  max-width: 100%;
+  width: 300px;
+  height: auto;
+  margin-left: 35px;
+  overflow: auto; 
+  position: relative;
+}
+
+#signUpLink
+{
+  text-align: center;
+  padding-right: 15px;
+}
+/* For Login Page */
