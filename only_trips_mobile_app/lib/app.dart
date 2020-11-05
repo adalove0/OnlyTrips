@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'home.dart';
 import 'start.dart';
 
 class OnlyTripsApp extends StatelessWidget {

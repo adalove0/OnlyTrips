@@ -22,10 +22,6 @@ class _RegisterPageState extends State<RegisterPage> {
               ],
             ),
             SizedBox(height: 120.0),
-            // TODO: Wrap Username with AccentColorOverride (103)
-            // TODO: Remove filled: true values (103)
-            // TODO: Wrap Password with AccentColorOverride (103)
-            // TODO: Add TextField widgets (101)
             // [Name]
             TextField(
               decoration: InputDecoration(
