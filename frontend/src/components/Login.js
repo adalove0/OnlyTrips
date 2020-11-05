@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import App from '../App';
 import logo from '../images/OnlyTrips.svg'
-import SignUp from '../pages/SignUp.js'
+import SignUp from '../pages/SignUpPage.js'
 
 function Login()
 {
