@@ -40,4 +40,20 @@ function SignUp()
         catch(err){
             console.log(err.message);
         }
+
+        return(
+            <div id="signDiv">
+                <img src={logo} alt="OnlyTrips Logo" id="logo"></ img>
+                <form id = "SignUpForm" onSubmit={doSignUp}>
+                    <input type="text" id="FirstName" placeholder="First Name" ref={(c) => fName = c} /><br />
+                    <input type="text" id="LastName" placeholder="Last Name" ref={(c) => lName = c} /><br />
+                    <input type="text" id="createPassword" placeholder="Create Password" ref={(c) => createPassword = c} /><br />
+                    <input type="text" id="confirmPassword" placeholder="Confirm Password" ref={(c) => confirmPassword = c} /><br />
+                    <input type="text" id="enterEmail" placeholder="Enter Email" ref={(c) => enterEmail = c} /><br />
+                    <input type="text" id="confirmEmail" placeholder="Confirm Email" ref={(c) => confirmEmail = c} /><br />
+                    <input type="submit" id="SignUpButton" class="buttons" value = "Sign Up!" onClick={doSignUp} /> 
+                </form>
+                <p id = "loginLink"> Have an account?  <a href={SignUp} id = "loginLink">Log In!</a></p>
+            </div>  
+    );
 }
