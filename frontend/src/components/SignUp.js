@@ -1,59 +1,75 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MD5 from 'MD5.js';
+import App from '../App';
+import logo from '../images/OnlyTrips.svg'
+import login from 'login.js'
 
 
 function SignUp()
 {
-        var username = document.getElementById("Username").value;
-        var password = document.getElementById("Password").value;
-        var verifiedPassword = document.getElementById("verify").value;
-        if(username == "" || password == "" || verifiedPassword == "")
-        {
-            document.getElementById("create-text").innerHTML = "Enter all required fields";
-            return;
-        }
-        if(password != verifiedPassword)
-        {
-            document.getElementById("create-text").innerHTML =  "Passwords don't match";
-            return;
-        }
-        password = MD5(password);
-        var data= '{"username" : "' + username +'", "password" : "' + password + '"}';
-	    document.getElementById("create-text").innerHTML = "";
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST",url,false);
-        xhr.setRequestHeader("Content-type", "application/json; charset = UTF-8");
-        try
-        {
-            xhr.send(data);
-            var response = JSON.parse(xhr.responseText);
-            var error = response["error"];
-            if(error == "")
-            {
-                document.getElementById("Username").value = "";
-                document.getElementById("Password").value = "";
-                document.getElementById("verify").value = "";
-            }
-            else
-                document.getElementById("create-text").innerHTML = "Username already exists";
-        }
-        catch(err){
-            console.log(err.message);
-        }
 
+    var loginName;
+    var lastName;
+    var loginPassword;
+    var loginEmail;
+    var firstName;
+    var lastName;
+    var confirmPassword;
+    var confirmEmail;
+
+    const [message,setMessage] = useState('');
+
+    const doSignup = async event =>
+    {   
+        event.preventDefault();
+
+        var obj = {login:loginName.value,password:loginPassword.value};
+        var js = JSON.stringify(obj);
+
+        try
+        {    
+            const response = await fetch('http://localhost:5000/api/login',
+                {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
+
+            var res = JSON.parse(await response.text());
+
+            if( res.id <= 0 )
+            {
+                setMessage('User/Password combination incorrect');
+            }
+            else
+            {
+                var user = {firstName:res.firstName,lastName:res.lastName,id:res.id}
+                localStorage.setItem('user_data', JSON.stringify(user));
+
+                setMessage('');
+                window.location.href = '/onlytrips';
+            }
+        }
+        catch(e)
+        {
+            alert(e.toString());
+            return;
+        }   
+    };
         return(
             <div id="signDiv">
                 <img src={logo} alt="OnlyTrips Logo" id="logo"></ img>
                 <form id = "SignUpForm" onSubmit={doSignUp}>
-                    <input type="text" id="FirstName" placeholder="First Name" ref={(c) => fName = c} /><br />
-                    <input type="text" id="LastName" placeholder="Last Name" ref={(c) => lName = c} /><br />
-                    <input type="text" id="createPassword" placeholder="Create Password" ref={(c) => createPassword = c} /><br />
+                    <input type = "text" id = "username" placeholde="Username" ref={(c) = loginName = c} /><br />
+                    <input type="text" id="FirstName" placeholder="First Name" ref={(c) => firstName = c} /><br />
+                    <input type="text" id="LastName" placeholder="Last Name" ref={(c) => lastName = c} /><br />
+                    <input type="text" id="createPassword" placeholder="Create Password" ref={(c) => loginPassword = c} /><br />
                     <input type="text" id="confirmPassword" placeholder="Confirm Password" ref={(c) => confirmPassword = c} /><br />
-                    <input type="text" id="enterEmail" placeholder="Enter Email" ref={(c) => enterEmail = c} /><br />
+                    <input type="text" id="enterEmail" placeholder="Enter Email" ref={(c) => loginEmail = c} /><br />
                     <input type="text" id="confirmEmail" placeholder="Confirm Email" ref={(c) => confirmEmail = c} /><br />
-                    <input type="submit" id="SignUpButton" class="buttons" value = "Sign Up!" onClick={doSignUp} /> 
+                    <input type="submit" id="SignUpButton" class="button" value = "Sign Up!" onClick={doSignUp} /> 
                 </form>
-                <p id = "loginLink"> Have an account?  <a href={SignUp} id = "loginLink">Log In!</a></p>
+                <p id = "loginLink"> Have an account?  <a href={login} id = "loginLink">Log In!</a></p>
             </div>  
     );
-}
+};
+
+export default SignUp;
+
+

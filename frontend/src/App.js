@@ -4,13 +4,14 @@ import './App.css';
 
 import LoginPage from './pages/LoginPage';
 import CardPage from './pages/tripView';
+import SignUpPage from './pages/SignUpPage';
 
 function App() {
   return (
     <Router >
       <Switch>
         <Route path="/" exact>
-          <LoginPage />
+          <SignUpPage/>
         </Route>
         <Route path="/cards" exact>
           <CardPage />
