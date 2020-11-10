@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import App from '../App';
 import logo from '../images/OnlyTrips.svg'
-import SignUp from '../pages/SignUpPage.js'
+import SignUpPage from '../pages/SignUpPage.js'
 
 function Login()
 {
@@ -45,6 +45,15 @@ function Login()
         }    
     };
 
+        const goToSignUp = async event =>
+        {   
+
+
+                event.preventDefault();
+                window.location.href='/SignUpPage';
+        
+        };
+
     return(
       <div id="loginDiv">
       <img src={logo} alt="OnlyTrips Logo" id="logo"></ img>
@@ -52,9 +61,9 @@ function Login()
         <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c} /><br />
         <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /><br />
         <input type="submit" id="loginButton" class="buttons" value = "Do It"
-          onClick={doLogin} />
+          onClick={doLogin} style={{cursor:'pointer'}}/>
         </form>
-        <p id = "signUpLink"> Dont have an account?  <a href={SignUp} id = "signUpLink">Sign Up</a></p>
+        <p id = "signUpLink"> Dont have an account?  <a id='Link' onClick={goToSignUp} >Sign Up</a></p>
      </div>
     );
 };

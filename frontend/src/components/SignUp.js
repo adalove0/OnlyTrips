@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import MD5 from 'MD5.js';
 import App from '../App';
 import logo from '../images/OnlyTrips.svg'
-import login from 'login.js'
+import loginPage from '../pages/LoginPage.js'
 
 
 function SignUp()
@@ -19,7 +18,7 @@ function SignUp()
 
     const [message,setMessage] = useState('');
 
-    const doSignup = async event =>
+    const doSignUp = async event =>
     {   
         event.preventDefault();
 
@@ -43,7 +42,7 @@ function SignUp()
                 localStorage.setItem('user_data', JSON.stringify(user));
 
                 setMessage('');
-                window.location.href = '/onlytrips';
+                window.location.href = '#/onlytrips';
             }
         }
         catch(e)
@@ -52,20 +51,28 @@ function SignUp()
             return;
         }   
     };
+
+    const goToLogin = async event =>
+    {   
+        event.preventDefault();
+        window.location.href='/';
+        
+    };
+
         return(
-            <div id="signDiv">
+            <div id="signUpDiv">
                 <img src={logo} alt="OnlyTrips Logo" id="logo"></ img>
                 <form id = "SignUpForm" onSubmit={doSignUp}>
-                    <input type = "text" id = "username" placeholde="Username" ref={(c) = loginName = c} /><br />
+                    <input type="text" id="username" placeholder="Username" ref={(c) => loginName = c} /><br />
                     <input type="text" id="FirstName" placeholder="First Name" ref={(c) => firstName = c} /><br />
                     <input type="text" id="LastName" placeholder="Last Name" ref={(c) => lastName = c} /><br />
                     <input type="text" id="createPassword" placeholder="Create Password" ref={(c) => loginPassword = c} /><br />
                     <input type="text" id="confirmPassword" placeholder="Confirm Password" ref={(c) => confirmPassword = c} /><br />
                     <input type="text" id="enterEmail" placeholder="Enter Email" ref={(c) => loginEmail = c} /><br />
                     <input type="text" id="confirmEmail" placeholder="Confirm Email" ref={(c) => confirmEmail = c} /><br />
-                    <input type="submit" id="SignUpButton" class="button" value = "Sign Up!" onClick={doSignUp} /> 
+                    <input type="submit" id="SignUpButton" class="button" value = "Sign Up!" onClick={doSignUp}  /> 
                 </form>
-                <p id = "loginLink"> Have an account?  <a href={login} id = "loginLink">Log In!</a></p>
+                <p id = "loginLink"> Have an account?  <a id='Link' onClick={goToLogin} > Log In! </a></p>
             </div>  
     );
 };
