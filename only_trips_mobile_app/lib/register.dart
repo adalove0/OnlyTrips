@@ -49,6 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 RaisedButton(
                   onPressed: () {
                     Navigator.push(
+                      // TODO: Create actual register function
                         context,
                         MaterialPageRoute(builder: (context) => HomePage())
                     );

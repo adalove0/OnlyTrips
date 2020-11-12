@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: Center(
+        // TODO: Make stuff work in the main page
         child: Text('Landing Page'),
       ),
       resizeToAvoidBottomInset: false,
