@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:onlytrips/verifyemail.dart';
+import 'dart:convert'; // Used for json conversion
 import 'home.dart';
+import 'package:crypto/crypto.dart'; // Use for password hashing
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html'; // Use to post to the api server
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -8,6 +12,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  var email = "";
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -34,6 +39,14 @@ class _RegisterPageState extends State<RegisterPage> {
             TextField(
               decoration: InputDecoration(
                 filled: true,
+                labelText: 'Email',
+              ),
+            ),
+            // spacer
+            SizedBox(height: 12.0),
+            TextField(
+              decoration: InputDecoration(
+                filled: true,
                 labelText: 'Password',
               ),
               obscureText: true,
@@ -51,7 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     Navigator.push(
                       // TODO: Create actual register function
                         context,
-                        MaterialPageRoute(builder: (context) => HomePage())
+                        MaterialPageRoute(builder: (context) => VerifyPage())
                     );
                   },
                   child: Text('Submit'),
