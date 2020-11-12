@@ -16,6 +16,10 @@ import 'package:flutter/material.dart';
 import 'package:onlytrips/register.dart';
 import 'package:onlytrips/home.dart';
 import 'dart:convert'; // Used for json serialization
+import 'package:crypto/crypto.dart'; // Use for password hashing
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html'; // Use to post to the api server
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -68,7 +72,11 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text('Login'),
                   onPressed: () {
                     // TODO: Create actual login
+                    // TODO: Hash user input password
+                    // TODO: Generate JSON
+                    // TODO: Send json to API
                     // TODO: If user isn't verified, handle appropriately
+                    // TODO: Handle invalid credentials
                     Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => HomePage())
