@@ -4,11 +4,11 @@ import 'package:onlytrips/login.dart';
 
 import 'register.dart';
 
-class StartPage extends StatefulWidget {
+class VerifyPage extends StatefulWidget {
   @override
-  _StartPageState createState() => _StartPageState();
+  _VerifyPageState createState() => _VerifyPageState();
 }
-class _StartPageState extends State<StartPage> {
+class _VerifyPageState extends State<VerifyPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,6 +24,31 @@ class _StartPageState extends State<StartPage> {
               ],
             ),
             SizedBox(height: 120.0),
+            Text(
+              'A verification link has been sent to your email. Please click on it before attempting to log in.',
+              maxLines: 3,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+            ),
+            ButtonBar(
+              children: <Widget>[
+                FlatButton(
+                  child: Text('Resend'),
+                  onPressed: () {
+                    // TODO: Create resend ability
+                  },
+                ),
+                RaisedButton(
+                  child: Text('Go to login'),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage())
+                    );
+                  },
+                ),
+              ],
+            )
           ],
         ),
       ),
