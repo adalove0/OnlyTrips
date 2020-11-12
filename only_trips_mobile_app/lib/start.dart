@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:onlytrips/register.dart';
 import 'package:onlytrips/login.dart';
 
-import 'register.dart';
-
 class StartPage extends StatefulWidget {
   @override
   _StartPageState createState() => _StartPageState();
@@ -54,7 +52,6 @@ class _StartPageState extends State<StartPage> {
                 child: const Text('Login'),
               ),
             ),
-
               ],
             ),
         ),
