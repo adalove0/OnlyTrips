@@ -15,6 +15,7 @@
 import 'package:flutter/material.dart';
 import 'package:onlytrips/register.dart';
 import 'package:onlytrips/home.dart';
+import 'dart:convert'; // Used for json serialization
 
 class LoginPage extends StatefulWidget {
   @override
@@ -67,6 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text('Login'),
                   onPressed: () {
                     // TODO: Create actual login
+                    // TODO: If user isn't verified, handle appropriately
                     Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => HomePage())
