@@ -250,7 +250,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return TextFormField(
       focusNode: _zipFocusNode,
       validator: (zip){
-        Pattern pattern = '^\d{5}\$';
+        Pattern pattern = '^[0-9]{5}\$';
         RegExp regex = new RegExp(pattern);
         if (!regex.hasMatch(zip))
           return 'Please input a 5 digit zip code.';

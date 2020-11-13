@@ -1,93 +1,138 @@
-// Copyright 2018-present the Flutter authors. All Rights Reserved.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 import 'package:flutter/material.dart';
-import 'package:onlytrips/register.dart';
 import 'package:onlytrips/home.dart';
 import 'dart:convert'; // Used for json serialization
 import 'package:crypto/crypto.dart'; // Use for password hashing
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html'; // Use to post to the api server
+import 'package:http/http.dart' as http; // Use to post to the api server
+import 'package:email_validator/email_validator.dart';
 
 
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
-
 class _LoginPageState extends State<LoginPage> {
+  String _email,_password = "";
+  // TODO: Hash password
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  FocusNode _emailFocusNode = FocusNode();
+  FocusNode _passwordFocusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
-          children: <Widget>[
-            SizedBox(height: 80.0),
-            Column(
-              children: <Widget>[
-                Image.asset('assets/logo.png'),
-              ],
-            ),
-            SizedBox(height: 120.0),
-            // [Name]
-            TextField(
-              decoration: InputDecoration(
-                filled: true,
-                labelText: 'Username',
+        appBar: AppBar(title: Text('OnlyTrips Registration'),),
+        body: loginPageBody(),
+      ),
+    );
+  }
+
+  void fieldFocusChange(BuildContext context, FocusNode currentFocus,FocusNode nextFocus) {
+    currentFocus.unfocus();
+    FocusScope.of(context).requestFocus(nextFocus);
+  }
+
+  Widget loginPageBody() {
+    return SingleChildScrollView(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 80.0),
+              Column(
+                children: <Widget>[
+                  Image.asset('assets/logo.png'),
+                ],
               ),
-            ),
-            // spacer
-            SizedBox(height: 12.0),
-            TextField(
-              decoration: InputDecoration(
-                filled: true,
-                labelText: 'Password',
-              ),
-              obscureText: true,
-            ),
-            ButtonBar(
-              children: <Widget>[
-                FlatButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => RegisterPage())
-                    );
-                  },
-                  child: Text('Register'),
-                ),
-                RaisedButton(
-                  child: Text('Login'),
-                  onPressed: () {
-                    // TODO: Create actual login
-                    // TODO: Hash user input password
-                    // TODO: Generate JSON
-                    // TODO: Send json to API
-                    // TODO: If user isn't verified, handle appropriately
-                    // TODO: Handle invalid credentials
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomePage())
-                    );
-                  },
-                ),
-              ],
-            )
-          ],
+              emailInput(),
+              SizedBox(height: 16,),
+              passwordInput(),
+              SizedBox(height: 16,),
+              submitButton(),
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Widget emailInput() {
+    return TextFormField(
+      focusNode: _emailFocusNode,
+      autofocus: true,
+      onFieldSubmitted: (_){
+        fieldFocusChange(context, _emailFocusNode, _passwordFocusNode);
+      },
+      validator: (email)=>EmailValidator.validate(email)? null:"Invalid email address",
+      onSaved: (email)=> _email = email,
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+        labelText: "Email",
+        hintText: "e.g onlytrips@gmail.com",
+      ),
+      textInputAction: TextInputAction.next,
+    );
+  }
+
+  Widget passwordInput() {
+    return TextFormField(
+      focusNode: _passwordFocusNode,
+      validator: (password){
+        Pattern pattern = '^.{6,}\$';
+        RegExp regex = new RegExp(pattern);
+        if (!regex.hasMatch(password))
+          return 'Password must be greater than 6 characters.';
+        else
+          return null;
+      },
+      onSaved: (password)=> _password = password,
+      keyboardType: TextInputType.text,
+      obscureText: true,
+      decoration: InputDecoration(
+        labelText: "Password",
+        suffixIcon: Icon(Icons.lock),
+      ),
+      textInputAction: TextInputAction.done,
+    );
+  }
+
+  RaisedButton submitButton(){
+    return  RaisedButton(
+      color:Theme.of(context).primaryColor,
+      onPressed: (){
+        if(_formKey.currentState.validate()){
+          _formKey.currentState.save();
+          // TODO: Connect to API
+          // TODO: Hash user input password
+          // TODO: Generate JSON
+          // TODO: Send json to API
+          // TODO: If user isn't verified, handle appropriately
+          // TODO: Handle invalid credentials
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage())
+          );
+        }
+      },
+      child: Text("Submit",style: TextStyle(color: Colors.white),),
+    );
+  }
+
+  Future<http.Response> submitLogin() {
+    return http.post(
+      'https://heroku.com/api', // TODO: Add URL on hosted API
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'email': _email,
+        'password': _password,
+      }),
     );
   }
 }

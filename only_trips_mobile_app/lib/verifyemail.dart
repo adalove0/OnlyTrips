@@ -35,7 +35,7 @@ class _VerifyPageState extends State<VerifyPage> {
                 FlatButton(
                   child: Text('Resend'),
                   onPressed: () {
-                    // TODO: Create resend ability
+                    // TODO: Connect to email send API
                   },
                 ),
                 RaisedButton(
