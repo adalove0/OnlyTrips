@@ -11,10 +11,10 @@ function App() {
     <Router >
       <Switch>
         <Route path="/" exact>
-          <SignUpPage/>
+          <LoginPage/>
         </Route>
-        <Route path="/cards" exact>
-          <CardPage />
+        <Route path="/SignUpPage" exact>
+          <SignUpPage/>
         </Route>
         <Redirect to="/" />
       </Switch>  
