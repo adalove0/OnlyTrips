@@ -6,7 +6,7 @@ import SignUpPage from '../pages/SignUpPage.js'
 function Login()
 {
     
-    var loginName;
+    var loginEmail;
     var loginPassword;
 
     const [message,setMessage] = useState('');
@@ -15,24 +15,28 @@ function Login()
     {
         event.preventDefault();
 
-        var obj = {login:loginName.value,password:loginPassword.value};
-        var js = JSON.stringify(obj);
+        var data = {login:loginEmail.value,password:loginPassword.value};
+        var js = JSON.stringify(data);
+
+        var request = new XMLHttpRequest();
+        request.open('POST', '../../../backend/routes/login.js', false);
+        request.setRequestHeader('Content-Type', 'application/json; charset = UTF-8');
+
 
         try
-        {    
-            const response = await fetch('http://localhost:5000/backend/api/login',
-                {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
+        {           
+            request.send(js);
 
-            var res = JSON.parse(await response.text());
+            var response = JSON.parse(await request.text());
+            var error = response["error"];
 
-
-            if( res.id <= 0 )
+            if( response.id <= 0 )
             {
                 setMessage('User/Password combination incorrect');
             }
             else
             {
-                var user = {firstName:res.firstName,lastName:res.lastName,id:res.id}
+                var user = {firstName:response.firstName,lastName:response.lastName,id:response.id}
                 localStorage.setItem('user_data', JSON.stringify(user));
 
                 setMessage('');
@@ -48,8 +52,6 @@ function Login()
 
         const goToSignUp = async event =>
         {   
-
-
                 event.preventDefault();
                 window.location.href='/SignUpPage';
         
@@ -59,7 +61,7 @@ function Login()
       <div id="loginDiv">
       <img src={logo} alt="OnlyTrips Logo" id="logo"></ img>
         <form id = "loginForm" onSubmit={doLogin}>
-        <input type="text" id="textbox" placeholder="Username" ref={(c) => loginName = c} /><br />
+        <input type="text" id="textbox" placeholder="Username" ref={(c) => loginEmail = c} /><br />
         <input type="password" id="textbox" placeholder="Password" ref={(c) => loginPassword = c} /><br />
         <input type="submit" id="loginButton" class="buttons" value = "Do It"
           onClick={doLogin} style={{cursor:'pointer'}}/>
