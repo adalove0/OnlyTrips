@@ -20,10 +20,11 @@ function Login()
 
         try
         {    
-            const response = await fetch('http://localhost:5000/api/login',
+            const response = await fetch('http://localhost:5000/backend/api/login',
                 {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
 
             var res = JSON.parse(await response.text());
+
 
             if( res.id <= 0 )
             {
@@ -58,8 +59,8 @@ function Login()
       <div id="loginDiv">
       <img src={logo} alt="OnlyTrips Logo" id="logo"></ img>
         <form id = "loginForm" onSubmit={doLogin}>
-        <input type="text" id="loginName" placeholder="Username" ref={(c) => loginName = c} /><br />
-        <input type="password" id="loginPassword" placeholder="Password" ref={(c) => loginPassword = c} /><br />
+        <input type="text" id="textbox" placeholder="Username" ref={(c) => loginName = c} /><br />
+        <input type="password" id="textbox" placeholder="Password" ref={(c) => loginPassword = c} /><br />
         <input type="submit" id="loginButton" class="buttons" value = "Do It"
           onClick={doLogin} style={{cursor:'pointer'}}/>
         </form>

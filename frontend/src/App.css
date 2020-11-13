@@ -37,7 +37,7 @@ body
   margin: auto;
   position: absolute;
   top: 50%;
-  left: 70%;
+  left: 50%;
   -ms-transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.6);
   transform: translate(-50%, -50%);
@@ -48,7 +48,7 @@ body
   border: none;
 }
 
-#loginName
+#textbox
 {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -69,16 +69,6 @@ body
   flex-direction: column;
 }
 
-#loginPassword
-{
-  margin-top: 10px;
-  margin-bottom: 10px;
-  height: 35px;
-  width: 70%;
-  border: none;
-  background: inherit;
-  border-bottom: 1px solid black;
-}
 
 #inner-title
 {
