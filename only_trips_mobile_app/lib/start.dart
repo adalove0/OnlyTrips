@@ -11,49 +11,51 @@ class _StartPageState extends State<StartPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: <Widget>[
-            SizedBox(height: 100.0),
-            Column(
+        body: SingleChildScrollView(
+            child: Column(
               children: <Widget>[
-                Center(
-                    child: Image.asset('assets/logo.png')
+                SizedBox(height: 100.0),
+                Column(
+                  children: <Widget>[
+                    Center(
+                        child: Image.asset('assets/logo.png')
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            SizedBox(height: 120.0),
-            RaisedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => RegisterPage())
-                  );
-                },
-                child: Container(
-                  decoration: const BoxDecoration(
-                    // TODO: Add decoration
+                SizedBox(height: 120.0),
+                RaisedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => RegisterPage())
+                      );
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        // TODO: Add decoration
+                      ),
+                      padding: const EdgeInsets.all(10.0),
+                      child: const Text('Register'),
+                    ),
+                    ),
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage())
+                    );
+                  },
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      // TODO: Add decoration
+                    ),
+                    padding: const EdgeInsets.all(10.0),
+                    child: const Text('Login'),
                   ),
-                  padding: const EdgeInsets.all(10.0),
-                  child: const Text('Register'),
                 ),
-                ),
-            RaisedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage())
-                );
-              },
-              child: Container(
-                decoration: const BoxDecoration(
-                  // TODO: Add decoration
-                ),
-                padding: const EdgeInsets.all(10.0),
-                child: const Text('Login'),
-              ),
-            ),
               ],
             ),
+          ),
         ),
       );
   }
