@@ -188,6 +188,7 @@ class _RegisterPageState extends State<RegisterPage> {
         else
           return null;
       },
+      textCapitalization: TextCapitalization.words,
       onSaved: (city)=> _city = city,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
@@ -214,6 +215,7 @@ class _RegisterPageState extends State<RegisterPage> {
       },
       onSaved: (state)=> _state = state,
       keyboardType: TextInputType.text,
+      textCapitalization: TextCapitalization.characters,
       decoration: InputDecoration(
         labelText: "State",
         hintText: "e.g FL",
@@ -238,6 +240,7 @@ class _RegisterPageState extends State<RegisterPage> {
       },
       onSaved: (country)=> _country = country,
       keyboardType: TextInputType.text,
+      textCapitalization: TextCapitalization.words,
       decoration: InputDecoration(
         labelText: "Country",
         hintText: "e.g United States",
