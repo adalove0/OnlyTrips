@@ -6,13 +6,13 @@ import 'package:crypto/crypto.dart'; // Use for password hashing
 import 'package:http/http.dart' as http; // Use to post to the api server
 import 'package:email_validator/email_validator.dart';
 
-
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
+
 class _LoginPageState extends State<LoginPage> {
-  String _email,_password = "";
+  String _email, _password = "";
   // TODO: Hash password
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -24,13 +24,44 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text('OnlyTrips Registration'),),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Only',
+                style: TextStyle(
+                  fontFamily: 'Heebo',
+                  fontSize: 25.0,
+                ),
+              ),
+              Text(
+                'Trips',
+                style: TextStyle(
+                  fontFamily: 'Marguerite',
+                ),
+              ),
+              Container(
+                width: 50.0,
+              ),
+              Text(
+                'Login',
+                style: TextStyle(
+                  fontFamily: 'Heebo',
+                ),
+              ),
+            ],
+          ),
+        ),
         body: loginPageBody(),
       ),
     );
   }
 
-  void fieldFocusChange(BuildContext context, FocusNode currentFocus,FocusNode nextFocus) {
+  void fieldFocusChange(
+      BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
     currentFocus.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
   }
@@ -50,9 +81,13 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
               emailInput(),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               passwordInput(),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               submitButton(),
             ],
           ),
@@ -65,11 +100,12 @@ class _LoginPageState extends State<LoginPage> {
     return TextFormField(
       focusNode: _emailFocusNode,
       autofocus: true,
-      onFieldSubmitted: (_){
+      onFieldSubmitted: (_) {
         fieldFocusChange(context, _emailFocusNode, _passwordFocusNode);
       },
-      validator: (email)=>EmailValidator.validate(email)? null:"Invalid email address",
-      onSaved: (email)=> _email = email,
+      validator: (email) =>
+          EmailValidator.validate(email) ? null : "Invalid email address",
+      onSaved: (email) => _email = email,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         labelText: "Email",
@@ -82,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget passwordInput() {
     return TextFormField(
       focusNode: _passwordFocusNode,
-      validator: (password){
+      validator: (password) {
         Pattern pattern = '^.{6,}\$';
         RegExp regex = new RegExp(pattern);
         if (!regex.hasMatch(password))
@@ -90,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
         else
           return null;
       },
-      onSaved: (password)=> _password = password,
+      onSaved: (password) => _password = password,
       keyboardType: TextInputType.text,
       obscureText: true,
       decoration: InputDecoration(
@@ -101,11 +137,11 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  RaisedButton submitButton(){
-    return  RaisedButton(
-      color:Theme.of(context).primaryColor,
-      onPressed: (){
-        if(_formKey.currentState.validate()){
+  RaisedButton submitButton() {
+    return RaisedButton(
+      color: Theme.of(context).primaryColor,
+      onPressed: () {
+        if (_formKey.currentState.validate()) {
           _formKey.currentState.save();
           // TODO: Connect to API
           // TODO: Hash user input password
@@ -114,12 +150,13 @@ class _LoginPageState extends State<LoginPage> {
           // TODO: If user isn't verified, handle appropriately
           // TODO: Handle invalid credentials
           Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage())
-          );
+              context, MaterialPageRoute(builder: (context) => HomePage()));
         }
       },
-      child: Text("Submit",style: TextStyle(color: Colors.white),),
+      child: Text(
+        "Submit",
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 

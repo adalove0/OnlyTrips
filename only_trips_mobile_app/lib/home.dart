@@ -8,7 +8,26 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('OnlyTrips'),
+        centerTitle: true,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Only',
+              style: TextStyle(
+                fontFamily: 'Heebo',
+                fontSize: 25.0,
+              ),
+            ),
+            Text(
+              'Trips',
+              style: TextStyle(
+                fontFamily: 'Marguerite',
+              ),
+            ),
+          ],
+        ),
         leading: IconButton(
           icon: Icon(
             Icons.menu,
