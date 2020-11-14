@@ -57,7 +57,8 @@ function SignUp()
             {
                 var user = {firstName:res.firstName,lastName:res.lastName,id:res.id}
                 localStorage.setItem('user_data', JSON.stringify(user));
-
+                
+                alert(res.id + '' + res.email);
                 setMessage(res.id + '' + res.email);
                 window.location.href = '#/onlytrips';
             }
