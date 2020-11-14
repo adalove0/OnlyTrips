@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
             Text(
               'Only',
               style: TextStyle(
-                fontFamily: 'Heebo',
+                fontFamily: 'Gotham Light Regular',
                 fontSize: 25.0,
               ),
             ),
@@ -39,7 +39,8 @@ class HomePage extends StatelessWidget {
       drawer: new NavDrawer(),
       body: Center(
         // TODO: Make stuff work in the main page
-        child: Text('Landing Page'),
+        child: Text('Landing Page',
+            style: TextStyle(fontFamily: 'Gotham Light Regular')),
       ),
       resizeToAvoidBottomInset: false,
     );

@@ -41,7 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
               Text(
                 'Only',
                 style: TextStyle(
-                  fontFamily: 'Heebo',
+                  fontFamily: 'Gotham Light Regular',
                   fontSize: 25.0,
                 ),
               ),

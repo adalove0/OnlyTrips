@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
               Text(
                 'Only',
                 style: TextStyle(
-                  fontFamily: 'Heebo',
+                  fontFamily: 'Gotham Light Regular',
                   fontSize: 25.0,
                 ),
               ),

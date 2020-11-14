@@ -71,6 +71,9 @@ flutter:
     - family: Marguerite
       fonts:
         - asset: fonts/Marguerite1/marguerite.ttf
+    - family: Gotham Light Regular
+      fonts:
+        - asset: fonts/Gotham Light Regular/Gotham Light Regular.otf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
