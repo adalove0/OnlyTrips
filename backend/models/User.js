@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-//const Trips = require('Trips');
-    
+// what does making it var instead of const do?
+
 const UserSchema = new mongoose.Schema({
     email: {
         type: String,
@@ -38,8 +38,11 @@ const UserSchema = new mongoose.Schema({
     },
     token: {
         type: String
-    }
-
+    },
+    userTrips: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Trip'
+    }]
 })
 
 UserSchema.methods.generateHash = function(password) {

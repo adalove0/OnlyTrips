@@ -1,12 +1,10 @@
-/*const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
+// what does making it var instead of const do?
 const TravelSchema = new.mongoose.Schema({
     numPeople:{
         type: Number,
         required: true
-    },
-    startingLocation:{
-
     },
     startDate:{
         type:Date,
@@ -16,13 +14,11 @@ const TravelSchema = new.mongoose.Schema({
         type: Date,
         required: true
     },
-    travelMethod:{
-        type:String,
-        required: true
-    },
     destination: [{
         city: {type: String, required :true},
-        country: {type: String, required:true }
+        state: {type: String, required:true }
     }]
 
-})*/
+})
+
+module.exports = mongoose.model("Trip", TravelSchema);

@@ -17,21 +17,16 @@ connection.once('open', () =>{
   console.log("Database connected");
 })
 
-const usersRouter = require('./routes/signup');
+const userSignin = require('./routes/signup');
 const userLogin = require('./routes/login');
-//const userTravel = require('./routes/travel');
+const userTravel = require('./routes/travelPage');
+const userAddTrip = require('./routes/addtrip');
 
-/*app.use((err, req, res, next)=>{
-  console.log(err);
-  console.log(req);
-  console.log(res);
-  next();
-});*/
 
-app.use('/signup', usersRouter); 
+app.use('/signup', userSignin); 
 app.use('/login', userLogin);
-//app.use('/travel', userTravel);
-
+app.use('/travel', userTravel);
+app.use('/addTrip', userAddTrip);
 
 app.listen(3000, () => console.log("server starting")); // start Node + Express server on port 8080
 

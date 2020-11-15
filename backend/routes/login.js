@@ -2,9 +2,7 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-
 let User = require('../models/User');
-
 
 router.get('/', (req, res, next)=>{
     //const body = req.body;
