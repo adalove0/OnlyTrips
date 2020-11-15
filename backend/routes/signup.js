@@ -1,99 +1,96 @@
-const router = require('express').Router();
-const crypto = require('crypto');
-let User = require('../models/User');
+const router = require("express").Router();
+const crypto = require("crypto");
+let User = require("../models/User");
 
 // VALIDATION
 
-const Joi = require('@hapi/joi');
-const boolean = require('@hapi/joi/lib/types/boolean');
+const Joi = require("@hapi/joi");
+const boolean = require("@hapi/joi/lib/types/boolean");
 
 //this really only does stuff for email to make sure its valid email
 const valSchema = Joi.object({
-    email: Joi.string().email(),
-    name: Joi.string(),
-    password: Joi.string(),
-    age: Joi.number(),
-    location: Joi.object(),  
-    confirmed: Joi.boolean(),
-    token: Joi.string()
+  email: Joi.string().email(),
+  name: Joi.string(),
+  password: Joi.string(),
+  age: Joi.number(),
+  location: Joi.object(),
+  confirmed: Joi.boolean(),
+  token: Joi.string(),
 });
 
+router.post("/", (req, res, next) => {
+  // makes sure the email is a valid email
+  const { error } = valSchema.validate(req.body);
+  //res.send(error);
 
-router.post('/', (req, res, next)=>{
-    
-    // makes sure the email is a valid email
-    const { error } = valSchema.validate(req.body);
-    //res.send(error);
+  if (error) return res.status(400).send(error.details[0].message);
 
-    if (error)
-        return res.status(400).send(error.details[0].message);
+  const body = req.body;
 
-    const body = req.body;
+  // checks if email they entered is already used for another acc
+  User.find(
+    {
+      email: req.body.email,
+    },
+    (err, previousUsers) => {
+      if (err) {
+        return res.send({
+          success: false,
+          messgae: "Error: Servor error1",
+        });
+      } else if (previousUsers.length > 0) {
+        return res.send({
+          succcess: false,
+          message: "Error: Account already exists",
+        });
+      } else {
+        // if email doesnt already belong to a diff account and the email is valid
+        // we need to seend authentication
+        const newUser = new User();
+        //email = email.toLowerCase();
+        // set the user fields to their respective values
+        newUser.email = req.body.email.toLowerCase();
+        newUser.name = req.body.name;
+        newUser.password = newUser.generateHash(req.body.password);
+        newUser.age = req.body.age;
+        newUser.location = req.body.location;
+        newUser.confirmed = false;
+        newUser.token = crypto.randomBytes(64).toString("hex");
 
-    // checks if email they entered is already used for another acc
-    User.find({
-        email: req.body.email
-    }, (err, previousUsers) => {
-        if (err){
-            return res.send({
-                success: false,
-                messgae: 'Error: Servor error1'
-            }) 
-        } else if (previousUsers.length > 0){
-            return res.send({
-                succcess: false,
-                message: 'Error: Account already exists'
-            })
-        }
-        else{
-            // if email doesnt already belong to a diff account and the email is valid
-            // we need to seend authentication 
-            const newUser = new User();
-            //email = email.toLowerCase();
-            // set the user fields to their respective values
-            newUser.email = req.body.email.toLowerCase();
-            newUser.name = req.body.name;
-            newUser.password = newUser.generateHash(req.body.password);
-            newUser.age = req.body.age;
-            newUser.location = req.body.location;
-            newUser.confirmed = false;
-            newUser.token = crypto.randomBytes(64).toString('hex');
-            
-            const msg = {
-                from: 'onlytripsrus@gmail.com',
-                to: req.body.email,
-                subject: 'Onlytrips - verify your email',
-                text:`
+        const msg = {
+          from: "onlytripsrus@gmail.com",
+          to: req.body.email,
+          subject: "Onlytrips - verify your email",
+          text: `
                 Hello, thank you for registering on our site. Please copy and paste the address below to verify
                 your account. http://reqheadershost/verify-email?token=${newUser.token}
                 `,
-                html: `
+          html: `
                     <h1>Hello,</h1>
                     <p>thank you for registering on our site.</p>
                     <p>Please copy and paste the address below to verify your account.</p>
                     <a href ="http://reqheadershost/verify-email?token=${newUser.token}" >Verify your account</a>
-                `
-            }
-            
-            newUser.save((err, user) =>{
-                 if(err){
-                    console.log(err);
-                    return res.send({
-                        success: false,
-                        message: 'Error: Server Error2'
-                    });
-                }
-                else{                
-                    return res.status(200).json({
-                        success:true,
-                        message: 'Signed up'
-                    });
-                }
-            });
-        }
-    })
-})
+                `,
+        };
 
+        newUser.save((err, user) => {
+          if (err) {
+            console.log(err);
+            return res.send({
+              success: false,
+              message: "Error: Server Error2",
+            });
+          } else {
+            return res.status(200).json({
+              success: true,
+              message: "Signed up",
+            });
+          }
+        });
+      }
+    }
+  );
+});
 
 module.exports = router;
 
