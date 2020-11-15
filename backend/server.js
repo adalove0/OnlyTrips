@@ -29,9 +29,8 @@ const userLogin = require('./routes/login');
 });*/
 
 app.use('/signup', usersRouter); 
-app.use('/login', userLogin);
+app.use('/', userLogin);
 //app.use('/travel', userTravel);
-
 
 app.listen(3000, () => console.log("server starting")); // start Node + Express server on port 8080
 

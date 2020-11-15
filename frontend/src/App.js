@@ -1,23 +1,29 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
+import "./App.css";
 
-import LoginPage from './pages/LoginPage';
-import CardPage from './pages/tripView';
-import SignUpPage from './pages/SignUpPage';
+import LoginPage from "./pages/LoginPage";
+import CardPage from "./pages/tripView";
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
+  console.log("Starting Front End");
   return (
-    <Router >
+    <Router>
       <Switch>
         <Route path="/" exact>
-          <LoginPage/>
+          <LoginPage />
         </Route>
         <Route path="/SignUpPage" exact>
-          <SignUpPage/>
+          <SignUpPage />
         </Route>
         <Redirect to="/" />
-      </Switch>  
+      </Switch>
     </Router>
   );
 }
