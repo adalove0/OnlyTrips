@@ -8,7 +8,26 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('OnlyTrips'),
+        centerTitle: true,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Only',
+              style: TextStyle(
+                fontFamily: 'Gotham Light Regular',
+                fontSize: 25.0,
+              ),
+            ),
+            Text(
+              'Trips',
+              style: TextStyle(
+                fontFamily: 'Marguerite',
+              ),
+            ),
+          ],
+        ),
         leading: IconButton(
           icon: Icon(
             Icons.menu,
@@ -20,7 +39,8 @@ class HomePage extends StatelessWidget {
       drawer: new NavDrawer(),
       body: Center(
         // TODO: Make stuff work in the main page
-        child: Text('Landing Page'),
+        child: Text('Landing Page',
+            style: TextStyle(fontFamily: 'Gotham Light Regular')),
       ),
       resizeToAvoidBottomInset: false,
     );

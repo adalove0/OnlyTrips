@@ -14,7 +14,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  String _name,_email,_password,_city,_state,_country,_zip,_age= "";
+  String _name, _email, _password, _city, _state, _country, _zip, _age = "";
   // TODO: Hash password
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -31,21 +31,52 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-          appBar: AppBar(title: Text('OnlyTrips Registration'),),
-          body: registerPageBody(),
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Only',
+                style: TextStyle(
+                  fontFamily: 'Gotham Light Regular',
+                  fontSize: 25.0,
+                ),
+              ),
+              Text(
+                'Trips',
+                style: TextStyle(
+                  fontFamily: 'Marguerite',
+                ),
+              ),
+              Container(
+                width: 50.0,
+              ),
+              Text(
+                'Registration',
+                style: TextStyle(
+                  fontFamily: 'Heebo',
+                ),
+              ),
+            ],
+          ),
+        ),
+        body: registerPageBody(),
       ),
     );
   }
 
-  void fieldFocusChange(BuildContext context, FocusNode currentFocus,FocusNode nextFocus) {
+  void fieldFocusChange(
+      BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
     currentFocus.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
   }
 
   Widget registerPageBody() {
     return SingleChildScrollView(
-        child: Container(
+      child: Container(
         padding: const EdgeInsets.all(16),
         child: Form(
           key: _formKey,
@@ -57,23 +88,41 @@ class _RegisterPageState extends State<RegisterPage> {
                   Image.asset('assets/logo.png'),
                 ],
               ),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               emailInput(),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               nameInput(),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               passwordInput(),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               ageInput(),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               cityInput(),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               stateInput(),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               countryInput(),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               zipInput(),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               submitButton(),
             ],
           ),
@@ -86,11 +135,12 @@ class _RegisterPageState extends State<RegisterPage> {
     return TextFormField(
       focusNode: _emailFocusNode,
       autofocus: true,
-      onFieldSubmitted: (_){
+      onFieldSubmitted: (_) {
         fieldFocusChange(context, _emailFocusNode, _nameFocusNode);
       },
-      validator: (email)=>EmailValidator.validate(email)? null:"Invalid email address",
-      onSaved: (email)=> _email = email,
+      validator: (email) =>
+          EmailValidator.validate(email) ? null : "Invalid email address",
+      onSaved: (email) => _email = email,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         labelText: "Email",
@@ -104,7 +154,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return TextFormField(
       focusNode: _nameFocusNode,
       textInputAction: TextInputAction.next,
-      validator: (name){
+      validator: (name) {
         Pattern pattern = '^[a-zA-Z]+(?:(?:[\',. -][a-zA-Z ])?[a-zA-Z]*)*\$';
         RegExp regex = new RegExp(pattern);
         if (!regex.hasMatch(name))
@@ -112,7 +162,7 @@ class _RegisterPageState extends State<RegisterPage> {
         else
           return null;
       },
-      onSaved: (name)=> _name = name,
+      onSaved: (name) => _name = name,
       textCapitalization: TextCapitalization.words,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
@@ -128,7 +178,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget passwordInput() {
     return TextFormField(
       focusNode: _passwordFocusNode,
-      validator: (password){
+      validator: (password) {
         Pattern pattern = '^.{6,}\$';
         RegExp regex = new RegExp(pattern);
         if (!regex.hasMatch(password))
@@ -136,7 +186,7 @@ class _RegisterPageState extends State<RegisterPage> {
         else
           return null;
       },
-      onSaved: (password)=> _password = password,
+      onSaved: (password) => _password = password,
       keyboardType: TextInputType.text,
       obscureText: true,
       decoration: InputDecoration(
@@ -144,7 +194,7 @@ class _RegisterPageState extends State<RegisterPage> {
         suffixIcon: Icon(Icons.lock),
       ),
       textInputAction: TextInputAction.next,
-      onFieldSubmitted: (_){
+      onFieldSubmitted: (_) {
         fieldFocusChange(context, _passwordFocusNode, _ageFocusNode);
       },
     );
@@ -153,10 +203,10 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget ageInput() {
     return TextFormField(
       focusNode: _ageFocusNode,
-      onFieldSubmitted: (_){
+      onFieldSubmitted: (_) {
         fieldFocusChange(context, _ageFocusNode, _cityFocusNode);
       },
-      validator: (age){
+      validator: (age) {
         Pattern pattern = '^[0-9][0-9]?\$';
         RegExp regex = new RegExp(pattern);
         if (!regex.hasMatch(age))
@@ -164,7 +214,7 @@ class _RegisterPageState extends State<RegisterPage> {
         else
           return null;
       },
-      onSaved: (age)=> _age = age,
+      onSaved: (age) => _age = age,
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
         labelText: "Age",
@@ -177,10 +227,10 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget cityInput() {
     return TextFormField(
       focusNode: _cityFocusNode,
-      onFieldSubmitted: (_){
+      onFieldSubmitted: (_) {
         fieldFocusChange(context, _cityFocusNode, _stateFocusNode);
       },
-      validator: (city){
+      validator: (city) {
         Pattern pattern = '^[a-zA-Z]+(?:(?:[\',. -][a-zA-Z ])?[a-zA-Z]*)*\$';
         RegExp regex = new RegExp(pattern);
         if (!regex.hasMatch(city))
@@ -188,7 +238,8 @@ class _RegisterPageState extends State<RegisterPage> {
         else
           return null;
       },
-      onSaved: (city)=> _city = city,
+      textCapitalization: TextCapitalization.words,
+      onSaved: (city) => _city = city,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
         labelText: "City",
@@ -201,10 +252,10 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget stateInput() {
     return TextFormField(
       focusNode: _stateFocusNode,
-      onFieldSubmitted: (_){
+      onFieldSubmitted: (_) {
         fieldFocusChange(context, _stateFocusNode, _countryFocusNode);
       },
-      validator: (state){
+      validator: (state) {
         Pattern pattern = '^[A-Za-z][A-Za-z]\$';
         RegExp regex = new RegExp(pattern);
         if (!regex.hasMatch(state))
@@ -212,8 +263,9 @@ class _RegisterPageState extends State<RegisterPage> {
         else
           return null;
       },
-      onSaved: (state)=> _state = state,
+      onSaved: (state) => _state = state,
       keyboardType: TextInputType.text,
+      textCapitalization: TextCapitalization.characters,
       decoration: InputDecoration(
         labelText: "State",
         hintText: "e.g FL",
@@ -225,10 +277,10 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget countryInput() {
     return TextFormField(
       focusNode: _countryFocusNode,
-      onFieldSubmitted: (_){
+      onFieldSubmitted: (_) {
         fieldFocusChange(context, _countryFocusNode, _zipFocusNode);
       },
-      validator: (country){
+      validator: (country) {
         Pattern pattern = '^[a-zA-Z]+(?:(?:[\',. -][a-zA-Z ])?[a-zA-Z]*)*\$';
         RegExp regex = new RegExp(pattern);
         if (!regex.hasMatch(country))
@@ -236,8 +288,9 @@ class _RegisterPageState extends State<RegisterPage> {
         else
           return null;
       },
-      onSaved: (country)=> _country = country,
+      onSaved: (country) => _country = country,
       keyboardType: TextInputType.text,
+      textCapitalization: TextCapitalization.words,
       decoration: InputDecoration(
         labelText: "Country",
         hintText: "e.g United States",
@@ -249,7 +302,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget zipInput() {
     return TextFormField(
       focusNode: _zipFocusNode,
-      validator: (zip){
+      validator: (zip) {
         Pattern pattern = '^[0-9]{5}\$';
         RegExp regex = new RegExp(pattern);
         if (!regex.hasMatch(zip))
@@ -257,7 +310,7 @@ class _RegisterPageState extends State<RegisterPage> {
         else
           return null;
       },
-      onSaved: (zip)=> _zip = zip,
+      onSaved: (zip) => _zip = zip,
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
         labelText: "Zip Code",
@@ -267,20 +320,21 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  RaisedButton submitButton(){
-    return  RaisedButton(
-      color:Theme.of(context).primaryColor,
-      onPressed: (){
-        if(_formKey.currentState.validate()){
+  RaisedButton submitButton() {
+    return RaisedButton(
+      color: Theme.of(context).primaryColor,
+      onPressed: () {
+        if (_formKey.currentState.validate()) {
           _formKey.currentState.save();
           // TODO: Connect to API
           Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => VerifyPage())
-          );
+              context, MaterialPageRoute(builder: (context) => VerifyPage()));
         }
       },
-      child: Text("Submit",style: TextStyle(color: Colors.white),),
+      child: Text(
+        "Submit",
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 
