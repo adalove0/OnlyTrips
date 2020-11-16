@@ -255,8 +255,35 @@ body {
   max-width: 100%;
   width: 30%;
   left: -30px;
-  top: -30px
+  top: -30px;
   /*height: auto;*/
 }
 
 /* For TripView Page */
+
+#tripTable {
+  width: 700px;
+  height: 900px;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.6);
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  padding-top: 10px;
+  align-items: center;
+  border: none;
+}
+
+td {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 20px;
+  margin: auto;
+}
+
+tr {
+  font-family: serif;
+  font-size: 30px;
+}

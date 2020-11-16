@@ -23,12 +23,12 @@ function SignUp() {
     event.preventDefault();
     if (loginEmail.value != confirmEmail.value) {
       alert("Login Emails dont match");
-      return;
+      // return;
     }
 
     if (loginPassword.value != confirmPassword.value) {
       alert("Passwords dont match");
-      return;
+      // return;
     }
 
     var obj = {
@@ -54,7 +54,7 @@ function SignUp() {
       });
 
       var res = await response.json();
-      alert(res);
+      console.log(res);
 
       if (res.id <= 0) {
         setMessage("User/Password combination incorrect");
@@ -81,20 +81,6 @@ function SignUp() {
 
   return (
     <div id="signUpDiv">
-      <Modal.Dialog>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <p>Modal body text goes here.</p>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary">Close</Button>
-          <Button variant="primary">Save changes</Button>
-        </Modal.Footer>
-      </Modal.Dialog>
       <img src={logo} alt="OnlyTrips Logo" id="logo"></img>
       <form id="SignUpForm">
         <input
@@ -138,6 +124,9 @@ function SignUp() {
           placeholder="age"
           ref={(c) => (age = c)}
         />
+        <br />
+        <p>Location information</p>
+        <br />
         <input
           type="text"
           id="textbox"

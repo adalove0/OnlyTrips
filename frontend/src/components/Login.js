@@ -9,7 +9,6 @@ function Login() {
   var loginPassword;
 
   const [message, setMessage] = useState("");
-  const [show, setShow] = useState(true);
 
   const doLogin = async (event) => {
     event.preventDefault();
@@ -19,7 +18,7 @@ function Login() {
     alert(js);
 
     try {
-      const response = await fetch("http://localhost:3000", {
+      const response = await fetch("http://localhost:3000/login", {
         method: "POST",
         body: js,
         headers: { "Content-Type": "application/json" },
@@ -28,8 +27,9 @@ function Login() {
       var res = await response.json();
       console.log(res);
       alert({ res });
-      if (res.id <= 0) {
-        setMessage("User/Password combination incorrect");
+      if (!res.success) {
+        console.log("User/Password combination incorrect");
+        alert(res.message);
       } else {
         var user = {
           firstName: res.firstName,
@@ -37,7 +37,7 @@ function Login() {
           id: res.id,
         };
         localStorage.setItem("user_data", JSON.stringify(user));
-
+        alert({ user });
         setMessage("");
         window.location.href = "/TripView";
       }
@@ -64,8 +64,7 @@ function Login() {
           placeholder="Username"
           ref={(c) => (loginEmail = c)}
         />
-        <br />
-               {" "}
+        <br />       {" "}
         <input
           type="password"
           id="textbox"

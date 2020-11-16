@@ -17,7 +17,6 @@ const valSchema = Joi.object({
   confirmed: Joi.boolean(),
   token: Joi.string(),
 });
-
 router.post("/", (req, res, next) => {
   // makes sure the email is a valid email
   const { error } = valSchema.validate(req.body);
