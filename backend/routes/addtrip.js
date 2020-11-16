@@ -17,7 +17,6 @@ router.post('/', (req, res, next)=>{
             if (error)
                 return res.status(400).send(error.details[0].message);
         
-            console.log(finalTrip);
             obj.TripDetails.push(finalTrip);
             obj.save(function (err){
                 if (err)
@@ -33,44 +32,6 @@ router.post('/', (req, res, next)=>{
 
 
     })
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // takes in the email passed in by front end and finds the user in db
-    // and updates trip details by pushing req.body.trip to the end of array
-    /*User.findOneAndUpdate({ email: req.body.email.toLowerCase() },
-    { $push: { tripDetails: req.body.trip } },
-    { 'new': false },
-    (err, obj) => {
-        //...
-        //response code
-        if(err) {
-            return res.status(400).send(err.details[0].message)
-        } else {
-            return res.status(200).json({
-                success: true,
-                message: 'Added trip successfully'
-            })
-        }
-    })*/
-    
 })
 
 module.exports = router;
