@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const mongoose = require('mongoose');
 
 //const Trips = require('Trips');
 
@@ -25,14 +26,12 @@ const UserSchema = new mongoose.Schema({
     required: true,
     default: -1,
   },
-  location: [
-    {
+  location: [{
       city: { type: String, required: true },
       state: { type: String, default: " " },
       country: { type: String, required: true },
       zip: { type: Number, min: 00001, max: 99999, required: true },
-    },
-  ],
+    }],
   confirmed: {
     type: Boolean,
     default: false,
@@ -40,6 +39,11 @@ const UserSchema = new mongoose.Schema({
   token: {
     type: String,
   },
+
+  TripDetails: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Trips' 
+  }]
 });
 
 UserSchema.methods.generateHash = function (password) {
