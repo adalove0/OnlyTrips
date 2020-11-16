@@ -17,12 +17,13 @@ router.post('/', (req, res, next)=>{
 
         // finds the user based on the email and adds the trip object to the 
         // TripDetails array
-        
+
         User.findOne({email: req.body.email.toLowerCase()}, function(error,obj){
             if (error)
                 return res.status(400).send(error.details[0].message);
         
             obj.TripDetails.push(finalTrip);
+            
             obj.save(function (err){
                 if (err)
                     return res.status(400).send(err.details[0].message);
