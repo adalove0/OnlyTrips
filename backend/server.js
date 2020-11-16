@@ -20,15 +20,17 @@ connection.once('open', () =>{
 const userSignin = require('./routes/signup');
 const userLogin = require('./routes/login');
 const userTravel = require('./routes/travelPage');
-const userAddTrip = require('./routes/addtrip');
-const userDeleteTrip = require('./routes/deletetrip');
+const userAddTrip = require('./routes/addTrip');
+const userDeleteTrip = require('./routes/deleteTrip');
+const userSingleTrip = require ('./routes/singleTrip');
 
 
-app.use('/', userSignin); 
-app.use('/login', userLogin);
+app.use('/signup', userSignin); 
+app.use('/', userLogin);
 app.use('/travel', userTravel);
 app.use('/addTrip', userAddTrip);
 app.use('/deleteTrip', userDeleteTrip);
+app.use('/singleTrip', userSingleTrip);
 
 app.listen(3000, () => console.log("server starting")); // start Node + Express server on port 8080
 
