@@ -19,7 +19,7 @@
     "express": "^4.17.1",
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.13"
-  }
+  },
   "devDependencies": {
         "prettier": "2.1.2"
     }
