@@ -45,7 +45,7 @@ router.post("/", (req, res, next) => {
         });
       } else {
         // if email doesnt already belong to a diff account and the email is valid
-        // we need to seend authentication
+        // we need to send authentication
         const newUser = new User();
         //email = email.toLowerCase();
         // set the user fields to their respective values

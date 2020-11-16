@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import App from "../App";
 import logo from "../images/OnlyTrips.svg";
 import SignUpPage from "../pages/SignUpPage.js";
+import Alert from "react-bootstrap/Alert";
 
 function Login() {
   var loginEmail;
   var loginPassword;
 
   const [message, setMessage] = useState("");
+  const [show, setShow] = useState(true);
 
   const doLogin = async (event) => {
     event.preventDefault();
 
-    var username = loginEmail.value;
-    var password = loginPassword.value;
     var data = { email: loginEmail.value, password: loginPassword.value };
     var js = JSON.stringify(data);
     alert(js);
@@ -25,11 +25,9 @@ function Login() {
         headers: { "Content-Type": "application/json" },
       });
 
-      console.log(response);
-      var responseJson = await response.json();
-      console.log(responseJson);
-      var res = JSON.parse(response);
-      console.log({ res });
+      var res = await response.json();
+      console.log(res);
+      alert({ res });
       if (res.id <= 0) {
         setMessage("User/Password combination incorrect");
       } else {
@@ -41,7 +39,7 @@ function Login() {
         localStorage.setItem("user_data", JSON.stringify(user));
 
         setMessage("");
-        window.location.href = "/onlytrips";
+        window.location.href = "/TripView";
       }
     } catch (e) {
       alert(e.toString());
@@ -66,7 +64,8 @@ function Login() {
           placeholder="Username"
           ref={(c) => (loginEmail = c)}
         />
-        <br />       {" "}
+        <br />
+               {" "}
         <input
           type="password"
           id="textbox"

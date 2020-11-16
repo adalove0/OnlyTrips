@@ -10,7 +10,6 @@ router.post("/", (req, res, next) => {
   // set userVar equal to the user info retrieved from database
 
   User.findOne({ email: req.body.email.toLowerCase() }, function (err, obj) {
-    //   User.find({}, function (err, obj) {
     // first we check if we got any errors
     if (err) return res.status(400).send(err.details[0].message);
 
