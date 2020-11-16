@@ -8,12 +8,18 @@ let Trip = require('../models/Trips');
 //const body = req.body;
 
 router.post('/', (req, res, next)=>{
-    
-    Trip.findOneAndRemove({'id' :req.body.trip}, function (err,offer){
+    console.log(req.body.trip);
+    Trip.deleteOne( req.body.trip , function (err,result) {
         if (err)
-            return res.status(400).send(err.details[0].message);
-    })
-    
+                return res.status(400).send(err.details[0].message);
+        else{
+            //console.log(result);
+            return res.status(200).json({
+                success: true,
+                message: 'Deleted trip successfully'
+            });
+        }  
+    });
 })
 
 module.exports = router;

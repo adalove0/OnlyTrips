@@ -1,3 +1,5 @@
+// this endpoint returns an array of objects.
+// each object represents a trip the user has added
 const router = require('express').Router();
 const mongoose = require('mongoose');
 
@@ -10,11 +12,12 @@ router.post('/', (req, res, next)=>{
     User.findOne({email: req.body.email.toLowerCase()}, function(err,obj){
         if (err)
             return res.status(400).send(err.details[0].message);
-        
-        console.log(obj.TripDetails);
-        return res.obj.TripDetails;
+        else{
+            return res.status(200).send(obj.TripDetails);
+        }
+        //return res.obj.TripDetails;
 
-    })
+    });
 })
 
 module.exports = router;
