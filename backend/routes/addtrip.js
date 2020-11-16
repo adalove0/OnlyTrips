@@ -1,4 +1,5 @@
-// adds a single trip into the array for the user
+// adds a single trip into trip array the array for the user
+// based on the email sent in
 const router = require('express').Router();
 const mongoose = require('mongoose');
 
@@ -9,10 +10,14 @@ let Trip = require('../models/Trips');
 
 router.post('/', (req, res, next)=>{
 
+    // creates a trip object with info passed in
     Trip.create(req.body.trip, function(err, finalTrip){
         if (err)
             return res.status(400).send(err.details[0].message);
 
+        // finds the user based on the email and adds the trip object to the 
+        // TripDetails array
+        
         User.findOne({email: req.body.email.toLowerCase()}, function(error,obj){
             if (error)
                 return res.status(400).send(error.details[0].message);

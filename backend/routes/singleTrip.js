@@ -19,7 +19,7 @@ router.post('/', (req, res, next)=>{
         if (err)
             return res.status(400).send(err.details[0].message);
         else
-            return res.status(200).send(obj);
+            return res.status(200).json(obj);
     })
 })
 

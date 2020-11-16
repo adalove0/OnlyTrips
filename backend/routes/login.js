@@ -37,6 +37,7 @@ router.post('/', (req, res, next)=>{
         if (obj && bcrypt.compareSync(req.body.password, obj.password)){
             return res.status(200).json({
                 success: true,
+                user: obj,
                 message: 'Login successful'
             });
         }
