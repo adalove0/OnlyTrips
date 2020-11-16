@@ -8,7 +8,7 @@ import {
 import "./App.css";
 
 import LoginPage from "./pages/LoginPage";
-import CardPage from "./pages/tripView";
+import TripView from "./pages/TripView";
 import SignUpPage from "./pages/SignUpPage";
 
 function App() {
@@ -21,6 +21,9 @@ function App() {
         </Route>
         <Route path="/SignUpPage" exact>
           <SignUpPage />
+        </Route>
+        <Route path="/TripView" exact>
+          <TripView />
         </Route>
         <Redirect to="/" />
       </Switch>
