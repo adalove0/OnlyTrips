@@ -8,7 +8,7 @@ let Trip = require('../models/Trips');
 //const body = req.body;
 
 router.post('/', (req, res, next)=>{
-    console.log(req.body.trip);
+    
     Trip.deleteOne( req.body.trip , function (err,result) {
         if (err)
                 return res.status(400).send(err.details[0].message);

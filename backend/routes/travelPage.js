@@ -13,7 +13,11 @@ router.post('/', (req, res, next)=>{
         if (err)
             return res.status(400).send(err.details[0].message);
         else{
-            return res.status(200).send(obj.TripDetails);
+            return res.status(200).json({
+                success: true,
+                trips: obj.TripDetails,
+                message: 'Returned array successfully'
+            });
         }
         //return res.obj.TripDetails;
 
