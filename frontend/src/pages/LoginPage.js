@@ -8,6 +8,7 @@ import NavBar from "../components/NavBar";
 const LoginPage = () => {
   return (
     <div>
+	  <PageTitle />
       <Login />       
     </div>
   );
