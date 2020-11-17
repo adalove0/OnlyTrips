@@ -35,6 +35,20 @@ app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}.`);
 });
 
+// For Heroku deployment
+// Server static assets if in production
+if (process.env.NODE_ENV === 'production')
+{
+	// Set static folder
+	app.use(express.static('../frontend/src'));
+
+	app.get('*', (req, res)=>
+	{
+		res.sendFile(path.resolve(__dirname, 'frontend', 'src', 'index.html'));
+	});
+}
+
+
 process.on("SIGINT", function () {
   console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
   // some other closing procedures go here
