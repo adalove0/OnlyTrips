@@ -242,14 +242,6 @@ body {
   font-family: "Fjalla One", sans-serif;
 }
 
-#LogOutButton {
-  position: absolute;
-  right: 2%;
-  top: 30%;
-  font-family: "Fjalla One", sans-serif;
-  cursor: pointer;
-}
-
 #TripViewLogo {
   position: absolute;
   max-width: 100%;
@@ -263,7 +255,7 @@ body {
 
 #tripTable {
   width: 700px;
-  height: 900px;
+  height: 850px;
   margin: auto;
   position: absolute;
   top: 50%;
@@ -276,14 +268,16 @@ body {
   align-items: center;
   border: none;
 }
-
-td {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 20px;
-  margin: auto;
+#navBar {
+  height: 30px;
+}
+#navBarLogo {
+  width: 300px;
+  height: 78px;
+  align-items: left;
 }
 
-tr {
-  font-family: serif;
-  font-size: 30px;
+#LogOutButton {
+  align-items: right;
+  margin-left: 200px;
 }

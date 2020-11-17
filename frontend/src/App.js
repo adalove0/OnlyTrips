@@ -6,6 +6,7 @@ import {
   Switch,
 } from "react-router-dom";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import LoginPage from "./pages/LoginPage";
 import TripView from "./pages/TripView";

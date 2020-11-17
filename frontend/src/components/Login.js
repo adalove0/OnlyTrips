@@ -3,12 +3,18 @@ import App from "../App";
 import logo from "../images/OnlyTrips.svg";
 import SignUpPage from "../pages/SignUpPage.js";
 import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/esm/Modal";
 
 function Login() {
   var loginEmail;
   var loginPassword;
 
   const [message, setMessage] = useState("");
+  const [show, setShow] = useState(true);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const doLogin = async (event) => {
     event.preventDefault();
@@ -16,6 +22,9 @@ function Login() {
     var data = { email: loginEmail.value, password: loginPassword.value };
     var js = JSON.stringify(data);
     alert(js);
+
+    if (loginEmail.value == "" || loginPassword.value == "") {
+    }
 
     try {
       const response = await fetch("http://localhost:3000/login", {
@@ -26,18 +35,30 @@ function Login() {
 
       var res = await response.json();
       console.log(res);
-      alert({ res });
       if (!res.success) {
-        console.log("User/Password combination incorrect");
-        alert(res.message);
+        return (
+          <Modal show={show} onHide={handleClose} variant="primary">
+            <Modal.Header closeButton>
+              <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Woohoo, you're reading this text in a modal!
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        );
       } else {
         var user = {
-          firstName: res.firstName,
-          lastName: res.lastName,
-          id: res.id,
+          fullName: res.user.name,
+          email: res.user.email,
+          id: res.user._id,
         };
         localStorage.setItem("user_data", JSON.stringify(user));
-        alert({ user });
+        alert(JSON.stringify(user));
         setMessage("");
         window.location.href = "/TripView";
       }
@@ -73,14 +94,16 @@ function Login() {
         />
         <br />
                 
-        <input
+        <Button
           type="submit"
-          id="loginButton"
+          variant="success"
           class="buttons"
           value="Do It"
           onClick={doLogin}
           style={{ cursor: "pointer" }}
-        />
+        >
+          Login!
+        </Button>
                 
       </form>
       <p id="signUpLink">
