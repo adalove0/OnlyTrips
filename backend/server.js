@@ -4,7 +4,8 @@ const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 const path = require('path');
-const PORT = process.env.PORT || 5000;
+
+app.set('port', (process.env.PORT || 5000));
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -41,10 +42,9 @@ if (process.env.NODE_ENV === 'production')
 {
 	// Set static folder
 	app.use(express.static('/app/frontend/src'));
-
 	app.get('*', (req, res)=>
 	{
-		res.sendFile(path.resolve('frontend', 'src', 'app.js'));
+		res.sendFile(path.resolve('frontend', 'src', 'App.js'));
 	});
 }
 
