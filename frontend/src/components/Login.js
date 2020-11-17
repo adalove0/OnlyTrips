@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import App from "../App";
 import logo from "../images/OnlyTrips.svg";
-import SignUpPage from "../pages/SignUpPage.js";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/esm/Modal";
 
 function Login() {
   var loginEmail;
@@ -27,29 +25,35 @@ function Login() {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/login", {
-        method: "POST",
-        body: js,
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await fetch(
+        "http://localhost:5000/login" || "http://www.onlytrips.xyz/login",
+        {
+          method: "POST",
+          body: js,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       var res = await response.json();
       console.log(res);
-      if (!res.success) {
+      console.log(res.success);
+      if (res.success != true) {
         return (
-          <Modal show={show} onHide={handleClose} variant="primary">
-            <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              Woohoo, you're reading this text in a modal!
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-            </Modal.Footer>
-          </Modal>
+          <Alert
+            show={show}
+            variant="danger"
+            onClose={() => setShow(false)}
+            dismissible
+          >
+            <Alert.Heading>Uh Oh!</Alert.Heading>
+            <p>
+              We ran into an error trying to log you in if you have registered
+              an account please check your email to validate it!
+            </p>
+            <Button onClick={() => setShow(false)} variant="outline-success">
+              Exit
+            </Button>
+          </Alert>
         );
       } else {
         var user = {
@@ -97,7 +101,6 @@ function Login() {
         <Button
           type="submit"
           variant="success"
-          class="buttons"
           value="Do It"
           onClick={doLogin}
           style={{ cursor: "pointer" }}
