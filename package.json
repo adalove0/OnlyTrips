@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specficied\" && exit 1",
         "start": "cd backend && node server.js",
-	"start-frontend": "cd frontend && npm start"
+	"start-frontend": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend"
     },
     "author": "",
     "license": "ISC",
