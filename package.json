@@ -4,9 +4,9 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "test": "echo \"Error: no test specficied\" && exit 1",
-        "start": "cd backend && node server.js",
-        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && cd frontend npm install && npm run build"
+        "dev:api": "cd backend && node server.js backend",
+		"dev:frontend": "npm start --prefix frontend",
+		"dev": "npm run dev:api && npm run dev:frontend"
     },
     "author": "",
     "license": "ISC",
