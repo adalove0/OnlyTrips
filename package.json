@@ -1,28 +1,36 @@
 {
-    "name": "backend",
-    "version": "1.0.0",
-    "description": "",
-    "main": "server.js",
-    "scripts": {
-        "start": "npm run dev",
-        "dev:api": "cd backend && node server.js",
-        "dev:frontend": "npm start --prefix frontend",
-        "dev": "concurrently \"npm run dev:api\" && \"npm run dev:frontend\"",
-        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "@hapi/joi": "^17.1.1",
-        "bcrypt": "^5.0.0",
-        "body-parser": "^1.19.0",
-        "concurrently": "^5.3.0",
-        "cors": "^2.8.5",
-        "express": "^4.17.1",
-        "mongodb": "^3.6.2",
-        "mongoose": "^5.10.15"
-    },
-    "devDependencies": {
-        "prettier": "2.1.2"
-    }
+  "name": "onlytrips",
+  "version": "1.0.0",
+  "description": "Group 29s large project. OnlyTrips is a trip planning and budgeting application for web and mobile.",
+  "main": "server.js",
+  "scripts": {
+    "start": "npm run dev",
+    "frontend": "cd frontend && npm start",
+    "backend": "cd backend && node server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run backend\" && \"npm run frontend\"",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
+  },
+  "author": "Group 29",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.2",
+    "mongoose": "^5.10.15"
+  },
+  "devDependencies": {
+    "prettier": "2.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ethansharris/OnlyTrips.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ethansharris/OnlyTrips/issues"
+  },
+  "homepage": "https://github.com/ethansharris/OnlyTrips#readme"
 }
