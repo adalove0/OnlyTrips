@@ -44,7 +44,7 @@ if (process.env.NODE_ENV === 'production')
 	app.use(express.static('/app/frontend/src'));
 	app.get('*', (req, res)=>
 	{
-		res.sendFile(path.resolve('frontend', 'src', 'App.js'));
+		res.sendFile(path.resolve('/app/frontend', 'src', 'App.js'));
 	});
 }
 
