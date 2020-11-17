@@ -2,8 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
-
 const mongoose = require("mongoose");
+
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -30,7 +31,9 @@ app.use("/travel", userTravel);
 app.use("/addTrip", userAddTrip);
 app.use("/deleteTrip", userDeleteTrip);
 
-app.listen(3000, () => console.log("server starting")); // start Node + Express server on port 8080
+app.listen(PORT, () => {
+	console.log(`Server listening on port ${PORT}.`);
+});
 
 process.on("SIGINT", function () {
   console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
