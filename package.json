@@ -4,10 +4,10 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-		"start": "npm run dev",
+        "start": "npm run dev",
         "dev:api": "cd backend && node server.js backend",
-		"dev:frontend": "npm start --prefix frontend",
-		"dev": "npm run dev:api && npm run dev:frontend"
+        "dev:frontend": "cd frontend && npm install && npm start",
+        "dev": "npm run dev:api && npm run dev:frontend"
     },
     "author": "",
     "license": "ISC",
