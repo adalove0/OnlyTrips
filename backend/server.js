@@ -40,11 +40,11 @@ app.listen(PORT, () => {
 if (process.env.NODE_ENV === 'production')
 {
 	// Set static folder
-	app.use(express.static('../frontend/src'));
+	app.use(express.static('/app/frontend/src'));
 
 	app.get('*', (req, res)=>
 	{
-		res.sendFile(path.resolve(__dirname, 'frontend', 'src', 'index.html'));
+		res.sendFile(path.resolve("app", 'frontend', 'public', 'index.html'));
 	});
 }
 
