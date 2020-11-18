@@ -16,6 +16,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   String _name, _email, _password, _city, _state, _country, _zip, _age = "";
   // TODO: Hash password
+  Future<Register> _response;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -69,67 +70,100 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  void fieldFocusChange(
-      BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
-    currentFocus.unfocus();
-    FocusScope.of(context).requestFocus(nextFocus);
-  }
-
   Widget registerPageBody() {
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.all(16),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 80.0),
-              Column(
+        child: (_response == null)
+          ? Form (
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 80.0),
+                Column(
+                  children: <Widget>[
+                    Image.asset('assets/logo.png'),
+                  ],
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                emailInput(),
+                SizedBox(
+                  height: 16,
+                ),
+                nameInput(),
+                SizedBox(
+                  height: 16,
+                ),
+                passwordInput(),
+                SizedBox(
+                  height: 16,
+                ),
+                ageInput(),
+                SizedBox(
+                  height: 16,
+                ),
+                cityInput(),
+                SizedBox(
+                  height: 16,
+                ),
+                stateInput(),
+                SizedBox(
+                  height: 16,
+                ),
+                countryInput(),
+                SizedBox(
+                  height: 16,
+                ),
+                zipInput(),
+                SizedBox(
+                  height: 16,
+                ),
+                submitButton(),
+              ],
+            ),
+          )
+        : FutureBuilder<Register> (
+          future: _response,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data.success)
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => VerifyPage()));
+              else {
+                return Column(
+                  children: <Widget>[
+                    Image.asset('assets/logo.png'),
+                    SizedBox(
+                    height: 16,
+                    ),
+                    Text(snapshot.error),
+                  ],
+                );
+              }
+            } else if (snapshot.hasError) {
+              return Column(
                 children: <Widget>[
                   Image.asset('assets/logo.png'),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Text(snapshot.error),
                 ],
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              emailInput(),
-              SizedBox(
-                height: 16,
-              ),
-              nameInput(),
-              SizedBox(
-                height: 16,
-              ),
-              passwordInput(),
-              SizedBox(
-                height: 16,
-              ),
-              ageInput(),
-              SizedBox(
-                height: 16,
-              ),
-              cityInput(),
-              SizedBox(
-                height: 16,
-              ),
-              stateInput(),
-              SizedBox(
-                height: 16,
-              ),
-              countryInput(),
-              SizedBox(
-                height: 16,
-              ),
-              zipInput(),
-              SizedBox(
-                height: 16,
-              ),
-              submitButton(),
-            ],
-          ),
-        ),
+              );
+            }
+            return CircularProgressIndicator();
+          },
+        )
       ),
     );
+  }
+
+  void fieldFocusChange(
+      BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
+    currentFocus.unfocus();
+    FocusScope.of(context).requestFocus(nextFocus);
   }
 
   Widget emailInput() {
@@ -328,8 +362,9 @@ class _RegisterPageState extends State<RegisterPage> {
         if (_formKey.currentState.validate()) {
           _formKey.currentState.save();
           // TODO: Connect to API
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => VerifyPage()));
+          setState(() {
+            _response = submitRegistration();
+          });
         }
       },
       child: Text(
@@ -339,22 +374,44 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  Future<http.Response> submitRegistration() {
-    return http.post(
-      'https://heroku.com/api', // TODO: Add URL on hosted API
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'email': _email,
-        'name': _name,
-        'password': _password,
-        'age': _age,
-        'city': _city,
-        'state': _state,
-        'country': _country,
-        'zip': _zip
-      }),
+  Future<Register> submitRegistration() async {
+    var response = await http.post(
+        'https://onlytrips.herokuapp.com/signup',
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({
+          'email': _email,
+          'name': _name,
+          'password': _password,
+          'age': _age,
+          'location': {
+            'city': _city,
+            'state': _state,
+            'country': _country,
+            'zip': _zip
+          },
+        })
+    );
+    if (response.statusCode == 200) {
+      return Register.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to register');
+    }
+  }
+}
+
+
+class Register {
+  final String message;
+  final bool success;
+
+  Register({this.success, this.message});
+
+  factory Register.fromJson(Map<String, dynamic> json) {
+    return Register(
+      success: json['success'],
+      message: json['message'],
     );
   }
 }

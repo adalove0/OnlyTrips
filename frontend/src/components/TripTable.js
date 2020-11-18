@@ -41,6 +41,7 @@ function TripView() {
 
     tripArray.map((trips) => {
       console.log(trips);
+      return <td>{trips};</td>;
     });
   };
 

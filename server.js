@@ -44,13 +44,15 @@ const userTravel = require("./backend/routes/travelPage");
 const userAddTrip = require("./backend/routes/addtrip");
 const userDeleteTrip = require("./backend/routes/deletetrip");
 const userSingleTrip = require("/backend/routes/singleTrip");
+const userSearchTrip = require("./backend/routes/searchTrip");
 
 app.use("/signup", userSignUp);
-app.use("/login", userLogin);
+app.use("/", userLogin);
 app.use("/travel", userTravel);
 app.use("/addTrip", userAddTrip);
 app.use("/deleteTrip", userDeleteTrip);
 app.use("/singleTrip", userSingleTrip);
+app.use("/searchTrip", userSearchTrip);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}.`);

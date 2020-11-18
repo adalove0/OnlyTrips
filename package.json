@@ -19,6 +19,8 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongodb": "^3.6.2",
-    "mongoose": "^5.10.15"
+    "mongoose": "^5.10.15",
+    "nodemailer": "^6.4.16",
+    "nodemailer-sendgrid": "^1.0.3"
   }
 }
