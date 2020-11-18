@@ -25,23 +25,19 @@ function Login() {
     }
 
     try {
-      if (process.env.NODE_ENV === 'production') {
-		const response = await fetch(
-        "http://localhost:5000/login",
-          method: "POST",
-          body: js,
-          headers: { "Content-Type": "application/json" },
-        }
-	  }
-	  else {
-		const response = await fetch(
-        "http://onlytrips.herokuapp.com/login",
+      // if(inProduction)
+      // {
+      //   Post to website
+      // }
+      const response = await fetch(
+        "http://localhost:5000/login" || "http://www.onlytrips.xyz/login",
         {
           method: "POST",
           body: js,
           headers: { "Content-Type": "application/json" },
         }
-	  }
+      );
+
       var res = await response.json();
       console.log(res);
       console.log(res.success);
