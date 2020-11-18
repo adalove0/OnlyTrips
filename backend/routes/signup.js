@@ -39,11 +39,11 @@ router.post("/", (req, res, next) => {
       if (err) {
         return res.send({
           success: false,
-          messgae: "Error: Servor error1",
+          message: "Error: Servor error1",
         });
       } else if (previousUsers.length > 0) {
         return res.send({
-          succcess: false,
+          success: false,
           message: "Error: Account already exists",
         });
       } else {
