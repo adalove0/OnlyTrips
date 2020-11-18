@@ -11,15 +11,30 @@ function NavBar() {
     window.location.href = "/";
   };
 
+  const addTrip = async (event) => {
+    event.preventDefault();
+    window.location.href = "/addTrip";
+  };
+
+  const userObj = localStorage.getItem("user_data");
+  const localUser = JSON.parse(userObj);
+  if (localUser === null) {
+    window.location.href = "/";
+    return;
+  }
+  const fullName = localUser.fullName;
+
   return (
-    <div id="navBar">
-      <Nav variant="tabs" navbar>
-        <img src={logo} alt="OnlyTrips Logo" id="navBarLogo"></img>
-        <Button variant="danger" id="LogOutButton" onClick={LogOut}>
-          Log Out
-        </Button>
-      </Nav>
-    </div>
+    <Nav variant="tabs" justify>
+      <p> Welcome! {fullName}</p>
+      <img src={logo} alt="OnlyTrips Logo" id="navBarLogo"></img>
+      <Button variant="danger" id="LogOutButton" onClick={LogOut}>
+        Log Out
+      </Button>
+      <Button variant="success" id="addTripButtopn" onClick={addTrip}>
+        Add A Trip!
+      </Button>
+    </Nav>
   );
 }
 

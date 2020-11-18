@@ -154,9 +154,9 @@ function SignUp() {
         <br />
         <br />
 
-        <button id="SignUpButton" type="button" onClick={doSignUp}>
+        <Button id="SignUpButton" type="button" onClick={doSignUp}>
           Sign Up
-        </button>
+        </Button>
       </form>
       <p id="loginLink">
         {" "}

@@ -25,6 +25,10 @@ function Login() {
     }
 
     try {
+      // if(inProduction)
+      // {
+      //   Post to website
+      // }
       const response = await fetch(
         "http://localhost:5000/login" || "http://www.onlytrips.xyz/login",
         {
@@ -89,7 +93,8 @@ function Login() {
           placeholder="Username"
           ref={(c) => (loginEmail = c)}
         />
-        <br />       {" "}
+        <br />
+               {" "}
         <input
           type="password"
           id="textbox"
