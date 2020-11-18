@@ -1,9 +1,5 @@
 const router = require("express").Router();
 const crypto = require("crypto");
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-
-
 let User = require("../models/User");
 
 // VALIDATION
@@ -66,24 +62,15 @@ router.post("/", (req, res, next) => {
           subject: "Onlytrips - verify your email",
           text: `
                 Hello, thank you for registering on our site. Please copy and paste the address below to verify
-                your account. www.onlytrips.xyz/verify-email?token=${newUser.token}
+                your account. http://reqheadershost/verify-email?token=${newUser.token}
                 `,
           html: `
                     <h1>Hello,</h1>
                     <p>thank you for registering on our site.</p>
-                    <p>Please click the link below to verify your account.</p>
-                    <a href ="www.onlytrips.xyz/verify-email?token=${newUser.token}" >Verify your account</a>
+                    <p>Please copy and paste the address below to verify your account.</p>
+                    <a href ="http://reqheadershost/verify-email?token=${newUser.token}" >Verify your account</a>
                 `,
         };
-
-        sgMail.send(msg)
-          .then(() => {
-            console.log('Email sent')
-          })
-          .catch((error) => {
-            console.error(error)
-          })
-        
 
         newUser.save((err, user) => {
           if (err) {
