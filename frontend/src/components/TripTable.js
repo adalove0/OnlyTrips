@@ -6,6 +6,7 @@ import UserProfile from "../components/UserProfile";
 import Alert from "react-bootstrap/Alert";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import { object } from "@hapi/joi";
 
 function TripView() {
   const userObj = localStorage.getItem("user_data");
@@ -40,15 +41,27 @@ function TripView() {
     const tripArray = res.trips;
 
     tripArray.map((trips) => {
-      console.log(trips);
-      return <td>{trips};</td>;
+      createTable(trips);
     });
+  };
+
+  const createTable = async (object) => {
+    var data = { id: object };
+    var js = JSON.stringify(data);
+    console.log(js);
+    const request = await fetch("http://localhost:5000/singleTrip", {
+      method: "POST",
+      body: js,
+      headers: { "Content-Type": "application/json" },
+    });
+    var res = await request.json();
+    console.log(res);
   };
 
   return (
     <div id="tripTable">
       <Table responsive="lg" striped bordered hover>
-        <tbody></tbody>
+        <tbody>{renderTable}</tbody>
         <Button onClick={renderTable}>Get the user info -TEST-</Button>
       </Table>
     </div>

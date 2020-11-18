@@ -43,7 +43,7 @@ const userLogin = require("./backend/routes/login");
 const userTravel = require("./backend/routes/travelPage");
 const userAddTrip = require("./backend/routes/addtrip");
 const userDeleteTrip = require("./backend/routes/deletetrip");
-const userSingleTrip = require("/backend/routes/singleTrip");
+const userSingleTrip = require("./backend/routes/singleTrip");
 const userSearchTrip = require("./backend/routes/searchTrip");
 
 app.use("/signup", userSignUp);
