@@ -21,6 +21,8 @@ function TripView() {
   };
 
   // Maybe component will mount?
+  // Component will mount will ask api for array then fill an array with objects
+  // Use those objects to fill your table?
 
   const renderTable = async (event) => {
     try {
@@ -34,14 +36,11 @@ function TripView() {
     } catch (err) {
       console.log(err);
     }
-    return this.res.map((objID, index) => {
-      // const {tripName, tripStart, tripEnd} = objID
-      console.log({ objID });
-      return (
-        <tr>
-          <td>{objID}</td>
-        </tr>
-      );
+
+    const tripArray = res.trips;
+
+    tripArray.map((trips) => {
+      console.log(trips);
     });
   };
 

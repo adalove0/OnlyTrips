@@ -103,13 +103,7 @@ function Login() {
         />
         <br />
                 
-        <Button
-          type="submit"
-          variant="success"
-          value="Do It"
-          onClick={doLogin}
-          style={{ cursor: "pointer" }}
-        >
+        <Button type="submit" variant="success" value="Do It" onClick={doLogin}>
           Login!
         </Button>
                 

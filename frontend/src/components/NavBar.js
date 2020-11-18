@@ -25,7 +25,7 @@ function NavBar() {
   const fullName = localUser.fullName;
 
   return (
-    <Nav variant="tabs" justify>
+    <Nav variant="tabs">
       <p> Welcome! {fullName}</p>
       <img src={logo} alt="OnlyTrips Logo" id="navBarLogo"></img>
       <Button variant="danger" id="LogOutButton" onClick={LogOut}>
