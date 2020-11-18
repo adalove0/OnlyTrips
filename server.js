@@ -47,7 +47,7 @@ const userDeleteTrip = require("./backend/routes/deletetrip");
 const userSearchTrip = require ("./backend/routes/searchTrip");
 
 app.use("/signup", userSignUp);
-app.use("/login", userLogin);
+app.use("/", userLogin);
 app.use("/travel", userTravel);
 app.use("/addTrip", userAddTrip);
 app.use("/deleteTrip", userDeleteTrip);
