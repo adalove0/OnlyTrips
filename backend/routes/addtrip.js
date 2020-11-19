@@ -30,6 +30,7 @@ router.post('/', (req, res, next)=>{
                 else{
                     return res.status(200).json({
                         success: true,
+                        tripAdded: obj,
                         message: 'Added trip successfully'
                     });
                 }
@@ -41,28 +42,3 @@ router.post('/', (req, res, next)=>{
 })
 
 module.exports = router;
-
-// takes in the email passed in by front end and finds the user in db
-    /*User.findOne({email: req.body.email.toLowerCase()}, function(err,obj){
-        if (err)
-            return res.status(400).send(err.details[0].message);
-        
-        // adds the trip info to the trip array (at the end of array)
-        //console.log(typeof req.body.trip === 'object' && req.body.trip !== null);
-
-        //console.log(req.body.trip);
-        obj.tripDetails.push(req.body.trip);
-        //console.log(req.body.trip);
-        
-        // saves change
-        obj.save(function (err){
-            if (err)
-                return res.status(400).send(err.details[0].message);
-            else{
-                return res.status(200).json({
-                    success: true,
-                    message: 'Added trip successfully'
-                });
-            }
-        })
-    })*/
