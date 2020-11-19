@@ -28,17 +28,16 @@ function SignUp() {
     event.preventDefault();
     if(loginEmail.value === "" || confirmEmail.value === '' || firstLastName.value === '' || loginPassword.value === '' || confirmPassword.value === '' || age.value === '' || locationCity.value === '' || locationCountry.value === '' || locationState.value === '' || locationZip.value === '' ) {
       visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML = "Please fill in all blanks <Button onClick={closeAlert} variant='outline-danger'> x </Button>";
+      visAlertDanger.innerHTML = "Please fill in all blanks";
     }
     else if (loginEmail.value !== confirmEmail.value) {
       visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML = "Login Emails don't match <Button onClick={closeAlert} variant='outline-danger'> x </Button>";
+      visAlertDanger.innerHTML = "Login Emails don't match";
       // return;
     }
-
     else if (loginPassword.value !== confirmPassword.value) {
       visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML = "Passwords dont match <Button onClick={closeAlert} variant='outline-danger'> x </Button>";
+      visAlertDanger.innerHTML = "Passwords dont match";
       // return;
     }
 
@@ -61,7 +60,7 @@ function SignUp() {
     };
 
     var js = JSON.stringify(obj);
-    alert(js);
+    //alert(js);
     try {
       const response = await fetch("http://localhost:3000/signup", {
         method: "POST",
