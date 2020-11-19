@@ -6,19 +6,19 @@ import 'package:crypto/crypto.dart'; // Use for password hashing
 // ignore: avoid_web_libraries_in_flutter
 import 'package:http/http.dart' as http; // Use to post to the api server
 import 'package:email_validator/email_validator.dart';
-import 'package:onlytrips/verifyemail.dart';
+import 'package:onlytrips/login.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
 
+final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 class _RegisterPageState extends State<RegisterPage> {
   String _name, _email, _password, _city, _state, _country, _zip, _age = "";
   // TODO: Hash password
   Future<Register> _response;
 
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   FocusNode _nameFocusNode = FocusNode();
   FocusNode _emailFocusNode = FocusNode();
@@ -124,21 +124,39 @@ class _RegisterPageState extends State<RegisterPage> {
               ],
             ),
           )
-        : FutureBuilder<Register> (
+          : FutureBuilder<Register> (
           future: _response,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              if (snapshot.data.success)
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => VerifyPage()));
-              else {
+              if (snapshot.data.success) {
                 return Column(
+                    children: <Widget>[
+                      Text(snapshot.data.message),
+                      Text(
+                        'A verification link has been sent to your email. Please click on it before attempting to log in.',
+                        maxLines: 3,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      RaisedButton(
+                        child: Text('Go to login'),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginPage())
+                          );
+                        },
+                      ),
+                    ],
+                );
+              } else {
+              return Column(
                   children: <Widget>[
                     Image.asset('assets/logo.png'),
                     SizedBox(
                     height: 16,
                     ),
-                    Text(snapshot.error),
+                    Text(snapshot.data.message),
                   ],
                 );
               }
@@ -357,47 +375,49 @@ class _RegisterPageState extends State<RegisterPage> {
 
   RaisedButton submitButton() {
     return RaisedButton(
-      color: Theme.of(context).primaryColor,
-      onPressed: () {
-        if (_formKey.currentState.validate()) {
-          _formKey.currentState.save();
-          // TODO: Connect to API
-          setState(() {
-            _response = submitRegistration();
-          });
-        }
-      },
       child: Text(
         "Submit",
         style: TextStyle(color: Colors.white),
       ),
+      color: Theme.of(context).primaryColor,
+      onPressed: () {
+        if (_formKey.currentState.validate()) {
+          _formKey.currentState.save();
+          Future.delayed(const Duration(milliseconds: 100), () async {
+            setState(() {
+              _response = submitRegistration(_email, _name, _password, _age, _city, _state, _country, _zip);
+            });
+          });
+        }
+      },
     );
   }
 
-  Future<Register> submitRegistration() async {
-    var response = await http.post(
-        'https://onlytrips.herokuapp.com/signup',
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
+}
+Future<Register> submitRegistration(String _email, String _name, String _password,
+    String _age, String _city, String _state, String _country, String _zip) async {
+  final http.Response response = await http.post(
+      'https://onlytrips.herokuapp.com/signup',
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode({
+        'email': _email,
+        'name': _name,
+        'password': _password,
+        'age': _age,
+        'location': {
+          'city': _city,
+          'state': _state,
+          'country': _country,
+          'zip': _zip
         },
-        body: jsonEncode({
-          'email': _email,
-          'name': _name,
-          'password': _password,
-          'age': _age,
-          'location': {
-            'city': _city,
-            'state': _state,
-            'country': _country,
-            'zip': _zip
-          },
-        })
-    );
-    if (response.statusCode == 200) {
-      return Register.fromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('Failed to register');
-    }
+      })
+  );
+  if (response.statusCode == 200) {
+    return Register.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to register');
   }
 }
 

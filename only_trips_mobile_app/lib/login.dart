@@ -13,7 +13,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String _email, _password = "";
-  // TODO: Hash password
+  Future<Login> _response;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -71,7 +71,8 @@ class _LoginPageState extends State<LoginPage> {
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.all(16),
-        child: Form(
+        child: (_response == null)
+            ? Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
@@ -92,7 +93,62 @@ class _LoginPageState extends State<LoginPage> {
               submitButton(),
             ],
           ),
-        ),
+        )
+            : FutureBuilder<Login> (
+            future: _response,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                // TODO: If user isn't verified, handle appropriately
+                // TODO: Handle invalid credentials
+                if (true) { // TODO: Change true to snapshot.data.success prior to deployment to handle errors in the credentials
+                  return Column(
+                    children: <Widget>[
+                      Text(snapshot.data.message),
+                      RaisedButton(
+                        child: Text('Go to homepage'),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                        },
+                      ),
+                    ],
+                  );
+                  } else {
+                    return Column(
+                      children: <Widget>[
+                        Image.asset('assets/logo.png'),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Text(snapshot.data.message),
+                        RaisedButton(
+                          child: Text('Go back'),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                          },
+                        ),
+                      ],
+                    );
+                  }
+                } else if (snapshot.hasError) {
+                  return Column(
+                    children: <Widget>[
+                      Image.asset('assets/logo.png'),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Text("snapshot.error"),
+                      RaisedButton(
+                        child: Text('Go back'),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  );
+                }
+                return CircularProgressIndicator();
+                },
+        )
       ),
     );
   }
@@ -144,14 +200,11 @@ class _LoginPageState extends State<LoginPage> {
       onPressed: () {
         if (_formKey.currentState.validate()) {
           _formKey.currentState.save();
-          // TODO: Connect to API
-          // TODO: Hash user input password
-          // TODO: Generate JSON
-          // TODO: Send json to API
-          // TODO: If user isn't verified, handle appropriately
-          // TODO: Handle invalid credentials
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage()));
+          Future.delayed(const Duration(milliseconds: 100), () async {
+            setState(() {
+              _response = submitLogin(_email, _password);
+            });
+          });
         }
       },
       child: Text(
@@ -161,16 +214,38 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Future<http.Response> submitLogin() {
-    return http.post(
-      'https://heroku.com/api', // TODO: Add URL on hosted API
+}
+
+Future<Login> submitLogin(String _email, String _password) async {
+  final http.Response response = await http.post(
+      'https://onlytrips.herokuapp.com/',
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{
+      body: jsonEncode({
         'email': _email,
         'password': _password,
-      }),
+      })
+  );
+  if (response.statusCode == 200) {
+    return Login.fromJson(jsonDecode(response.body));
+  } else if (response.statusCode == 400) {
+    return Login.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to login');
+  }
+}
+
+class Login {
+  final String message;
+  final bool success;
+
+  Login({this.success, this.message});
+
+  factory Login.fromJson(Map<String, dynamic> json) {
+    return Login(
+      success: json['success'],
+      message: json['message'],
     );
   }
 }
