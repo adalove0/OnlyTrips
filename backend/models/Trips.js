@@ -21,6 +21,12 @@ const TravelSchema = new mongoose.Schema({
     destination: [{
         city: {type: String, required :true},
         state: {type: String, required:true }
+    }],
+    budget :[{
+        travelCost: {type: Number},
+        foodCost: {type: Number},
+        lodgingCost: {type: Number},
+        miscellaneousCost: {type: Number}
     }]
 
 });
