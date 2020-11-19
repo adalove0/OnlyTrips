@@ -22,7 +22,7 @@ router.post('/', (req, res, next)=>{
             return res.status(200).json({
                 success: true,
                 newTripInfo: obj,
-                message: 'Returned array successfully'
+                message: 'Updated trip successfully'
             });
 
         }

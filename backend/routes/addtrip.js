@@ -30,7 +30,7 @@ router.post('/', (req, res, next)=>{
                 else{
                     return res.status(200).json({
                         success: true,
-                        tripAdded: obj,
+                        tripAdded: finalTrip,
                         message: 'Added trip successfully'
                     });
                 }

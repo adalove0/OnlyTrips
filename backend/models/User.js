@@ -1,8 +1,6 @@
 const bcrypt = require("bcrypt");
 const mongoose = require('mongoose');
 
-//const Trips = require('Trips');
-
 const UserSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -11,31 +9,37 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     unique: true,
   },
+
   name: {
     type: String,
     required: true,
   },
+
   password: {
     type: String,
     required: true,
     max: 100,
     min: 4,
   },
+
   age: {
     type: Number,
     required: true,
     default: -1,
   },
+
   location: [{
       city: { type: String, required: true },
       state: { type: String, default: " " },
       country: { type: String, required: true },
       zip: { type: Number, min: 00001, max: 99999, required: true },
     }],
+
   confirmed: {
     type: Boolean,
     default: false,
   },
+
   token: {
     type: String,
   },
@@ -43,7 +47,19 @@ const UserSchema = new mongoose.Schema({
   TripDetails: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Trips' 
-  }]
+  }],
+
+  securityQuestionOne:{
+    type: String,
+    trim: true,
+    required: true
+  },
+  securityQuestionTwo:{
+    type: String,
+    trim: true,
+    required: true
+  }
+
 });
 
 UserSchema.methods.generateHash = function (password) {
