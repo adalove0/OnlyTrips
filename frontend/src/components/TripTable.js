@@ -25,7 +25,7 @@ function TripView() {
   // Component will mount will ask api for array then fill an array with objects
   // Use those objects to fill your table?
 
-  const renderTable = async (event) => {
+  const renderTable = async () => {
     try {
       const request = await fetch("http://localhost:5000/travel", {
         method: "POST",
@@ -33,13 +33,11 @@ function TripView() {
         headers: { "Content-Type": "application/json" },
       });
       var res = await request.json();
-      console.log(res);
     } catch (err) {
       console.log(err);
     }
 
     const tripArray = res.trips;
-
     tripArray.map((trips) => {
       createTable(trips);
     });
@@ -56,8 +54,25 @@ function TripView() {
     });
     var res = await request.json();
     console.log(res);
+
+    // Res is my trip
+    var tripInfo = res.trip;
+    // Return table data
+    // trip.numPeople
+    // trip.startDate
+    // trip.endDate
+    // Retrieve last element of my destination array.
+
+    return (
+      <tr>
+        <td>{tripInfo.numPeople}</td>
+        <td>{tripInfo.startDate}</td>
+        <td>{tripInfo.endDate}</td>
+      </tr>
+    );
   };
 
+  // How to change my function from async event to call when page loads?
   return (
     <div id="tripTable">
       <Table responsive="lg" striped bordered hover>

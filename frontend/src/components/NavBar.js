@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import App from "../App";
-import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 import logo from "../images/OnlyTrips.svg";
 import Button from "react-bootstrap/Button";
 
@@ -25,16 +25,16 @@ function NavBar() {
   const fullName = localUser.fullName;
 
   return (
-    <Nav variant="tabs">
-      <p> Welcome! {fullName}</p>
-      <img src={logo} alt="OnlyTrips Logo" id="navBarLogo"></img>
+    <Navbar variant="tabs" sticky="top">
+      <Navbar.Brand> Welcome! {fullName}</Navbar.Brand>
+      <img src={logo} alt="OnlyTrips Logo" width="60" height="60"></img>
+      <Button variant="success" id="addTripButton" onClick={addTrip}>
+        Add A Trip!
+      </Button>
       <Button variant="danger" id="LogOutButton" onClick={LogOut}>
         Log Out
       </Button>
-      <Button variant="success" id="addTripButtopn" onClick={addTrip}>
-        Add A Trip!
-      </Button>
-    </Nav>
+    </Navbar>
   );
 }
 

@@ -269,6 +269,7 @@ body {
   padding-top: 10px;
   align-items: center;
   border: none;
+  z-index: 1;
 }
 /* For Nav Bar*/
 #navBar {
@@ -276,11 +277,17 @@ body {
 }
 #navBarLogo {
   width: 300px;
-  height: 200px;
+  height: 100px;
   align-items: left;
 }
 
 #LogOutButton {
   align-items: right;
-  margin-left: 200px;
+  height: 40px;
+}
+
+#addTripButton {
+  align-items: right;
+  height: 40px;
+  margin-right: 20px;
 }

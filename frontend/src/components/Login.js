@@ -9,10 +9,6 @@ function Login() {
   var loginPassword;
 
   const [message, setMessage] = useState("");
-  const [show, setShow] = useState(true);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const doLogin = async (event) => {
     event.preventDefault();
@@ -42,23 +38,7 @@ function Login() {
       console.log(res);
       console.log(res.success);
       if (res.success != true) {
-        return (
-          <Alert
-            show={show}
-            variant="danger"
-            onClose={() => setShow(false)}
-            dismissible
-          >
-            <Alert.Heading>Uh Oh!</Alert.Heading>
-            <p>
-              We ran into an error trying to log you in if you have registered
-              an account please check your email to validate it!
-            </p>
-            <Button onClick={() => setShow(false)} variant="outline-success">
-              Exit
-            </Button>
-          </Alert>
-        );
+        return;
       } else {
         var user = {
           fullName: res.user.name,
