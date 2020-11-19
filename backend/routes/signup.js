@@ -80,13 +80,13 @@ router.post("/", (req, res, next) => {
                 `,
         };
 
-        /*sgMail.send(msg)
+        sgMail.send(msg)
           .then(() => {
             console.log('Email sent')
           })
           .catch((error) => {
             console.error(error)
-          })*/
+          })
         
 
         newUser.save((err, user) => {
