@@ -28,7 +28,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ef26a7a-6d36-42dc-a043-aa5a7c402d97" name="Default Changelist" comment="Got register and login basically working." />
+    <list default="true" id="4ef26a7a-6d36-42dc-a043-aa5a7c402d97" name="Default Changelist" comment="Got register and login basically working.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/only_trips_mobile_app/lib/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/only_trips_mobile_app/lib/login.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -129,22 +132,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="806" y="421" key="GitRewordDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605742864230" />
-    <state width="1877" height="283" key="GridCell.Tab.0.bottom" timestamp="1605742968392">
+    <state width="1877" height="283" key="GridCell.Tab.0.bottom" timestamp="1605743445044">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605742968392" />
-    <state width="1877" height="283" key="GridCell.Tab.0.center" timestamp="1605742968391">
+    <state width="1877" height="283" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605743445044" />
+    <state width="1877" height="283" key="GridCell.Tab.0.center" timestamp="1605743445044">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605742968391" />
-    <state width="1877" height="283" key="GridCell.Tab.0.left" timestamp="1605742968391">
+    <state width="1877" height="283" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605743445044" />
+    <state width="1877" height="283" key="GridCell.Tab.0.left" timestamp="1605743445044">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605742968391" />
-    <state width="1877" height="283" key="GridCell.Tab.0.right" timestamp="1605742968391">
+    <state width="1877" height="283" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605743445044" />
+    <state width="1877" height="283" key="GridCell.Tab.0.right" timestamp="1605743445044">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605742968391" />
+    <state width="1877" height="283" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605743445044" />
     <state x="201" y="210" key="SettingsEditor" timestamp="1604627067256">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
@@ -165,41 +168,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/login.dart</url>
-          <line>131</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/login.dart</url>
-          <line>132</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/login.dart</url>
-          <line>96</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/login.dart</url>
-          <line>97</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/login.dart</url>
-          <line>98</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/login.dart</url>
-          <line>99</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/login.dart</url>
-          <line>102</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/login.dart</url>
           <line>219</line>

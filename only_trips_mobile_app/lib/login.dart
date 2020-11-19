@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
               if (snapshot.hasData) {
                 // TODO: If user isn't verified, handle appropriately
                 // TODO: Handle invalid credentials
-                if (snapshot.data.success) {
+                if (true) { // TODO: Change true to snapshot.data.success prior to deployment to handle errors in the credentials
                   return Column(
                     children: <Widget>[
                       Text(snapshot.data.message),
@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                         RaisedButton(
                           child: Text('Go back'),
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
                           },
                         ),
                       ],
