@@ -15,7 +15,6 @@ function TripView() {
 
   var data = { email: localUser.email };
   var js = JSON.stringify(data);
-  console.log(js);
 
   const LogOut = async (event) => {
     event.preventDefault();
@@ -47,14 +46,12 @@ function TripView() {
   const getSingleTripData = async (object) => {
     var data = { id: object };
     var js = JSON.stringify(data);
-    console.log(js);
     const request = await fetch("http://localhost:5000/singleTrip", {
       method: "POST",
       body: js,
       headers: { "Content-Type": "application/json" },
     });
     var res = await request.json();
-    console.log(res);
 
     // Res is my trip
     const singletripData = res.trip;
@@ -62,25 +59,25 @@ function TripView() {
     // then call renderTable in JSX
     tripData.push(singletripData);
     console.log("MY DATA");
-    console.log(tripData);
+    console.log(singletripData);
   };
 
-  function renderTable() {
+  const renderTable = async () => {
+    console.log(tripData);
+    console.log("thats my array");
+
     tripData.map((trip) => {
-      var table = document.getElementById("myTable");
-      var row = table.insertRow();
-      var cellName = row.insertCell(tripData);
+      console.log(trip);
+      console.log("YAYYYYYYY");
     });
-  }
+  };
 
   getArrayData();
+  renderTable();
 
-  // How to change my function from async event to call when page loads?
   return (
     <div id="tripTable">
-      <Table responsive="lg" striped bordered hover id="myTable">
-        <tbody>{renderTable}</tbody>
-      </Table>
+      <Table responsive="lg" striped bordered hover id="myTable"></Table>
     </div>
   );
 }

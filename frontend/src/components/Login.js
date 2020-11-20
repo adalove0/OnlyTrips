@@ -16,7 +16,6 @@ function Login() {
 
     var data = { email: loginEmail.value, password: loginPassword.value };
     var js = JSON.stringify(data);
-    alert(js);
 
     if (loginEmail.value === "" || loginPassword.value === "") {
       alert("please enter credentials");
@@ -38,25 +37,8 @@ function Login() {
 
       var res = await response.json();
       console.log(res);
-      console.log(res.success);
       if (res.success !== true) {
-        return (
-          <Alert
-            show={show}
-            variant="danger"
-            onClose={() => setShow(false)}
-            dismissible
-          >
-            <Alert.Heading>Uh Oh!</Alert.Heading>
-            <p>
-              We ran into an error trying to log you in if you have registered
-              an account please check your email to validate it!
-            </p>
-            <Button onClick={() => setShow(true)} variant="outline-success">
-              Exit
-            </Button>
-          </Alert>
-        );
+        console.log(res.success);
       } else {
         var user = {
           fullName: res.user.name,
