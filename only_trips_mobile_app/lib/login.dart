@@ -26,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: Colors.lightBlueAccent[400],
           centerTitle: true,
           title: Row(
             mainAxisSize: MainAxisSize.min,
@@ -70,86 +71,92 @@ class _LoginPageState extends State<LoginPage> {
   Widget loginPageBody() {
     return SingleChildScrollView(
       child: Container(
-        padding: const EdgeInsets.all(16),
-        child: (_response == null)
-            ? Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 80.0),
-              Column(
-                children: <Widget>[
-                  Image.asset('assets/logo.png'),
-                ],
-              ),
-              emailInput(),
-              SizedBox(
-                height: 16,
-              ),
-              passwordInput(),
-              SizedBox(
-                height: 16,
-              ),
-              submitButton(),
-            ],
-          ),
-        )
-            : FutureBuilder<Login> (
-            future: _response,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                // TODO: If user isn't verified, handle appropriately
-                // TODO: Handle invalid credentials
-                if (true) { // TODO: Change true to snapshot.data.success prior to deployment to handle errors in the credentials
-                  return Column(
+          padding: const EdgeInsets.all(16),
+          child: (_response == null)
+              ? Form(
+                  key: _formKey,
+                  child: Column(
                     children: <Widget>[
-                      Text(snapshot.data.message),
-                      RaisedButton(
-                        child: Text('Go to homepage'),
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-                        },
+                      SizedBox(height: 80.0),
+                      Column(
+                        children: <Widget>[
+                          Image.asset('assets/logo.png'),
+                        ],
                       ),
-                    ],
-                  );
-                  } else {
-                    return Column(
-                      children: <Widget>[
-                        Image.asset('assets/logo.png'),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Text(snapshot.data.message),
-                        RaisedButton(
-                          child: Text('Go back'),
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
-                          },
-                        ),
-                      ],
-                    );
-                  }
-                } else if (snapshot.hasError) {
-                  return Column(
-                    children: <Widget>[
-                      Image.asset('assets/logo.png'),
+                      emailInput(),
                       SizedBox(
                         height: 16,
                       ),
-                      Text("snapshot.error"),
-                      RaisedButton(
-                        child: Text('Go back'),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
+                      passwordInput(),
+                      SizedBox(
+                        height: 16,
                       ),
+                      submitButton(),
                     ],
-                  );
-                }
-                return CircularProgressIndicator();
-                },
-        )
-      ),
+                  ),
+                )
+              : FutureBuilder<Login>(
+                  future: _response,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      // TODO: If user isn't verified, handle appropriately
+                      // TODO: Handle invalid credentials
+                      if (true) {
+                        // TODO: Change true to snapshot.data.success prior to deployment to handle errors in the credentials
+                        return Column(
+                          children: <Widget>[
+                            Text(snapshot.data.message),
+                            RaisedButton(
+                              child: Text('Go to homepage'),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HomePage()));
+                              },
+                            ),
+                          ],
+                        );
+                      } else {
+                        return Column(
+                          children: <Widget>[
+                            Image.asset('assets/logo.png'),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Text(snapshot.data.message),
+                            RaisedButton(
+                              child: Text('Go back'),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginPage()));
+                              },
+                            ),
+                          ],
+                        );
+                      }
+                    } else if (snapshot.hasError) {
+                      return Column(
+                        children: <Widget>[
+                          Image.asset('assets/logo.png'),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Text("snapshot.error"),
+                          RaisedButton(
+                            child: Text('Go back'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    }
+                    return CircularProgressIndicator();
+                  },
+                )),
     );
   }
 
@@ -213,20 +220,18 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
 }
 
 Future<Login> submitLogin(String _email, String _password) async {
-  final http.Response response = await http.post(
-      'https://onlytrips.herokuapp.com/',
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode({
-        'email': _email,
-        'password': _password,
-      })
-  );
+  final http.Response response =
+      await http.post('https://onlytrips.herokuapp.com/',
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode({
+            'email': _email,
+            'password': _password,
+          }));
   if (response.statusCode == 200) {
     return Login.fromJson(jsonDecode(response.body));
   } else if (response.statusCode == 400) {
