@@ -11,6 +11,7 @@ import { object } from "@hapi/joi";
 function TripView() {
   const userObj = localStorage.getItem("user_data");
   const localUser = JSON.parse(userObj);
+  const tripData = [];
 
   var data = { email: localUser.email };
   var js = JSON.stringify(data);
@@ -25,7 +26,7 @@ function TripView() {
   // Component will mount will ask api for array then fill an array with objects
   // Use those objects to fill your table?
 
-  const renderTable = async () => {
+  const getArrayData = async () => {
     try {
       const request = await fetch("http://localhost:5000/travel", {
         method: "POST",
@@ -39,11 +40,11 @@ function TripView() {
 
     const tripArray = res.trips;
     tripArray.map((trips) => {
-      createTable(trips);
+      getSingleTripData(trips);
     });
   };
 
-  const createTable = async (object) => {
+  const getSingleTripData = async (object) => {
     var data = { id: object };
     var js = JSON.stringify(data);
     console.log(js);
@@ -56,28 +57,29 @@ function TripView() {
     console.log(res);
 
     // Res is my trip
-    var tripInfo = res.trip;
-    // Return table data
-    // trip.numPeople
-    // trip.startDate
-    // trip.endDate
-    // Retrieve last element of my destination array.
-
-    return (
-      <tr>
-        <td>{tripInfo.numPeople}</td>
-        <td>{tripInfo.startDate}</td>
-        <td>{tripInfo.endDate}</td>
-      </tr>
-    );
+    const singletripData = res.trip;
+    // add this to a global array
+    // then call renderTable in JSX
+    tripData.push(singletripData);
+    console.log("MY DATA");
+    console.log(tripData);
   };
+
+  function renderTable() {
+    tripData.map((trip) => {
+      var table = document.getElementById("myTable");
+      var row = table.insertRow();
+      var cellName = row.insertCell(tripData);
+    });
+  }
+
+  getArrayData();
 
   // How to change my function from async event to call when page loads?
   return (
     <div id="tripTable">
-      <Table responsive="lg" striped bordered hover>
+      <Table responsive="lg" striped bordered hover id="myTable">
         <tbody>{renderTable}</tbody>
-        <Button onClick={renderTable}>Get the user info -TEST-</Button>
       </Table>
     </div>
   );

@@ -20,6 +20,8 @@ const valSchema = Joi.object({
   location: Joi.object(),
   confirmed: Joi.boolean(),
   token: Joi.string(),
+  securityQuestionOne: Joi.string(),
+  securityQuestionTwo: Joi.string()
 });
 router.post("/", (req, res, next) => {
   // makes sure the email is a valid email
@@ -57,6 +59,8 @@ router.post("/", (req, res, next) => {
         newUser.password = newUser.generateHash(req.body.password);
         newUser.age = req.body.age;
         newUser.location = req.body.location;
+        newUser.securityQuestionOne = req.body.securityQuestionOne;
+        newUser.securityQuestionTwo = req.body.securityQuestionTwo;
         newUser.confirmed = false;
         newUser.token = crypto.randomBytes(64).toString("hex");
 

@@ -26,6 +26,21 @@ body {
   text-align: center;
 }
 
+#alertSuccess, #alertDanger {
+  visibility: hidden;
+  margin: auto;
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  width: 600px;
+  align-items: center;
+  border: none;
+  overflow-y: auto;
+}
+
 /*Login CSS*/
 #loginDiv {
   max-width: 360px;
@@ -157,25 +172,24 @@ body {
 
 #signUpDiv {
   max-width: 360px;
-  min-height: 400px;
+  height: 98%;
   margin: auto;
   position: absolute;
-  top: 50%;
+  top: 57%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.6);
   transform: translate(-50%, -50%);
   border-radius: 10px;
   width: 600px;
-  padding-top: 10px;
   align-items: center;
   border: none;
   overflow-y: auto;
 }
 
 #SignUpName {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   height: 35px;
   width: 70%;
   border: none;
@@ -208,14 +222,14 @@ body {
 }
 
 #SignUpButton {
-  width: 70%;
+  width: 40%;
   background: #59bfff;
   color: white;
   height: 50px;
   outline: none;
   border: none;
-  margin-top: 15px;
-  margin-bottom: 13px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   border-radius: 12px;
   font-family: "Fjalla One", sans-serif;
   cursor: pointer;

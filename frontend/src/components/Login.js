@@ -9,6 +9,7 @@ function Login() {
   var loginPassword;
 
   const [message, setMessage] = useState("");
+  const [show, setShow] = useState(true);
 
   const doLogin = async (event) => {
     event.preventDefault();
@@ -17,7 +18,8 @@ function Login() {
     var js = JSON.stringify(data);
     alert(js);
 
-    if (loginEmail.value == "" || loginPassword.value == "") {
+    if (loginEmail.value === "" || loginPassword.value === "") {
+      alert("please enter credentials");
     }
 
     try {
@@ -37,8 +39,24 @@ function Login() {
       var res = await response.json();
       console.log(res);
       console.log(res.success);
-      if (res.success != true) {
-        return;
+      if (res.success !== true) {
+        return (
+          <Alert
+            show={show}
+            variant="danger"
+            onClose={() => setShow(false)}
+            dismissible
+          >
+            <Alert.Heading>Uh Oh!</Alert.Heading>
+            <p>
+              We ran into an error trying to log you in if you have registered
+              an account please check your email to validate it!
+            </p>
+            <Button onClick={() => setShow(true)} variant="outline-success">
+              Exit
+            </Button>
+          </Alert>
+        );
       } else {
         var user = {
           fullName: res.user.name,
@@ -91,7 +109,7 @@ function Login() {
       <p id="signUpLink">
         {" "}
         Dont have an account?{" "}
-        <a id="Link" onClick={goToSignUp}>
+        <a href="/SignUpPage" id="Link" /*onClick={goToSignUp}*/>
           Sign Up
         </a>
       </p>
