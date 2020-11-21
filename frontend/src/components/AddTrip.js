@@ -47,7 +47,8 @@ class AddTrip extends Component {
   async doAddTrip(e){
     const userObj = localStorage.getItem("user_data");
     const localUser = JSON.parse(userObj);  
-    var obj = '{"creator" :"'+localUser+'", "numPeople" :"' +this.state.count+'", "startDate" :"' +this.state.startDate + '", "endDate" :"' +this.state.endDate+ '", "destination" : "' + ["orlando","florida"] + '"}';
+    const destinationLoc = ["orlando","florida"];   //Test destination: needs to be fixed
+    var obj = '{"creator" :"'+localUser+'", "numPeople" :"' +this.state.count+'", "startDate" :"' +this.state.startDate + '", "endDate" :"' +this.state.endDate+ '", "destination" : "' + destinationLoc + '"}';
     /*var obj = {
       "creator": localUser,
       "numPeople": this.state.count,
