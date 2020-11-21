@@ -62,7 +62,7 @@ function SignUp() {
     var js = JSON.stringify(obj);
     //alert(js);
     try {
-      const response = await fetch("http://localhost:3000/signup", {
+      const response = await fetch("http://localhost:5000/signup", {
         method: "POST",
         body: js,
         headers: { "Content-Type": "application/json" },

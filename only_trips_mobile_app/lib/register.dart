@@ -14,11 +14,11 @@ class RegisterPage extends StatefulWidget {
 }
 
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
 class _RegisterPageState extends State<RegisterPage> {
   String _name, _email, _password, _city, _state, _country, _zip, _age = "";
   // TODO: Hash password
   Future<Register> _response;
-
 
   FocusNode _nameFocusNode = FocusNode();
   FocusNode _emailFocusNode = FocusNode();
@@ -35,6 +35,7 @@ class _RegisterPageState extends State<RegisterPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: Colors.lightBlueAccent[400],
           centerTitle: true,
           title: Row(
             mainAxisSize: MainAxisSize.min,
@@ -73,108 +74,107 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget registerPageBody() {
     return SingleChildScrollView(
       child: Container(
-        padding: const EdgeInsets.all(16),
-        child: (_response == null)
-          ? Form (
-            key: _formKey,
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: 80.0),
-                Column(
-                  children: <Widget>[
-                    Image.asset('assets/logo.png'),
-                  ],
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                emailInput(),
-                SizedBox(
-                  height: 16,
-                ),
-                nameInput(),
-                SizedBox(
-                  height: 16,
-                ),
-                passwordInput(),
-                SizedBox(
-                  height: 16,
-                ),
-                ageInput(),
-                SizedBox(
-                  height: 16,
-                ),
-                cityInput(),
-                SizedBox(
-                  height: 16,
-                ),
-                stateInput(),
-                SizedBox(
-                  height: 16,
-                ),
-                countryInput(),
-                SizedBox(
-                  height: 16,
-                ),
-                zipInput(),
-                SizedBox(
-                  height: 16,
-                ),
-                submitButton(),
-              ],
-            ),
-          )
-          : FutureBuilder<Register> (
-          future: _response,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              if (snapshot.data.success) {
-                return Column(
+          padding: const EdgeInsets.all(16),
+          child: (_response == null)
+              ? Form(
+                  key: _formKey,
+                  child: Column(
                     children: <Widget>[
-                      Text(snapshot.data.message),
-                      Text(
-                        'A verification link has been sent to your email. Please click on it before attempting to log in.',
-                        maxLines: 3,
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
+                      SizedBox(height: 80.0),
+                      Column(
+                        children: <Widget>[
+                          Image.asset('assets/logo.png'),
+                        ],
                       ),
-                      RaisedButton(
-                        child: Text('Go to login'),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => LoginPage())
-                          );
-                        },
+                      SizedBox(
+                        height: 16,
                       ),
+                      emailInput(),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      nameInput(),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      passwordInput(),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      ageInput(),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      cityInput(),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      stateInput(),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      countryInput(),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      zipInput(),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      submitButton(),
                     ],
-                );
-              } else {
-              return Column(
-                  children: <Widget>[
-                    Image.asset('assets/logo.png'),
-                    SizedBox(
-                    height: 16,
-                    ),
-                    Text(snapshot.data.message),
-                  ],
-                );
-              }
-            } else if (snapshot.hasError) {
-              return Column(
-                children: <Widget>[
-                  Image.asset('assets/logo.png'),
-                  SizedBox(
-                    height: 16,
                   ),
-                  Text(snapshot.error),
-                ],
-              );
-            }
-            return CircularProgressIndicator();
-          },
-        )
-      ),
+                )
+              : FutureBuilder<Register>(
+                  future: _response,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      if (snapshot.data.success) {
+                        return Column(
+                          children: <Widget>[
+                            Text(snapshot.data.message),
+                            Text(
+                              'A verification link has been sent to your email. Please click on it before attempting to log in.',
+                              maxLines: 3,
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            RaisedButton(
+                              child: Text('Go to login'),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginPage()));
+                              },
+                            ),
+                          ],
+                        );
+                      } else {
+                        return Column(
+                          children: <Widget>[
+                            Image.asset('assets/logo.png'),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Text(snapshot.data.message),
+                          ],
+                        );
+                      }
+                    } else if (snapshot.hasError) {
+                      return Column(
+                        children: <Widget>[
+                          Image.asset('assets/logo.png'),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Text(snapshot.error),
+                        ],
+                      );
+                    }
+                    return CircularProgressIndicator();
+                  },
+                )),
     );
   }
 
@@ -385,42 +385,48 @@ class _RegisterPageState extends State<RegisterPage> {
           _formKey.currentState.save();
           Future.delayed(const Duration(milliseconds: 100), () async {
             setState(() {
-              _response = submitRegistration(_email, _name, _password, _age, _city, _state, _country, _zip);
+              _response = submitRegistration(_email, _name, _password, _age,
+                  _city, _state, _country, _zip);
             });
           });
         }
       },
     );
   }
-
 }
-Future<Register> submitRegistration(String _email, String _name, String _password,
-    String _age, String _city, String _state, String _country, String _zip) async {
-  final http.Response response = await http.post(
-      'https://onlytrips.herokuapp.com/signup',
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode({
-        'email': _email,
-        'name': _name,
-        'password': _password,
-        'age': _age,
-        'location': {
-          'city': _city,
-          'state': _state,
-          'country': _country,
-          'zip': _zip
-        },
-      })
-  );
+
+Future<Register> submitRegistration(
+    String _email,
+    String _name,
+    String _password,
+    String _age,
+    String _city,
+    String _state,
+    String _country,
+    String _zip) async {
+  final http.Response response =
+      await http.post('https://onlytrips.herokuapp.com/signup',
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode({
+            'email': _email,
+            'name': _name,
+            'password': _password,
+            'age': _age,
+            'location': {
+              'city': _city,
+              'state': _state,
+              'country': _country,
+              'zip': _zip
+            },
+          }));
   if (response.statusCode == 200) {
     return Register.fromJson(jsonDecode(response.body));
   } else {
     throw Exception('Failed to register');
   }
 }
-
 
 class Register {
   final String message;
