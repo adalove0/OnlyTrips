@@ -46,6 +46,7 @@ function TripView() {
       
     }
 
+    
     async function getSingleTripData(object) {
       var tripInfo;
       var data = { id: object };
