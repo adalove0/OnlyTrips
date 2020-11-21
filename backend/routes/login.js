@@ -44,7 +44,7 @@ router.post('/', (req, res, next)=>{
         else{
             return res.status(400).json({
                 success: false,
-                message: 'Error logging in'
+                message: 'Incorrect email and/or password'
             });
         }
 
