@@ -13,11 +13,11 @@ router.post('/', (req, res, next)=>{
 
     var o_id = new mongoose.Types.ObjectId(req.body.id);
 
-    Trip.findOneAndUpdate({_id: o_id}, {"$set": {"numPeople" : req.body.trip.numPeople, "startDate" : req.body.trip.startDate,
+    Trip.findOneAndUpdate({_id: o_id}, {"$set": {"creator": req.body.trip.creator, "numPeople" : req.body.trip.numPeople, "startDate" : req.body.trip.startDate,
                            "endDate" : req.body.trip.endDate, "destination" : req.body.trip.destination, 
                            "budget": req.body.trip.budget}}, {new: true}, (err,obj) =>{
         if (err)
-            return res.status(400).send(err.details[0].message);
+            return res.status(400).send(err);
         else{
             return res.status(200).json({
                 success: true,

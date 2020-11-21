@@ -1,23 +1,20 @@
-// this api returns the object with
 const router = require('express').Router();
 const mongoose = require('mongoose');
-const Trips = require('../models/Trips');
+let Trip = require('../models/Trips');
 
+router.post('/', (req, res) => {
+    var o_id = new mongoose.Types.ObjectId(req.body.id)
+    const key = new RegExp(req.body.cityKey, 'i')
 
-router.post('/', (req, res, next)=>{
-    
-    console.log("please be in here");
+    Trip.find({creator: o_id,"destination.city": key}).then(docs => {
+        return res.status(200).json({
+            success: true,
+            user: docs,
+            message: 'Found trips'
+        });
+    }).catch(err => 
+        console.log(err));
+})
 
-    Trips.find(
-    {"state": {$elemmatch: {$regex: new RegExp(req.body.state), "$options":"i"} } } ),
-        function(err,obj){         
-        
-        console.log(obj)
-
-        if (err)
-            console.log(err);
-    }
-
-});
 
 module.exports = router;
