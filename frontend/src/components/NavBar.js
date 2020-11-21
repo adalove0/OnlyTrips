@@ -34,22 +34,22 @@ function NavigationBar() {
       <img
         src={logo}
         alt="OnlyTrips Logo"
-        width="60"
-        height="60"
-        style={{ position: "center" }}
+        id="navBarLogo"
       ></img>
+      
+      <Form className="mb-3">
       <Button variant="success" id="addTripButton" onClick={addTrip}>
-        Add A Trip!
+        Add Trip
       </Button>
       <Button variant="danger" id="LogOutButton" onClick={LogOut}>
         Log Out
       </Button>
-      <Form className="mb-3">
-        <Button variant="outline-secondary" onKeyUp={searchFunction}>
+
+        <Button variant="outline-secondary" id = "searchButton" onKeyUp={searchFunction}>
           Search
         </Button>
       </Form>
-      <Form.Control type="text" placeholder="Search By City...." />
+      <Form.Control id="navSearchBar" type="text" placeholder="Search By City...." />
     </Navbar>
   );
 }

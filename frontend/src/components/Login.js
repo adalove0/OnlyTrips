@@ -41,7 +41,7 @@ function Login() {
       
       var res = await response.json();
       console.log(res);
-      if ((res.success !== true || res.confirmed !== true) && loginEmail.value !== "" && loginPassword.value !== "") {
+      if ((res.success !== true) && loginEmail.value !== "" && loginPassword.value !== "") {
         //console.log(res.success);
         visAlertDanger.style.visibility = "visible";
         

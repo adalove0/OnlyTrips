@@ -272,7 +272,7 @@ body {
 
 #tripTable {
   width: 700px;
-  height: 850px;
+  height: auto;
   margin: auto;
   position: absolute;
   top: 50%;
@@ -282,24 +282,38 @@ body {
   transform: translate(-50%, -50%);
   border-radius: 10px;
   padding-top: 10px;
+  padding: 0px;
   align-items: center;
   border: none;
   z-index: 1;
 }
 /* For Nav Bar*/
 #navBarLogo {
-  width: 300px;
-  height: 100px;
+  width: 10%;
+  height: 3.3%;
   align-items: left;
 }
 
 #LogOutButton {
   align-items: right;
-  height: 40px;
+  height: 50px;
+  margin-right: 5px;
 }
 
 #addTripButton {
   align-items: right;
-  height: 40px;
-  margin-right: 20px;
+  height: 50px;
+  margin-right: 5px;
+}
+#searchButton {
+  align-items: right;
+  height: 50px;
+  margin-right: 5px;
+}
+#navSearchBar {
+  width: 50%
+}
+
+.cells{
+  padding: 0px;
 }
