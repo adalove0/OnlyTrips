@@ -1,83 +1,103 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import App from "../App";
-import LoggedInName from "../components/LoggedInName";
-import NavBar from "../components/NavBar";
-import UserProfile from "../components/UserProfile";
 import Alert from "react-bootstrap/Alert";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import { object } from "@hapi/joi";
+import { render } from "react-dom";
+
+// Reason for not working:
+// renderTable gets called before the array is filled hence not displaying
+// I dont know how to stop this from happening - Ahmed
 
 function TripView() {
+  const [tripData, setTripData] = useState([]);
+
   const userObj = localStorage.getItem("user_data");
   const localUser = JSON.parse(userObj);
-  const tripData = [];
 
   var data = { email: localUser.email };
   var js = JSON.stringify(data);
 
-  const LogOut = async (event) => {
-    event.preventDefault();
-    window.location.href = "/";
-  };
-
-  // Maybe component will mount?
-  // Component will mount will ask api for array then fill an array with objects
-  // Use those objects to fill your table?
-
-  const getArrayData = async () => {
-    try {
-      const request = await fetch("http://localhost:5000/travel", {
+  React.useEffect(() => {
+    // To get trip array with ids
+    async function getArrayData() {
+      try {
+        const request = await fetch("http://localhost:5000/travel", {
+          method: "POST",
+          body: js,
+          headers: { "Content-Type": "application/json" },
+        });
+        var res = await request.json();
+      } catch (err) {
+        console.log(err);
+      }
+      const tripArray = res.trips;
+      // Loop Through array and pass every id to second api
+      tripArray.map((trips) => {
+        getSingleTripData(trips);
+      });
+    }
+    async function getSingleTripData(object) {
+      var data = { id: object };
+      var js = JSON.stringify(data);
+      const request = await fetch("http://localhost:5000/singleTrip", {
         method: "POST",
         body: js,
         headers: { "Content-Type": "application/json" },
       });
       var res = await request.json();
-    } catch (err) {
-      console.log(err);
+
+      // Res is my trip
+      const singletripData = res.trip;
+
+      // Add to array and set its state
+      setTripData(tripData.push(singletripData));
     }
+    getArrayData();
+    console.log("Array Size" + tripData);
+  }, []);
 
-    const tripArray = res.trips;
-    tripArray.map((trips) => {
-      getSingleTripData(trips);
-    });
-  };
-
-  const getSingleTripData = async (object) => {
-    var data = { id: object };
-    var js = JSON.stringify(data);
-    const request = await fetch("http://localhost:5000/singleTrip", {
-      method: "POST",
-      body: js,
-      headers: { "Content-Type": "application/json" },
-    });
-    var res = await request.json();
-
-    // Res is my trip
-    const singletripData = res.trip;
-    // add this to a global array
-    // then call renderTable in JSX
-    tripData.push(singletripData);
-    console.log("MY DATA");
-    console.log(singletripData);
-  };
-
-  const renderTable = async () => {
+  function testTable() {
+    // Test Array
+    const array = [
+      { name: "Paris Trip", age: "3 People" },
+      { name: "Justtin", age: "21" },
+      { name: "Justtin", age: "21" },
+      { name: "Justtin", age: "21" },
+      { name: "Justtin", age: "21" },
+      { name: "Justtin", age: "21" },
+      { name: "Justtin", age: "21" },
+      { name: "Justtin", age: "21" },
+      { name: "Justtin", age: "21" },
+      { name: "Justtin", age: "21" },
+    ];
+    // Incude fontawesome icon
+    // change array.map to tripData.map to test
     console.log(tripData);
-    console.log("thats my array");
-
-    tripData.map((trip) => {
-      console.log(trip);
-      console.log("YAYYYYYYY");
+    return array.map((trip) => {
+      return (
+        <tr>
+          <td>{trip.startDate}</td>
+          <td>{trip.endDate}</td>
+          <td>{trip.numPeople}</td>
+          <td>{trip.age}</td>
+          <td>{trip.name}</td>
+        </tr>
+      );
     });
+  }
+
+  const LogOut = async (event) => {
+    event.preventDefault();
+    window.location.href = "/";
   };
-
-  getArrayData();
-  renderTable();
-
+  // normal functions getting called before async functions how to change
   return (
-    <div id="tripTable">
-      <Table responsive="lg" striped bordered hover id="myTable"></Table>
+    <div>
+      <Table id="tripTable" responsive borderless size="md" striped>
+        {<tbody>{testTable()}</tbody>}
+      </Table>
     </div>
   );
 }

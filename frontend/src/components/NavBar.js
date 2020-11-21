@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import App from "../App";
-import Navbar from "react-bootstrap/Navbar";
 import logo from "../images/OnlyTrips.svg";
+import Navbar from "react-bootstrap/Navbar";
+import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function NavBar() {
+function NavigationBar() {
   const LogOut = async (event) => {
     event.preventDefault();
     localStorage.removeItem("user_data");
@@ -24,18 +25,33 @@ function NavBar() {
   }
   const fullName = localUser.fullName;
 
+  const searchFunction = async () => {
+    console.log("Searching");
+  };
   return (
-    <Navbar variant="tabs" sticky="top">
-      <Navbar.Brand> Welcome! {fullName}</Navbar.Brand>
-      <img src={logo} alt="OnlyTrips Logo" width="60" height="60"></img>
+    <Navbar variant="dark" fixed="top">
+      <h1> Welcome! {fullName}</h1>
+      <img
+        src={logo}
+        alt="OnlyTrips Logo"
+        width="60"
+        height="60"
+        style={{ position: "center" }}
+      ></img>
       <Button variant="success" id="addTripButton" onClick={addTrip}>
         Add A Trip!
       </Button>
       <Button variant="danger" id="LogOutButton" onClick={LogOut}>
         Log Out
       </Button>
+      <Form className="mb-3">
+        <Button variant="outline-secondary" onKeyUp={searchFunction}>
+          Search
+        </Button>
+      </Form>
+      <Form.Control type="text" placeholder="Search By City...." />
     </Navbar>
   );
 }
 
-export default NavBar;
+export default NavigationBar;
