@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useEffect, Component, useState } from "react";
 import App from "../App";
 import Alert from "react-bootstrap/Alert";
 import Table from "react-bootstrap/Table";
@@ -85,6 +85,13 @@ function TripView() {
 
   }, []);
 
+  const goToUpdate = async (event) => {
+    event.preventDefault();
+    //window.location.href = "/updateTrip";
+  };
+
+  
+
 
   /* THIS IS TEST*/
 /* END TEST*/
@@ -114,8 +121,9 @@ function TripView() {
         <tr key= {index}>
 
           <td > {trip.startDate}</td>
-          {/*<td >{trip.endDate}</td>
-          <td >{trip.numPeople}</td>*/}
+          <td >{trip.endDate}</td>
+          <td >{trip.numPeople}</td>
+          <td><button onClick={goToUpdate}>Hello</button></td>
         </tr>
 
       );

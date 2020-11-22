@@ -4,7 +4,7 @@ import SignUpPage from "../pages/SignUpPage.js";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/esm/Modal";
-import logo from "../images/Picture1.png";
+import logo from "../images/OnlyTrips.svg";
 
 function Verify() {
     const userObj = localStorage.getItem("user_data");
