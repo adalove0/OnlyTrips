@@ -14,7 +14,7 @@ class OnlyTripsApp extends StatelessWidget {
     return MaterialApp(
       title: 'OnlyTrips',
       theme: themeNotifier.getTheme(),
-      home: (sharedPrefs.userId == "") ? StartPage() : HomePage(),
+      home: StartPage(), // (sharedPrefs.userId == "") ? StartPage() : HomePage(),
       initialRoute: '/start',
       onGenerateRoute: _getRoute,
     );
