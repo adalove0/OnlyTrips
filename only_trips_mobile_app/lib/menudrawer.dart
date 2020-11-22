@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:onlytrips/login.dart';
 import 'package:onlytrips/settingspage.dart';
 import 'package:onlytrips/profile.dart';
+import 'package:onlytrips/shared_prefs.dart';
+import 'package:onlytrips/start.dart';
+import 'package:onlytrips/themes.dart';
 import 'package:onlytrips/user.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NavDrawer extends StatelessWidget {
   final User testUser = User(
@@ -17,6 +23,7 @@ class NavDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -54,13 +61,13 @@ class NavDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('Logout'),
-            onTap: () => {
-              // TODO - Create logout function/delete session
-              Navigator.of(context).pushReplacementNamed('/start')
-            },
-          ),
+              leading: Icon(Icons.exit_to_app),
+              title: Text('Logout'),
+              onTap: () async {
+                sharedPrefs.clear(themeNotifier);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => StartPage()));
+              }),
         ],
       ),
     );
