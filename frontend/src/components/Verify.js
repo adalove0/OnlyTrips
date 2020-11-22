@@ -9,7 +9,7 @@ import logo from "../images/OnlyTrips.svg";
 function Verify() {
     const userObj = localStorage.getItem("user_data");
     const localUser = JSON.parse(userObj);  
-    const name = localUser.name;
+    const name = localUser.fullName;
     const doVerify = async (event) => {
         var data = { __id: localUser.id};
         var js = JSON.stringify(data);
