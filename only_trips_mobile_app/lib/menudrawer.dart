@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:onlytrips/profile.dart';
+import 'package:onlytrips/user.dart';
 
 class NavDrawer extends StatelessWidget {
+  final User testUser = User(
+    name: "Sebastian",
+    age: 20,
+    email: "sebastiansalazar0330@gmail.com",
+    password: "cookie",
+    city: "Orlando",
+    state: "FL",
+    country: "United States",
+    zipCode: 32832,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -24,14 +37,19 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.verified_user),
             title: Text('Profile'),
-            // TODO - Create profile page
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => ProfilePage(currUser: testUser)))
+            },
           ),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
             // TODO - Create settings page
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () =>
+                {Navigator.of(context).pushReplacementNamed('/profile')},
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),

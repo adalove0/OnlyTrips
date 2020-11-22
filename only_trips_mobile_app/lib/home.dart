@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     Trip(destination: "Germany", numTravelers: 1)
   ];
 
-  Trip testTrip = Trip(destination: "New York", numTravelers: 4);
+  //Trip testTrip = Trip(destination: "New York", numTravelers: 4);
 
   @override
   Widget build(BuildContext context) {
