@@ -47,13 +47,36 @@ class User {
       this.token});
 
   User.fromJson(Map<String, dynamic> json) {
-    userId = json['userId'];
+    userId = json['_id'];
     age = json['age'];
     confirmed = json['confirmed'];
     if (json['TripDetails'] != null) {
       tripDetails = new List<TripDetails>();
       json['TripDetails'].forEach((v) {
         tripDetails.add(new TripDetails.fromJson(v));
+      });
+    }
+    if (json['location'] != null) {
+      location = new List<Location>();
+      json['location'].forEach((v) {
+        location.add(new Location.fromJson(v));
+      });
+    }
+    email = json['email'];
+    name = json['name'];
+    securityQuestionOne = json['securityQuestionOne'];
+    securityQuestionTwo = json['securityQuestionTwo'];
+    token = json['token'];
+  }
+
+  User.fromMyJson(Map<String, dynamic> json) {
+    userId = json['_id'];
+    age = json['age'];
+    confirmed = json['confirmed'];
+    if (json['TripDetails'] != null) {
+      tripDetails = new List<TripDetails>();
+      json['TripDetails'].forEach((v) {
+        tripDetails.add(new TripDetails.fromMyJson(v));
       });
     }
     if (json['location'] != null) {
@@ -94,8 +117,12 @@ class TripDetails {
 
   TripDetails({this.id});
 
-  TripDetails.fromJson(dynamic json) {
+  TripDetails.fromJson(json) {
     id = json;
+  }
+
+  TripDetails.fromMyJson(Map<String, dynamic> json) {
+    id = json["id"];
   }
 
   Map<String, dynamic> toJson() {
