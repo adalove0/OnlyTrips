@@ -61,6 +61,7 @@ function TripView() {
           getSingleTripData(trips);
         });
         setLoading(false);
+
         console.log(newTrip[newTrip.length - 1]);
         lastData.push(newTrip[newTrip.length - 1]);
         console.log("afidjwoeifjw");
@@ -96,19 +97,6 @@ function TripView() {
     }
     getArrayData();
   }, []);
-
-  function testTable() {
-    console.log(isLoading);
-    // Test Array
-
-    const array1 = newTrip;
-    // change array.map to tripData.map to test
-  }
-
-  /*const LogOut = async (event) => {
-    event.preventDefault();
-    window.location.href = "/";
-  };*/
 
   // normal functions getting called before async functions how to change
   return (

@@ -7,7 +7,6 @@ import Button from "react-bootstrap/Button";
 function Login() {
   var loginEmail;
   var loginPassword;
-  
 
   const [message, setMessage] = useState("");
   const [show, setShow] = useState(true);
@@ -24,32 +23,33 @@ function Login() {
       visAlertDanger.innerHTML = "Please enter credentials";
     }
 
+    const appName = "onlytrips";
+    function buildPath(route) {
+      if (process.env.NODE_ENV === "production") {
+        return "https://" + appName + ".herokuapp.com/" + route;
+      } else {
+        return "http://localhost:5000/login";
+      }
+    }
     try {
-      // if(inProduction)
-      // {
-      //   Post to website
-      // }
-      const response = await fetch(
-        "http://localhost:5000/login" || "http://www.onlytrips.xyz/login",
-        {
-          method: "POST",
-          body: js,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const response = await fetch(buildPath("login"), {
+        method: "POST",
+        body: js,
+        headers: { "Content-Type": "application/json" },
+      });
 
-      
       var res = await response.json();
       console.log(res);
-      if ((res.success !== true) && loginEmail.value !== "" && loginPassword.value !== "") {
+      if (
+        res.success !== true &&
+        loginEmail.value !== "" &&
+        loginPassword.value !== ""
+      ) {
         //console.log(res.success);
         visAlertDanger.style.visibility = "visible";
-        
-        visAlertDanger.innerHTML = res.message;
 
-        
-      } 
-      else {
+        visAlertDanger.innerHTML = res.message;
+      } else {
         var user = {
           fullName: res.user.name,
           email: res.user.email,
@@ -66,20 +66,11 @@ function Login() {
     }
   };
 
-  const goToSignUp = async (event) => {
-    event.preventDefault();
-    window.location.href = "/SignUpPage";
-  };
-
   return (
     <div>
-      <Alert variant="danger" id="alertDanger"> 
-        <p>
-            
-        </p> 
-        <div >
-              
-            </div>
+      <Alert variant="danger" id="alertDanger">
+        <p></p>
+        <div></div>
       </Alert>
       <div id="loginDiv">
         <img src={logo} alt="OnlyTrips Logo" id="logo"></img>
@@ -92,8 +83,7 @@ function Login() {
             placeholder="Username"
             ref={(c) => (loginEmail = c)}
           />
-          <br />
-                 {" "}
+          <br />       {" "}
           <input
             type="password"
             id="textbox"
@@ -102,7 +92,12 @@ function Login() {
           />
           <br />
                   
-          <Button type="submit" variant="success" value="Do It" onClick={doLogin}>
+          <Button
+            type="submit"
+            variant="success"
+            value="Do It"
+            onClick={doLogin}
+          >
             Login!
           </Button>
                   
