@@ -5,6 +5,7 @@ import 'package:crypto/crypto.dart'; // Use for password hashing
 // ignore: avoid_web_libraries_in_flutter
 import 'package:http/http.dart' as http; // Use to post to the api server
 import 'package:email_validator/email_validator.dart';
+import 'package:onlytrips/shared_prefs.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -24,7 +25,6 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.lightBlueAccent[400],
           centerTitle: true,
@@ -77,7 +77,6 @@ class _LoginPageState extends State<LoginPage> {
                   key: _formKey,
                   child: Column(
                     children: <Widget>[
-                      SizedBox(height: 80.0),
                       Column(
                         children: <Widget>[
                           Image.asset('assets/logo.png'),
@@ -103,6 +102,8 @@ class _LoginPageState extends State<LoginPage> {
                       // TODO: Handle invalid credentials
                       if (true) {
                         // TODO: Change true to snapshot.data.success prior to deployment to handle errors in the credentials
+                        sharedPrefs.email = snapshot.data.email;
+                        sharedPrefs.userId = snapshot.data.userid;
                         return Column(
                           children: <Widget>[
                             Text(snapshot.data.message),
@@ -244,13 +245,17 @@ Future<Login> submitLogin(String _email, String _password) async {
 class Login {
   final String message;
   final bool success;
+  final String userid;
+  final String email;
 
-  Login({this.success, this.message});
+  Login({this.userid, this.email, this.success, this.message});
 
   factory Login.fromJson(Map<String, dynamic> json) {
     return Login(
       success: json['success'],
+      userid: json['user']['_id'],
       message: json['message'],
+      email: json['user']['email'],
     );
   }
 }
