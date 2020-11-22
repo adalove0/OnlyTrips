@@ -15,7 +15,7 @@ function Verify() {
         var js = JSON.stringify(data);
         alert(js);
         try {
-            const response = await fetch("http://localhost:3000/verifyEmail.js", {
+            const response = await fetch("http://localhost:5000/verifyEmail.js" || "http://www.onlytrips.xyz/verifyEmail.js", {
               method: "POST",
               body: js,
               headers: { "Content-Type": "application/json" },
