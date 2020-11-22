@@ -1,9 +1,5 @@
-// ignore: avoid_web_libraries_in_flutter
-// import 'dart:js'; //
 import 'package:flutter/material.dart';
 import 'dart:convert'; // Used for json conversion
-import 'package:crypto/crypto.dart'; // Use for password hashing
-// ignore: avoid_web_libraries_in_flutter
 import 'package:http/http.dart' as http; // Use to post to the api server
 import 'package:email_validator/email_validator.dart';
 import 'package:onlytrips/login.dart';
@@ -17,7 +13,6 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
 class _RegisterPageState extends State<RegisterPage> {
   String _name, _email, _password, _city, _state, _country, _zip, _age = "";
-  // TODO: Hash password
   Future<Register> _response;
 
   FocusNode _nameFocusNode = FocusNode();
@@ -33,7 +28,6 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.lightBlueAccent[400],
           centerTitle: true,
