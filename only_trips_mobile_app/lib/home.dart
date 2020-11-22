@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.all(50.0),
                     child: Center(
                         child: Text(
-                      trips[index].destination.elementAt(0).state,
+                      trips[index].destination.elementAt(0).city,
                       style: TextStyle(
                         fontFamily: 'Marguerite',
                         fontSize: 40.0,

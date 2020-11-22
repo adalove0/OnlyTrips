@@ -59,7 +59,7 @@ class _TripViewState extends State<TripView> {
                 ),
               ),
               trailing: Text(
-                "${widget.currTrip.destination}",
+                "${widget.currTrip.destination.elementAt(0).city}, ${widget.currTrip.destination.elementAt(0).state}",
                 style: TextStyle(
                   fontFamily: 'Gotham Light Regular',
                   fontSize: 20.0,
@@ -85,7 +85,7 @@ class _TripViewState extends State<TripView> {
                 ),
               ),
               trailing: Text(
-                " ${widget.currTrip.numPeople}",
+                " ${widget.currTrip.numPeople.numberInt}",
                 style: TextStyle(
                   fontFamily: 'Gotham Light Regular',
                   fontSize: 20.0,
@@ -110,7 +110,7 @@ class _TripViewState extends State<TripView> {
                         child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "${widget.currTrip.budget.toString()}: \$${widget.currTrip.budget.elementAt(0).foodCost}",
+                    "${widget.currTrip.budget.elementAt(index).toString()}: \$${widget.currTrip.budget.elementAt(index).foodCost}",
                     style: TextStyle(
                       fontFamily: 'Gotham Light Regular',
                     ),
