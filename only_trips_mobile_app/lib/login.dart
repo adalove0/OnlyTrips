@@ -102,8 +102,14 @@ class _LoginPageState extends State<LoginPage> {
                       // TODO: Handle invalid credentials
                       if (true) {
                         // TODO: Change true to snapshot.data.success prior to deployment to handle errors in the credentials
-                        sharedPrefs.email = snapshot.data.email;
                         sharedPrefs.userId = snapshot.data.userid;
+                        sharedPrefs.name = snapshot.data.name;
+                        sharedPrefs.email = snapshot.data.email;
+                        sharedPrefs.age = snapshot.data.age;
+                        sharedPrefs.city = snapshot.data.city;
+                        sharedPrefs.state = snapshot.data.state;
+                        sharedPrefs.country = snapshot.data.country;
+                        sharedPrefs.zip = snapshot.data.zip;
                         return Column(
                           children: <Widget>[
                             Text(snapshot.data.message),
@@ -246,16 +252,31 @@ class Login {
   final String message;
   final bool success;
   final String userid;
+  final String name;
   final String email;
+  final int age;
+  final String city;
+  final String state;
+  final String country;
+  final String zip;
+  final bool confirmed;
 
-  Login({this.userid, this.email, this.success, this.message});
+  Login({this.success, this.message, this.userid, this.name, this.email,
+    this.age, this.city, this.state, this.country, this.zip, this.confirmed});
 
   factory Login.fromJson(Map<String, dynamic> json) {
     return Login(
       success: json['success'],
-      userid: json['user']['_id'],
       message: json['message'],
+      userid: json['user']['_id'],
+      name: json['user']['Name'],
       email: json['user']['email'],
+      age: json['user']['age'],
+      city: json['user']['city'],
+      state: json['user']['state'],
+      country: json['user']['country'],
+      zip: json['user']['zip'],
+      confirmed: json['user']['confirmed'],
     );
   }
 }
