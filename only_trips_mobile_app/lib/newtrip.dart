@@ -6,46 +6,50 @@ class NewTrip extends StatefulWidget {
 }
 
 class _NewTripState extends State<NewTrip> {
-  DateTime departDate = DateTime.now();
-  DateTime returnDate = DateTime.now();
+  DateTimeRange dates =
+      DateTimeRange(start: DateTime.now(), end: DateTime.now());
+  bool initializedOnce = false;
 
-  bool _decideDepartDate(DateTime day) {
-    if ((day.isBefore(returnDate.add(Duration(days: 1))))) {
-      return true;
+  Text generateDate(bool initializedOnce, bool isStart) {
+    if (!initializedOnce) {
+      return Text(
+        "YYYY-MM-DD",
+        style: TextStyle(
+            fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[400]),
+      );
+    } else if (isStart) {
+      return Text(
+        "${dates.start}".split(' ')[0],
+        style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+      );
+    } else {
+      return Text(
+        "${dates.end}".split(' ')[0],
+        style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+      );
     }
-    return false;
   }
 
-  bool _decideReturnDate(DateTime day) {
-    if ((day.isAfter(departDate.subtract(Duration(days: 1))))) {
-      return true;
-    }
-    return false;
-  }
+  _dateRangeThing(BuildContext context) async {
+    initializedOnce = true;
+    final DateTimeRange picked = await showDateRangePicker(
+      context: context,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2025),
+      saveText: "CONFIRM",
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData(
+              primaryColor:
+                  Colors.lightBlue), // This will change to light theme.
+          child: child,
+        );
+      },
+    );
 
-  _selectDepartDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: departDate, // Refer step 1
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2025),
-        selectableDayPredicate: _decideDepartDate);
-    if (picked != null && picked != departDate)
+    if (picked != null && picked != dates)
       setState(() {
-        departDate = picked;
-      });
-  }
-
-  _selectReturnDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: returnDate, // Refer step 1
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2025),
-        selectableDayPredicate: _decideReturnDate);
-    if (picked != null && picked != returnDate)
-      setState(() {
-        returnDate = picked;
+        dates = picked;
       });
   }
 
@@ -90,19 +94,14 @@ class _NewTripState extends State<NewTrip> {
                 Card(
                   color: Colors.lightBlue[100],
                   child: Padding(
-                    padding: const EdgeInsets.all(6.0),
-                    child: Text(
-                      "${departDate.toLocal()}".split(' ')[0],
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                      padding: const EdgeInsets.all(6.0),
+                      child: generateDate(initializedOnce, true)),
                 ),
                 SizedBox(
                   width: 20.0,
                 ),
                 RaisedButton(
-                  onPressed: () => _selectDepartDate(context), // Refer step 3
+                  onPressed: () => _dateRangeThing(context), // Refer step 3
                   child: Text(
                     'Select date',
                     style: TextStyle(
@@ -126,20 +125,16 @@ class _NewTripState extends State<NewTrip> {
                   color: Colors.lightBlue[100],
                   child: Padding(
                     padding: const EdgeInsets.all(6.0),
-                    child: Text(
-                      "${returnDate.toLocal()}".split(' ')[0],
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
+                    child: generateDate(initializedOnce, false),
                   ),
                 ),
                 SizedBox(
                   width: 20.0,
                 ),
                 RaisedButton(
-                  onPressed: () => _selectReturnDate(context), // Refer step 3
+                  onPressed: () => _dateRangeThing(context), // Refer step 3
                   child: Text(
-                    'Select date',
+                    'Select Date',
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),

@@ -24,29 +24,45 @@ class _StartPageState extends State<StartPage> {
               ),
               SizedBox(height: 120.0),
               RaisedButton(
+                color: Colors.lightBlueAccent[200],
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => RegisterPage()));
                 },
                 child: Container(
-                  decoration: const BoxDecoration(
-                      // TODO: Add decoration
-                      ),
+                  width: 100.0,
+                  // decoration: const BoxDecoration(
+                  //     // TODO: Add decoration
+                  //     ),
                   padding: const EdgeInsets.all(10.0),
-                  child: const Text('Register'),
+                  child: Center(
+                      child: Text('Register',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Gotham Light Regular",
+                              fontSize: 15.0))),
                 ),
               ),
               RaisedButton(
+                color: Colors.lightBlueAccent[200],
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => LoginPage()));
                 },
                 child: Container(
-                  decoration: const BoxDecoration(
-                      // TODO: Add decoration
-                      ),
+                  // decoration: const BoxDecoration(
+                  //     // TODO: Add decoration
+                  //     ),
                   padding: const EdgeInsets.all(10.0),
-                  child: const Text('Login'),
+                  child: Center(
+                      child: const Text(
+                    'Login',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Gotham Light Regular",
+                        fontSize: 15.0),
+                  )),
+                  width: 100.0,
                 ),
               ),
             ],
