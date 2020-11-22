@@ -11,7 +11,7 @@ router.post('/', (req, res, next)=>{
     User.findOne({email: req.body.email.toLowerCase()}, function(err,obj){
         // first we check if we got any errors
         if (err)
-            return res.status(400).send(err.details[0].message);
+            return res.status(400).send(err);
 
         // check to see we got something back
         if (obj == null)
