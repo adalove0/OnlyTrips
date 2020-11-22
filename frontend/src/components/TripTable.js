@@ -14,13 +14,26 @@ const newTrip = [];
 //const newTrip = '{"someTrip":[{"name":"Justtin", "age":"21"}]}';
 
 function TripView() {
+
+  var trash = [
+    { startDate: "0", endDate: "0"}
+  ];
+
   const [tripData, setTripData] = useState([]);
+  
 
   const userObj = localStorage.getItem("user_data");
   const localUser = JSON.parse(userObj);
 
   var data = { email: localUser.email };
   var js = JSON.stringify(data);
+
+  const array1 = newTrip;
+  // Incude fontawesome icon
+  // change array.map to tripData.map to test
+  console.log(newTrip);
+  console.log(1);
+
 
   React.useEffect(() => {
 
@@ -33,17 +46,16 @@ function TripView() {
           headers: { "Content-Type": "application/json" },
         });
         var res = await request.json();
+              const newTripID = res.trips;
+      // Loop Through array and pass every id to second api
+        newTripID.map((trips) => {
+        console.log("2. current trip ID " + trips);
+        getSingleTripData(trips);
+        
+      });
       } catch (err) {
         console.log(err);
       }
-      const newTripID = res.trips;
-      // Loop Through array and pass every id to second api
-      newTripID.map((trips) => {
-        getSingleTripData(trips);
-        console.log("1. current array size: " + trips);
-      });
-
-      
     }
 
     
@@ -61,7 +73,7 @@ function TripView() {
       // Res is my trip
       const singletripData = res.trip;
       tripInfo = JSON.stringify(singletripData);
-      console.log("2. Is this the table? " + tripInfo);
+      console.log("3. This row contains " + tripInfo);
 
       // Add to array and set its state
       setTripData(tripData.push(singletripData));
@@ -69,12 +81,16 @@ function TripView() {
     }
 
     getArrayData();
+    console.log("newTrip length is now "+newTrip.length);
 
   }, []);
 
 
+  /* THIS IS TEST*/
+/* END TEST*/
 
   function testTable() {
+
     // Test Array
     const array = [
       { startDate: "0", endDate: "0", something: "idk" },
@@ -87,23 +103,21 @@ function TripView() {
       { startDate: "7", endDate: "0", something: "idk" },
       { startDate: "8", endDate: "0", something: "idk" },
     ];
-
-    const array1 = newTrip;
-    // Incude fontawesome icon
-    // change array.map to tripData.map to test
-    console.log("3. this is trip " + tripData);
-    console.log(array);
+    console.log("newTrip length is "+newTrip.length +" but array length is "+ array.length);
     console.log(newTrip);
-    
-    return array.map((trip) => {
-      console.log("We got "+ JSON.stringify(trip));
-      //console.log(newTrip);
+   
+
+    return newTrip.map((trip, index) => {
+      //console.log("We got "+ JSON.stringify(trip));
+      console.log("pushing in "+ JSON.stringify(trip));
       return (
-        <tr>
-          <td>{trip.startDate}</td>
-          <td>{trip.endDate}</td>
-          <td>{trip.numPeople}</td>
+        <tr key= {index}>
+
+          <td > {trip.startDate}</td>
+          {/*<td >{trip.endDate}</td>
+          <td >{trip.numPeople}</td>*/}
         </tr>
+
       );
     });
 
@@ -119,7 +133,8 @@ function TripView() {
   return (
     <div>
       <table id="tripTable">
-        {<tbody >{testTable()}</tbody>}
+        {/*{<tbody >{testTable()}</tbody>}*/ }{<tbody >{testTable()}</tbody>}
+        
       </table>
     </div>
   );
