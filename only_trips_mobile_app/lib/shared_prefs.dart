@@ -32,7 +32,7 @@ class SharedPrefs {
   User get currUser {
     var encoded = _sharedPrefs.getString(keyUser);
     var decoded = json.decode(encoded);
-    User.fromMyJson(decoded);
+    return User.fromMyJson(decoded);
   }
   // User get currUser => (json.decode(_sharedPrefs.getString(keyUser))) ?? null;
   set currUser(User input) {
