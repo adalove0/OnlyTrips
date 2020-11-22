@@ -11,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import LoginPage from "./pages/LoginPage";
 import TripView from "./pages/TripView";
 import SignUpPage from "./pages/SignUpPage";
+import VerifyPage from "./pages/VerifyPage";
 
 function App() {
   console.log("Starting Front End");
@@ -25,6 +26,9 @@ function App() {
         </Route>
         <Route path="/TripView" exact>
           <TripView />
+        </Route>
+         <Route path="/VerifyPage" exact>
+          <VerifyPage />
         </Route>
         <Redirect to="/" />
       </Switch>

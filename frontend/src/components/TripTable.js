@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useEffect, Component, useState } from "react";
 import App from "../App";
 import Alert from "react-bootstrap/Alert";
 import Table from "react-bootstrap/Table";
@@ -26,6 +26,8 @@ const lastData = [];
 //const newTrip = '{"someTrip":[{"name":"Justtin", "age":"21"}]}';
 
 function TripView() {
+  var trash = [{ startDate: "0", endDate: "0" }];
+
   const [tripData, setTripData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
@@ -34,6 +36,12 @@ function TripView() {
 
   var data = { email: localUser.email };
   var js = JSON.stringify(data);
+
+  const array1 = newTrip;
+  // Incude fontawesome icon
+  // change array.map to tripData.map to test
+  console.log(newTrip);
+  console.log(1);
 
   React.useEffect(() => {
     // To get trip array with ids
@@ -46,43 +54,46 @@ function TripView() {
           headers: { "Content-Type": "application/json" },
         });
         var res = await request.json();
+        const newTripID = res.trips;
+        // Loop Through array and pass every id to second api
+        newTripID.map((trips) => {
+          console.log("2. current trip ID " + trips);
+          getSingleTripData(trips);
+        });
+        setLoading(false);
+        console.log(newTrip[newTrip.length - 1]);
+        lastData.push(newTrip[newTrip.length - 1]);
+        console.log("afidjwoeifjw");
+        console.log(lastData);
       } catch (err) {
         console.log(err);
       }
-      const newTripID = res.trips;
-      // Loop Through array and pass every id to second api
-      newTripID.map((trips) => {
-        getSingleTripData(trips);
-      });
-      setLoading(false);
-      console.log(newTrip[newTrip.length - 1]);
-      lastData.push(newTrip[newTrip.length - 1]);
-      console.log("afidjwoeifjw");
-      console.log(lastData);
     }
-
     async function getSingleTripData(object) {
       var tripInfo;
       var data = { id: object };
       var js = JSON.stringify(data);
-      const request = await fetch("http://localhost:5000/singleTrip", {
-        method: "POST",
-        body: js,
-        headers: { "Content-Type": "application/json" },
-      });
-      var res = await request.json();
+      try {
+        const request = await fetch("http://localhost:5000/singleTrip", {
+          method: "POST",
+          body: js,
+          headers: { "Content-Type": "application/json" },
+        });
+        var res = await request.json();
 
-      // Res is my trip
-      const singletripData = res.trip;
-      tripInfo = JSON.stringify(singletripData);
+        // Res is my trip
+        const singletripData = res.trip;
+        tripInfo = JSON.stringify(singletripData);
 
-      // Add to array and set its state
-      setTripData(tripData.push(singletripData));
-      newTrip.push(singletripData);
-      console.log("MY OTHER API");
-      console.log(newTrip);
+        // Add to array and set its state
+        setTripData(tripData.push(singletripData));
+        newTrip.push(singletripData);
+        console.log("MY OTHER API");
+        console.log(newTrip);
+      } catch (err) {
+        console.log(err);
+      }
     }
-
     getArrayData();
   }, []);
 

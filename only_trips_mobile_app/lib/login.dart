@@ -5,6 +5,8 @@ import 'package:crypto/crypto.dart'; // Use for password hashing
 // ignore: avoid_web_libraries_in_flutter
 import 'package:http/http.dart' as http; // Use to post to the api server
 import 'package:email_validator/email_validator.dart';
+import 'package:onlytrips/shared_prefs.dart';
+import 'package:onlytrips/login_classes.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -24,7 +26,6 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.lightBlueAccent[400],
           centerTitle: true,
@@ -77,7 +78,6 @@ class _LoginPageState extends State<LoginPage> {
                   key: _formKey,
                   child: Column(
                     children: <Widget>[
-                      SizedBox(height: 80.0),
                       Column(
                         children: <Widget>[
                           Image.asset('assets/logo.png'),
@@ -100,9 +100,10 @@ class _LoginPageState extends State<LoginPage> {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       // TODO: If user isn't verified, handle appropriately
-                      // TODO: Handle invalid credentials
-                      if (true) {
+                      if (snapshot.data.success) {
                         // TODO: Change true to snapshot.data.success prior to deployment to handle errors in the credentials
+                        sharedPrefs.currUser = snapshot.data.user;
+                        sharedPrefs.isLoggedIn = true;
                         return Column(
                           children: <Widget>[
                             Text(snapshot.data.message),
@@ -144,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: 16,
                           ),
-                          Text("snapshot.error"),
+                          Text(snapshot.error.toString()),
                           RaisedButton(
                             child: Text('Go back'),
                             onPressed: () {
@@ -224,7 +225,7 @@ class _LoginPageState extends State<LoginPage> {
 
 Future<Login> submitLogin(String _email, String _password) async {
   final http.Response response =
-      await http.post('https://onlytrips.herokuapp.com/',
+      await http.post('https://onlytrips.herokuapp.com/login',
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
@@ -235,22 +236,14 @@ Future<Login> submitLogin(String _email, String _password) async {
   if (response.statusCode == 200) {
     return Login.fromJson(jsonDecode(response.body));
   } else if (response.statusCode == 400) {
-    return Login.fromJson(jsonDecode(response.body));
+    throw Exception('Unable to log in, check username and password and try again');
+  } else if (response.statusCode == 401) {
+    throw Exception('No account registered with that email');
+  } else if (response.statusCode == 402) {
+    throw Exception('Please verify your email and try again');
+  } else if (response.statusCode == 403) {
+    throw Exception('Incorrect email and/or password');
   } else {
     throw Exception('Failed to login');
-  }
-}
-
-class Login {
-  final String message;
-  final bool success;
-
-  Login({this.success, this.message});
-
-  factory Login.fromJson(Map<String, dynamic> json) {
-    return Login(
-      success: json['success'],
-      message: json['message'],
-    );
   }
 }

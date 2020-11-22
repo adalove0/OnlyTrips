@@ -9,7 +9,7 @@ router.post('/', (req, res, next)=>{
 
     User.findOne({email: req.body.email.toLowerCase()}, function(err,obj){
         if (err)
-            return res.status(400).send(err.details[0].message);
+            return res.status(400).send(err);
 
         // check to see we got something back
         if (obj == null)
@@ -20,13 +20,13 @@ router.post('/', (req, res, next)=>{
             })
         }
         
-        /*if (obj.confirmed == false)
+        if (obj.confirmed == false)
         {
             return res.status(400).json({
                 success: false,
                 message: 'Please verify your email before resetting your password'
             })
-        }*/
+        }
 
         if ((obj.securityQuestionOne.localCompare(req.bodysecurityQuestionOne) != 0)  || 
             (obj.securityQuestionTwo.localCompare(req.bodysecurityQuestionTwo) != 0)){

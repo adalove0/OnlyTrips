@@ -1,8 +1,11 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http; // Use to post to the api server
 import 'package:flutter/material.dart';
 import 'package:onlytrips/menudrawer.dart';
 import 'package:onlytrips/newtrip.dart';
 import 'package:onlytrips/tripview.dart';
 import 'package:onlytrips/trip.dart';
+import 'package:onlytrips/shared_prefs.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,16 +15,34 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  List<Trip> trips = [
-    Trip(destination: "New York", numTravelers: 4),
-    Trip(destination: "Russia", numTravelers: 3),
-    Trip(destination: "Dubai", numTravelers: 5),
-    Trip(destination: "Qatar", numTravelers: 9),
-    Trip(destination: "France", numTravelers: 2),
-    Trip(destination: "Germany", numTravelers: 1)
-  ];
+  List<Trip> trips = new List<Trip>();
 
-  Trip testTrip = Trip(destination: "New York", numTravelers: 4);
+  @override
+  void initState() {
+    sharedPrefs.currUser.tripDetails.forEach((element) {
+      fetchTrips(element.id);
+    });
+  }
+
+  void fetchTrips(String tripId) async {
+    final http.Response response =
+        await http.post('https://onlytrips.herokuapp.com/singleTrip',
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: jsonEncode({
+              'id': tripId,
+            }));
+    if (response.statusCode == 200) {
+      GetTrip trip = GetTrip.fromJson(jsonDecode(response.body));
+      Trip innerTrip = trip.trip;
+      setState(() {
+        trips.add(innerTrip);
+      });
+    } else {
+      throw Exception('Unable to get trips');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,12 +93,11 @@ class _HomePageState extends State<HomePage> {
                   elevation: 5.0,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0)),
-                  color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(50.0),
                     child: Center(
                         child: Text(
-                      trips[index].destination,
+                      trips[index].destination.elementAt(0).city,
                       style: TextStyle(
                         fontFamily: 'Marguerite',
                         fontSize: 40.0,
