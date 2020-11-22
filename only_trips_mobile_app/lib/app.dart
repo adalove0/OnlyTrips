@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:onlytrips/home.dart';
+import 'package:onlytrips/shared_prefs.dart';
 import 'package:onlytrips/themes.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +14,7 @@ class OnlyTripsApp extends StatelessWidget {
     return MaterialApp(
       title: 'OnlyTrips',
       theme: themeNotifier.getTheme(),
-      home: StartPage(),
+      home: (sharedPrefs.userId == "") ? StartPage() : HomePage(),
       initialRoute: '/start',
       onGenerateRoute: _getRoute,
     );
