@@ -91,7 +91,7 @@ class AddTrip extends Component {
         return;
       }*/
       try {
-        const response = await fetch("http://localhost:3000/addtrip", {
+        const response = await fetch("http://localhost:5000/addtrip" || "http://www.onlytrips.xyz/addtrip",, {
           method: "POST",
           body: js,
           headers: { "Content-Type": "application/json" },
