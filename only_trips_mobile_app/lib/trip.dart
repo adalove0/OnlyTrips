@@ -240,6 +240,7 @@ class Budget {
   }
 }
 
+
 class Cost {
   double numberDouble;
 
@@ -255,3 +256,52 @@ class Cost {
     return data;
   }
 }
+
+// TODO: ADD IF BUDGET IS FIXED IN MONGODB
+
+/*
+
+class Budget {
+  List<Budget> budget;
+
+  Budget({this.budget});
+
+  Budget.fromJson(Map<String, dynamic> json) {
+    if (json['budget'] != null) {
+      budget = new List<Budget>();
+      json['budget'].forEach((v) {
+        budget.add(new Budget.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.budget != null) {
+      data['budget'] = this.budget.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Budget {
+  String sId;
+  double cost;
+  String name;
+
+  Budget({this.sId, this.cost, this.name});
+
+  Budget.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    cost = json['cost'];
+    name = json['name'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['cost'] = this.cost;
+    data['name'] = this.name;
+    return data;
+  }
+}*/
