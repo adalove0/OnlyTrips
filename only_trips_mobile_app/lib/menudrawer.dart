@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onlytrips/settingspage.dart';
 import 'package:onlytrips/profile.dart';
 import 'package:onlytrips/user.dart';
 
@@ -47,9 +48,10 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
-            // TODO - Create settings page
-            onTap: () =>
-                {Navigator.of(context).pushReplacementNamed('/profile')},
+            onTap: () => {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingsPage()))
+            },
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),
