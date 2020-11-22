@@ -12,7 +12,6 @@ class _StartPageState extends State<StartPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -31,9 +30,6 @@ class _StartPageState extends State<StartPage> {
                 },
                 child: Container(
                   width: 100.0,
-                  // decoration: const BoxDecoration(
-                  //     // TODO: Add decoration
-                  //     ),
                   padding: const EdgeInsets.all(10.0),
                   child: Center(
                       child: Text('Register',
@@ -50,9 +46,6 @@ class _StartPageState extends State<StartPage> {
                       MaterialPageRoute(builder: (context) => LoginPage()));
                 },
                 child: Container(
-                  // decoration: const BoxDecoration(
-                  //     // TODO: Add decoration
-                  //     ),
                   padding: const EdgeInsets.all(10.0),
                   child: Center(
                       child: const Text(
