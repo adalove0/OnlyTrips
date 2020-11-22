@@ -24,6 +24,9 @@ function App() {
         <Route path="/SignUpPage" exact>
           <SignUpPage />
         </Route>
+         <Route path="/AddTripPage" exact>
+          <AddTripPage />
+         </Route>
         <Route path="/TripView" exact>
           <TripView />
         </Route>
