@@ -41,22 +41,58 @@ class _TripViewState extends State<TripView> {
           ),
         ),
         body: Column(children: <Widget>[
-          Container(
-              child: Text(
-            "Destination: ${widget.currTrip.destination}",
-            style: TextStyle(
-              fontFamily: 'Gotham Light Regular',
-              fontSize: 20.0,
+          Card(
+            margin: EdgeInsets.all(10.0),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            color: Colors.blue[100],
+            child: ListTile(
+              leading: Icon(
+                Icons.location_on,
+                size: 35.0,
+              ),
+              title: Text(
+                "Destination:",
+                style: TextStyle(
+                  fontFamily: 'Gotham Light Regular',
+                  fontSize: 20.0,
+                ),
+              ),
+              trailing: Text(
+                "${widget.currTrip.destination}",
+                style: TextStyle(
+                  fontFamily: 'Gotham Light Regular',
+                  fontSize: 20.0,
+                ),
+              ),
             ),
-          )),
-          Container(
-              child: Text(
-            "Number of People: ${widget.currTrip.numTravelers.toString()}",
-            style: TextStyle(
-              fontFamily: 'Gotham Light Regular',
-              fontSize: 20.0,
+          ),
+          Card(
+            margin: EdgeInsets.all(10.0),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            color: Colors.blue[100],
+            child: ListTile(
+              leading: Icon(
+                Icons.accessibility_new,
+                size: 35.0,
+              ),
+              title: Text(
+                "Number of People:",
+                style: TextStyle(
+                  fontFamily: 'Gotham Light Regular',
+                  fontSize: 20.0,
+                ),
+              ),
+              trailing: Text(
+                " ${widget.currTrip.numTravelers.toString()}",
+                style: TextStyle(
+                  fontFamily: 'Gotham Light Regular',
+                  fontSize: 20.0,
+                ),
+              ),
             ),
-          )),
+          ),
           Container(
               child: Text(
             "Budgeting:",
