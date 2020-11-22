@@ -72,7 +72,6 @@ class _HomePageState extends State<HomePage> {
                   elevation: 5.0,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0)),
-                  color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(50.0),
                     child: Center(
