@@ -103,6 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                       if (snapshot.data.success) {
                         // TODO: Change true to snapshot.data.success prior to deployment to handle errors in the credentials
                         sharedPrefs.currUser = snapshot.data.user;
+                        sharedPrefs.isLoggedIn = true;
                         return Column(
                           children: <Widget>[
                             Text(snapshot.data.message),
