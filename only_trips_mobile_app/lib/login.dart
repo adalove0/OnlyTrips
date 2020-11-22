@@ -6,6 +6,7 @@ import 'package:crypto/crypto.dart'; // Use for password hashing
 import 'package:http/http.dart' as http; // Use to post to the api server
 import 'package:email_validator/email_validator.dart';
 import 'package:onlytrips/shared_prefs.dart';
+import 'package:onlytrips/login_classes.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -99,17 +100,10 @@ class _LoginPageState extends State<LoginPage> {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       // TODO: If user isn't verified, handle appropriately
-                      // TODO: Handle invalid credentials
-                      if (true) {
+                      if (snapshot.data.success) {
                         // TODO: Change true to snapshot.data.success prior to deployment to handle errors in the credentials
-                        sharedPrefs.userId = snapshot.data.userid;
-                        sharedPrefs.name = snapshot.data.name;
-                        sharedPrefs.email = snapshot.data.email;
-                        sharedPrefs.age = snapshot.data.age;
-                        sharedPrefs.city = snapshot.data.city;
-                        sharedPrefs.state = snapshot.data.state;
-                        sharedPrefs.country = snapshot.data.country;
-                        sharedPrefs.zip = snapshot.data.zip;
+                        sharedPrefs.currUser = snapshot.data.user;
+                        sharedPrefs.isLoggedIn = true;
                         return Column(
                           children: <Widget>[
                             Text(snapshot.data.message),
@@ -151,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: 16,
                           ),
-                          Text("snapshot.error"),
+                          Text(snapshot.error.toString()),
                           RaisedButton(
                             child: Text('Go back'),
                             onPressed: () {
@@ -231,7 +225,7 @@ class _LoginPageState extends State<LoginPage> {
 
 Future<Login> submitLogin(String _email, String _password) async {
   final http.Response response =
-      await http.post('https://onlytrips.herokuapp.com/',
+      await http.post('https://onlytrips.herokuapp.com/login',
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
@@ -242,41 +236,14 @@ Future<Login> submitLogin(String _email, String _password) async {
   if (response.statusCode == 200) {
     return Login.fromJson(jsonDecode(response.body));
   } else if (response.statusCode == 400) {
-    return Login.fromJson(jsonDecode(response.body));
+    throw Exception('Unable to log in, check username and password and try again');
+  } else if (response.statusCode == 401) {
+    throw Exception('No account registered with that email');
+  } else if (response.statusCode == 402) {
+    throw Exception('Please verify your email and try again');
+  } else if (response.statusCode == 403) {
+    throw Exception('Incorrect email and/or password');
   } else {
     throw Exception('Failed to login');
-  }
-}
-
-class Login {
-  final String message;
-  final bool success;
-  final String userid;
-  final String name;
-  final String email;
-  final int age;
-  final String city;
-  final String state;
-  final String country;
-  final String zip;
-  final bool confirmed;
-
-  Login({this.success, this.message, this.userid, this.name, this.email,
-    this.age, this.city, this.state, this.country, this.zip, this.confirmed});
-
-  factory Login.fromJson(Map<String, dynamic> json) {
-    return Login(
-      success: json['success'],
-      message: json['message'],
-      userid: json['user']['_id'],
-      name: json['user']['Name'],
-      email: json['user']['email'],
-      age: json['user']['age'],
-      city: json['user']['city'],
-      state: json['user']['state'],
-      country: json['user']['country'],
-      zip: json['user']['zip'],
-      confirmed: json['user']['confirmed'],
-    );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onlytrips/user.dart';
+import 'login_classes.dart';
 
 class ProfilePage extends StatefulWidget {
   final User currUser;
@@ -111,7 +111,7 @@ class _ProfilePageState extends State<ProfilePage> {
               size: 35.0,
             ),
             text: "City:",
-            value: widget.currUser.city,
+            value: widget.currUser.location.elementAt(0).city,
           ),
           createDisplayCard(
             icon: Icon(
@@ -119,7 +119,7 @@ class _ProfilePageState extends State<ProfilePage> {
               size: 35.0,
             ),
             text: "State:",
-            value: widget.currUser.state,
+            value: widget.currUser.location.elementAt(0).state,
           ),
           createDisplayCard(
             icon: Icon(
@@ -127,7 +127,7 @@ class _ProfilePageState extends State<ProfilePage> {
               size: 35.0,
             ),
             text: "Country:",
-            value: widget.currUser.country,
+            value: widget.currUser.location.elementAt(0).country,
           ),
           createDisplayCard(
             icon: Icon(
@@ -135,7 +135,7 @@ class _ProfilePageState extends State<ProfilePage> {
               size: 35.0,
             ),
             text: "Zip Code:",
-            value: widget.currUser.zipCode.toString(),
+            value: widget.currUser.location.elementAt(0).zip.toString(),
           ),
         ]));
   }

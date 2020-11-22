@@ -1,25 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:onlytrips/login.dart';
 import 'package:onlytrips/settingspage.dart';
 import 'package:onlytrips/profile.dart';
 import 'package:onlytrips/shared_prefs.dart';
 import 'package:onlytrips/start.dart';
 import 'package:onlytrips/themes.dart';
-import 'package:onlytrips/user.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'login_classes.dart';
 
 class NavDrawer extends StatelessWidget {
-  final User testUser = User(
-    name: "Sebastian",
-    age: 20,
-    email: "sebastiansalazar0330@gmail.com",
-    password: "cookie",
-    city: "Orlando",
-    state: "FL",
-    country: "United States",
-    zipCode: 32832,
-  );
+  final User currUser = sharedPrefs.currUser;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +38,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (_) => ProfilePage(currUser: testUser)))
+                      builder: (_) => ProfilePage(currUser: currUser)))
             },
           ),
           ListTile(

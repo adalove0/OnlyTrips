@@ -16,7 +16,7 @@ router.post('/', (req, res, next)=>{
         // check to see we got something back
         if (obj == null)
         {
-            return res.status(400).json({
+            return res.status(401).json({
                 success: false,
                 message: 'No account registered with that email'
             })
@@ -26,7 +26,7 @@ router.post('/', (req, res, next)=>{
         //  Now we check if they have verified
         if (obj.confirmed == false)
         {
-            return res.status(400).json({
+            return res.status(402).json({
                 success: false,
                 message: 'Please verify your email and try again'
             })
@@ -42,7 +42,7 @@ router.post('/', (req, res, next)=>{
             });
         }
         else{
-            return res.status(400).json({
+            return res.status(403).json({
                 success: false,
                 message: 'Incorrect email and/or password'
             });

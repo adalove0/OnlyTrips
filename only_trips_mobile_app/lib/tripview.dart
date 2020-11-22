@@ -59,7 +59,7 @@ class _TripViewState extends State<TripView> {
                 ),
               ),
               trailing: Text(
-                "${widget.currTrip.destination}",
+                "${widget.currTrip.destination.elementAt(0).city}, ${widget.currTrip.destination.elementAt(0).state}",
                 style: TextStyle(
                   fontFamily: 'Gotham Light Regular',
                   fontSize: 20.0,
@@ -85,7 +85,7 @@ class _TripViewState extends State<TripView> {
                 ),
               ),
               trailing: Text(
-                " ${widget.currTrip.numTravelers.toString()}",
+                " ${widget.currTrip.numPeople.numberInt}",
                 style: TextStyle(
                   fontFamily: 'Gotham Light Regular',
                   fontSize: 20.0,
@@ -103,14 +103,14 @@ class _TripViewState extends State<TripView> {
           )),
           Expanded(
             child: ListView.builder(
-              itemCount: widget.currTrip.budgets.length,
+              itemCount: widget.currTrip.budget.length,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
                     child: Center(
                         child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "${widget.currTrip.budgets[index].name}: \$${widget.currTrip.budgets[index].amount}",
+                    "${widget.currTrip.budget.elementAt(index).toString()}: \$${widget.currTrip.budget.elementAt(index).foodCost}",
                     style: TextStyle(
                       fontFamily: 'Gotham Light Regular',
                     ),

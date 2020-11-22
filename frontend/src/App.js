@@ -26,6 +26,9 @@ function App() {
         <Route path="/TripView" exact>
           <TripView />
         </Route>
+         <Route path="/VerifyPage" exact>
+          <VerifyPage />
+        </Route>
         <Redirect to="/" />
       </Switch>
     </Router>
