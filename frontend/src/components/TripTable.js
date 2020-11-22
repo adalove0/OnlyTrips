@@ -11,10 +11,23 @@ import { render } from "react-dom";
 // I dont know how to stop this from happening - Ahmed
 
 const newTrip = [];
+const array = [
+  { startDate: "0", endDate: "0", something: "idk" },
+  { startDate: "1", endDate: "0", something: "idk" },
+  { startDate: "2", endDate: "0", something: "idk" },
+  { startDate: "3", endDate: "0", something: "idk" },
+  { startDate: "4", endDate: "0", something: "idk" },
+  { startDate: "5", endDate: "0", something: "idk" },
+  { startDate: "6", endDate: "0", something: "idk" },
+  { startDate: "7", endDate: "0", something: "idk" },
+  { startDate: "8", endDate: "0", something: "idk" },
+];
+const lastData = [];
 //const newTrip = '{"someTrip":[{"name":"Justtin", "age":"21"}]}';
 
 function TripView() {
   const [tripData, setTripData] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   const userObj = localStorage.getItem("user_data");
   const localUser = JSON.parse(userObj);
@@ -23,9 +36,9 @@ function TripView() {
   var js = JSON.stringify(data);
 
   React.useEffect(() => {
-
     // To get trip array with ids
     async function getArrayData() {
+      setLoading(true);
       try {
         const request = await fetch("http://localhost:5000/travel", {
           method: "POST",
@@ -40,13 +53,14 @@ function TripView() {
       // Loop Through array and pass every id to second api
       newTripID.map((trips) => {
         getSingleTripData(trips);
-        console.log("1. current array size: " + trips);
       });
-
-      
+      setLoading(false);
+      console.log(newTrip[newTrip.length - 1]);
+      lastData.push(newTrip[newTrip.length - 1]);
+      console.log("afidjwoeifjw");
+      console.log(lastData);
     }
 
-    
     async function getSingleTripData(object) {
       var tripInfo;
       var data = { id: object };
@@ -61,53 +75,23 @@ function TripView() {
       // Res is my trip
       const singletripData = res.trip;
       tripInfo = JSON.stringify(singletripData);
-      console.log("2. Is this the table? " + tripInfo);
 
       // Add to array and set its state
       setTripData(tripData.push(singletripData));
       newTrip.push(singletripData);
+      console.log("MY OTHER API");
+      console.log(newTrip);
     }
 
     getArrayData();
-
   }, []);
 
-
-
   function testTable() {
+    console.log(isLoading);
     // Test Array
-    const array = [
-      { startDate: "0", endDate: "0", something: "idk" },
-      { startDate: "1", endDate: "0", something: "idk" },
-      { startDate: "2", endDate: "0", something: "idk" },
-      { startDate: "3", endDate: "0", something: "idk" },
-      { startDate: "4", endDate: "0", something: "idk" },
-      { startDate: "5", endDate: "0", something: "idk" },
-      { startDate: "6", endDate: "0", something: "idk" },
-      { startDate: "7", endDate: "0", something: "idk" },
-      { startDate: "8", endDate: "0", something: "idk" },
-    ];
 
     const array1 = newTrip;
-    // Incude fontawesome icon
     // change array.map to tripData.map to test
-    console.log("3. this is trip " + tripData);
-    console.log(array);
-    console.log(newTrip);
-    
-    return array.map((trip) => {
-      console.log("We got "+ JSON.stringify(trip));
-      //console.log(newTrip);
-      return (
-        <tr>
-          <td>{trip.startDate}</td>
-          <td>{trip.endDate}</td>
-          <td>{trip.numPeople}</td>
-        </tr>
-      );
-    });
-
-    
   }
 
   /*const LogOut = async (event) => {
@@ -118,9 +102,34 @@ function TripView() {
   // normal functions getting called before async functions how to change
   return (
     <div>
-      <table id="tripTable">
-        {<tbody >{testTable()}</tbody>}
-      </table>
+      <Table id="tripTable" reponsive striped bordered hover size="md">
+        <thead>
+          <tr>
+            <th>City</th>
+            <th>State</th>
+            <th>Number of People</th>
+            <th>State Date</th>
+            <th>End Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {isLoading ? (
+            <h1>Loading...</h1>
+          ) : (
+            newTrip.map((trip, key) => (
+              <tr key={key}>
+                <td>{trip.destination[trip.destination.length - 1].city}</td>
+                <td>{trip.destination[trip.destination.length - 1].state}</td>
+                <td>{trip.numPeople}</td>
+                <td>{trip.startDate}</td>
+                <td>{trip.endDate}</td>
+                {/* <td>DELETE ICON</td>
+                <td>EDIT ICON</td> */}
+              </tr>
+            ))
+          )}
+        </tbody>
+      </Table>
     </div>
   );
 }
