@@ -7,7 +7,6 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 let User = require("../models/User");
 
 // VALIDATION
-
 const Joi = require("@hapi/joi");
 const boolean = require("@hapi/joi/lib/types/boolean");
 
@@ -70,13 +69,13 @@ router.post("/", (req, res, next) => {
           subject: "Onlytrips - verify your email",
           text: `
                 Hello, thank you for registering on our site. Please copy and paste the address below to verify
-                your account. www.onlytrips.xyz/verify-email?token=${newUser.token}
+                your account. http://onlytrips.herokuapp.com/VerifyPage?token=${newUser.token}
                 `,
           html: `
                     <h1>Hello,</h1>
                     <p>thank you for registering on our site.</p>
                     <p>Please click the link below to verify your account.</p>
-                    <a href ="www.onlytrips.xyz/verify-email?token=${newUser.token}" >Verify your account</a>
+                    <a href ="http://onlytrips.herokuapp.com/VerifyPage?token=${newUser.token}" >Verify your account</a>
                 `,
         };
 
