@@ -9,7 +9,7 @@ import logo from "../images/updated-logo.PNG";
 function Verify() {
 
   const doVerify = async (event) => {
-    var js = new URLSearchParams(window.location.hash).get('token');
+    var js = new URLSearchParams(window.location.search).get('token');
     alert(js);
 
     const appName = "onlytrips";
