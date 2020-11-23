@@ -74,7 +74,6 @@ function SignUp() {
     //  visAlertDanger.innerHTML = res.message;
     //}
     else {
-      console.log(res);
       visAlertSuccess.style.visibility = "visible";
     }
 
@@ -109,6 +108,7 @@ function SignUp() {
         localStorage.setItem("user_data", JSON.stringify(user));
         setMessage(res.id + "" + res.email);
         window.location.href = "#/onlytrips";
+        console.log(res.success);
       }
     } catch (e) {
       //alert(e.toString());
