@@ -23,6 +23,11 @@ const lastData = [];
 //const newTrip = '{"someTrip":[{"name":"Justtin", "age":"21"}]}';
 
 function TripView() {
+    const LogOut = async (event) => {
+    event.preventDefault();
+    localStorage.removeItem("user_data");
+    window.location.href = "/";
+  };
   var trash = [{ startDate: "0", endDate: "0" }];
 
   const [tripData, setTripData] = useState([]);
@@ -58,6 +63,7 @@ function TripView() {
         return "http://localhost:5000/singleTrip";
       }
     }
+
     async function getArrayData() {
       setLoading(true);
       try {
@@ -124,8 +130,8 @@ function TripView() {
           </button>
           </div>
         </div>
-       <div className="add-div"><Button variant="success" className = "addButton">Add</Button></div>
-       <div className="log-div"><Button variant="success" className = "LogOutButton">Logout</Button></div>
+       <div className="add-div"><Button  className = "addButton">Add</Button></div>
+       <div className="log-div"><Button  className = "LogOutButton" onClick={LogOut}>Logout</Button></div>
     </div>
     <div className = "trip-tables-generated">
       {isLoading ? (<h1>Loading...</h1>
@@ -152,11 +158,11 @@ function TripView() {
               </div>
               <div className="one">
                 <label>Start Date</label>
-                <input value={trip.startDate}/>
+                <input value={trip.startDate.split('T')[0]}/>
               </div>
               <div className="one">
                 <label>End Date</label>
-                <input value={trip.endDate}/>
+                <input value={trip.endDate.split('T')[0]}/>
               </div>
               <div className="one">
                 <label>Number of travelers</label>

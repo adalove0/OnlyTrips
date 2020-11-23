@@ -860,3 +860,9 @@ input[type="text"]::placeholder {
 .add-div, .log-div{
   width: 20%;
 }
+.one label{
+  font-size: 18px;
+}
+.one input{
+  font-size: 18px;
+}
