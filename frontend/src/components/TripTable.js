@@ -33,7 +33,7 @@ function TripView() {
     event.preventDefault();
     window.location.href = "/AddTripPage";
   };
-     const doDeleteTrip = async (event) => {){
+     const doDeleteTrip = async (event) => {
       //this.state.error = "";
       const userObj = localStorage.getItem("user_data");
       const localUser = JSON.parse(userObj); 
