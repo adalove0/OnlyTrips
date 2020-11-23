@@ -33,6 +33,38 @@ function TripView() {
     event.preventDefault();
     window.location.href = "/AddTripPage";
   };
+     const doDeleteTrip = async (event) => {){
+      //this.state.error = "";
+      const userObj = localStorage.getItem("user_data");
+      const localUser = JSON.parse(userObj); 
+      if(window.confirm("Are you sure you want to delete this trip?"))
+      {
+        var obj = {
+          email: localUser.email,
+          id: event,
+        };
+          var js = JSON.stringify(obj);
+          alert(js);
+        /*if(this.state.startDate == null || this.state.endDate == null ||this.state.city == "" || this.state.State == "")
+        {
+          this.setState({error : "NO"});
+          alert(this.state.error);
+          return;
+        }*/
+          try {
+              const response = await fetch("http://localhost:3000/deletetrip", {
+              method: "POST",
+              body: js,
+              headers: { "Content-Type": "application/json" },
+            });
+            var res = await response.text();
+            console.log(res);
+           }catch (e) {
+           alert(e.toString());
+          return;
+        }
+      }
+  };
   var trash = [{ startDate: "0", endDate: "0" }];
 
   const [tripData, setTripData] = useState([]);
@@ -68,38 +100,6 @@ function TripView() {
         return "http://localhost:5000/singleTrip";
       }
     }
-      async function doDeleteTrip(del_id){
-      //this.state.error = "";
-      const userObj = localStorage.getItem("user_data");
-      const localUser = JSON.parse(userObj); 
-      if(window.confirm("Are you sure you want to delete this trip?"))
-      {
-        var obj = {
-          email: localUser.email,
-          id: del_id,
-        };
-          var js = JSON.stringify(obj);
-          alert(js);
-        /*if(this.state.startDate == null || this.state.endDate == null ||this.state.city == "" || this.state.State == "")
-        {
-          this.setState({error : "NO"});
-          alert(this.state.error);
-          return;
-        }*/
-          try {
-              const response = await fetch("http://localhost:3000/deletetrip", {
-              method: "POST",
-              body: js,
-              headers: { "Content-Type": "application/json" },
-            });
-            var res = await response.text();
-            console.log(res);
-           }catch (e) {
-           alert(e.toString());
-          return;
-        }
-      }
-  };
 
     async function getArrayData() {
       setLoading(true);
