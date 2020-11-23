@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import App from "../App";
-import logo from "../images/OnlyTrips.svg";
+import logo from "../images/OnlyTrips.png";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Button";
@@ -119,9 +119,10 @@ function SignUp() {
         </p>
       </div>
       <div id="signUpDiv">
-        <img src={logo} alt="OnlyTrips Logo" id="logo"></img>
+        <img src={logo} alt="OnlyTrips Logo" id="SignUpLogo"></img>
         <form id="SignUpForm">
           <input
+            style={{paddingtop: "50px"}}
             type="text"
             id="textbox"
             placeholder="Email"
