@@ -40,7 +40,7 @@ function Verify() {
 
   return (
     <div id="VerifyTable">
-    <div className ="header"><h1style={{font-size:"48px"}}>WELCOME TO ONLY TRIPS</h1></div><div className = "text-info"><p id = "congrats-text">Congratulations, {name}</p>
+    <div className ="header"><h1 style={{font-size:"48px"}}>WELCOME TO ONLY TRIPS</h1></div><div className = "text-info"><p id = "congrats-text">Congratulations, {name}</p>
           <p id = "confirm-text"> You're one step away from joining the onlyTrips family, activate your account by clicking on the button below:</p>
           <div>
             <button id = "activate-btn">ACTIVATE ACCOUNT</button>
