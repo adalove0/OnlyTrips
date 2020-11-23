@@ -880,3 +880,11 @@ input[type="text"]::placeholder {
 .trip-tables-generated{
   text-align:center;
 }
+.delete-icon:hover{
+  color: red;
+  cursor: pointer;
+}
+.edit-icon:hover{
+  color:green;
+  cursor:pointer;
+}
