@@ -104,6 +104,7 @@ class AddTrip extends Component {
 
       var res = await response.text();
       console.log(res);
+      console.log(res);
     } catch (e) {
       alert(e.toString());
       return;
