@@ -877,3 +877,6 @@ input[type="text"]::placeholder {
 .one{
   background-color: rgba(255, 255, 255, 0.6);
 }
+.trip-tables-generated{
+  text-align:center;
+}
