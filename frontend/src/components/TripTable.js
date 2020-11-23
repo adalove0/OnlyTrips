@@ -177,7 +177,7 @@ function TripView() {
             <div className = "TripTable">
               <div className = "buttons">
                 <div className="right-icons">
-                 <div className = "edit-icon" onClick = {doDeleteTrip(trip.id)}>
+                 <div className = "edit-icon" onClick={() => doDeleteTrip(trip.id)}>
                     <i className="fa">&#xf044;</i>
                   </div>
                   <div className = "delete-icon">
