@@ -752,4 +752,10 @@ input[type="text"]::placeholder {
 .col-sm{
   border: 1px solid black;
 }
+.one label{
+  font-size: 18px;
+}
+.one input{
+  font-size: 18px;
+}
 
