@@ -73,9 +73,9 @@ function SignUp() {
 
     var js = JSON.stringify(obj);
     //alert(js);
-    const appName = "onlytrips"
-    function buildPathSignUp(route){
-      if(process.ENV.NODE_ENV === "production"){
+    const appName = "onlytrips";
+    function buildPathSignUp(route) {
+      if (process.ENV.NODE_ENV === "production") {
         return "https://" + appName + ".herokuapp.com/" + route;
       } else {
         return "https://localhost:5000/signup";

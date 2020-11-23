@@ -46,6 +46,7 @@ const userDeleteTrip = require("./backend/routes/deletetrip");
 const userSingleTrip = require("./backend/routes/singleTrip");
 const userSearchTrip = require("./backend/routes/searchTrip");
 const verifyAccount = require("./backend/routes/verifyEmail");
+const userUpdateTrip = require("./backend/routes/updateTrip");
 
 app.use("/signup", userSignUp);
 app.use("/login", userLogin);
@@ -55,6 +56,7 @@ app.use("/deleteTrip", userDeleteTrip);
 app.use("/singleTrip", userSingleTrip);
 app.use("/searchTrip", userSearchTrip);
 app.use("/verify", verifyAccount);
+app.use("/updateTrip", userUpdateTrip);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}.`);
