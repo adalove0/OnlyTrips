@@ -58,6 +58,12 @@ function TripView() {
         return "http://localhost:5000/singleTrip";
       }
     }
+      const LogOut = async (event) => {
+    event.preventDefault();
+    localStorage.removeItem("user_data");
+    window.location.href = "/";
+  };
+
     async function getArrayData() {
       setLoading(true);
       try {
