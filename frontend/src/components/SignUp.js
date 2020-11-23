@@ -64,6 +64,12 @@ function SignUp() {
         country: locationCountry.value,
         zip: locationZip.value,
       },
+      securityQ1: secQ1.value,
+      answer1: ans1.value,
+      secerityQ2: secQ1.value,
+      ans2: ans2.value,
+      secQ3: secq3.value,
+      ans3: ans3.value,
     };
 
     var js = JSON.stringify(obj);
@@ -108,11 +114,14 @@ function SignUp() {
 
   function saveQuestion(question) {
     var qClass;
+    var dropDown;
     if (question >=1 && question <= 3){
-      qClass = document.getElementsByClassName("secQ1");
+      qClass = document.getElementById("secQ1");
+      dropDown = document.getElementsByClassName("dropdown-content1")[0];
+      console.log(dropDown.style.block);
       if (question == 1)
       {
-        console.log(qClass.innerText);
+        console.log(qClass.placeholder);
         qClass.value = "What is your mother's maiden name?";
         secQ1 = "What is your mother's maiden name?";
       }
@@ -128,13 +137,16 @@ function SignUp() {
         qClass.value = "What is the make of your first car?";
         secQ1 = "What is the make of your first car?";
       }
+
+      //dropDown.removeClass('hover');
+
     }
     else if (question >=4 && question <= 6){
-      qClass = document.getElementsByClassName("secQ2");
+      qClass = document.getElementById("secQ2");
       if (question == 4)
       {
         console.log(4);
-        qClass.placeholder = "What middle school did you attend?";
+        qClass.value = "What middle school did you attend?";
         secQ2 = "What middle school did you attend?";
       }
       else if (question == 5)
@@ -151,7 +163,7 @@ function SignUp() {
       }
     }
     else{
-      qClass = document.getElementsByClassName("secQ3");
+      qClass = document.getElementById("secQ3");
       if (question == 7)
       {
         console.log(7);
@@ -269,18 +281,20 @@ function SignUp() {
           />
           <br />
           {/* SECURITY QUESTIONS */}
+          {/*
           <p>Security Questions</p>
           <div className="dropdown">
-            <button
+            <input
               className="dropbtn1"
-              id="secQq"
+              id="secQ1"
+              value="Security Question 1"
               ref={(c) => (secQ1 = c)}
-            > Security Question 1</button>
+            /> 
 
-            <div className="dropdown-content1">
+            <div id="ddown1" className="dropdown-content1">
               <a href="#" onClick={()=> saveQuestion(1)}>What is your mother's maiden name?</a>
               <a href="#" onClick={()=> saveQuestion(2)}>What is the name of your first pet?</a>
-              <a href="#" onClick={()=> saveQuestion(2)}>What make was your first car?</a>
+              <a href="#" onClick={()=> saveQuestion(3)}>What make was your first car?</a>
             </div>
             
             <input
@@ -292,12 +306,12 @@ function SignUp() {
 
           </div> 
           <div className="dropdown">
-            <button
+            <input
               className="dropbtn2"
-              id="secQw"
-              placeholder="Security Question 2"
+              id="secQ2"
+              value="Security Question 2"
               ref={(c) => (secQ2 = c)}
-            >Security Question 2</button>
+            />
 
             <div className="dropdown-content2">
               <a href="#" onClick={()=> saveQuestion(4)}>What middle school did you attend?</a>
@@ -314,12 +328,12 @@ function SignUp() {
           </div> 
           
           <div className="dropdown">
-            <button
+            <input
                 className="dropbtn3"
                 id="secQ3"
-                innerHTML="Hello"
+                value="Security Question 3"
                 ref={(c) => (secQ3 = c)}
-              ></button>
+              />
               
               <div className="dropdown-content3">
                 <a href="#" onClick={()=> saveQuestion(7)}>What is your favorite TV show?</a>
@@ -334,7 +348,7 @@ function SignUp() {
                 ref={(c) => (ans3 = c)}
               />
           </div>
-          <br />
+          <br /> */}
           <br />
 
           <Button id="SignUpButton" type="button" onClick={doSignUp}>
