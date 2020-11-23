@@ -34,6 +34,7 @@ class EditProfile extends StatelessWidget {
                 'Profile',
                 style: TextStyle(
                   fontFamily: 'Marguerite',
+                  //color: Colors.lightBlueAccent[400],
                 ),
               ),
             ],
