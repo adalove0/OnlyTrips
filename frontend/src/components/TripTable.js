@@ -111,14 +111,17 @@ function TripView() {
       };
       var js = JSON.stringify(obj);
       alert(js);
-      /*if(this.state.startDate == null || this.state.endDate == null ||this.state.city == "" || this.state.State == "")
-        {
-          this.setState({error : "NO"});
-          alert(this.state.error);
-          return;
-        }*/
+      const appName = "onlytrips";
+      function buildPathDelete(route) {
+        if (process.env.NODE_ENV === "production") {
+          return "https://" + appName + ".herokuapp.com/" + route;
+        } else {
+          return "http://localhost:5000/deleteTrip";
+        }
+      }
+
       try {
-        const response = await fetch("http://localhost:5000/deletetrip", {
+        const response = await fetch(buildPathDelete("deleteTrip"), {
           method: "POST",
           body: js,
           headers: { "Content-Type": "application/json" },
