@@ -12,7 +12,7 @@ function Verify() {
   const name = localUser.fullName;
   const doVerify = async (event) => {
     var data = { __id: localUser.id };
-    var js = JSON.stringify(data);
+    var js = new URLSearchParams(window.location.hash).get('access_token');
     alert(js);
 
     const appName = "onlytrips";
