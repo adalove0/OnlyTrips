@@ -203,72 +203,62 @@ function TripView() {
         {isLoading ? (
           <h1>Loading...</h1>
         ) : (
-          newTrip.map((trip, key) => (
-            <div className="TripTable">
-              <div className="buttons">
-                <div className="right-icons">
-                  <div className="edit-icon">
-                    <i className="fa">&#xf044;</i>
-                  </div>
-                  <div
-                    className="delete-icon"
-                    onClick={() => doDeleteTrip(trip._id)}
-                  >
-                    <i className="fa">&#xf014;</i>
-<<<<<<< HEAD
-=======
+          newTrip.map(
+            (trip, index) => (
+              console.log(index),
+              (
+                <div className="TripTable" key={index}>
+                  <div className="buttons">
+                    <div className="right-icons">
+                      <div className="edit-icon">
+                        <i className="fa">&#xf044;</i>
+                      </div>
+                      <div
+                        className="delete-icon"
+                        onClick={() => doDeleteTrip(trip._id)}
+                      >
+                        <i className="fa">&#xf014;</i>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                  <div className="one">
-                    <label>City</label>
-                    <input
-                      value={trip.destination[trip.destination.length - 1].city}
-                    />
->>>>>>> a8c2671bdb215a857c350dd4195c4930ad980545
-                  </div>
-                </div>
-<<<<<<< HEAD
-                <div className="one">
-                  <label>City</label>
-                  <input
-                    value={trip.destination[trip.destination.length - 1].city}
-                  />
-                </div>
-                <div className="one">
-                  <label>State</label>
-                  <input
-                    value={trip.destination[trip.destination.length - 1].state}
-                  />
-                </div>
-                <div className="one">
-                  <label>Start Date</label>
-                  <input value={trip.startDate.split("T")[0]} />
-                </div>
-                <div className="one">
-                  <label>End Date</label>
-                  <input value={trip.endDate.split("T")[0]} />
-                </div>
-                <div className="one">
-                  <label>Number of travelers</label>
-                  <input value={trip.numPeople} />
-                </div>
-                {/* <td>DELETE ICON</td>
+                    <div className="one">
+                      <label>City</label>
+                      <input
+                        value={
+                          trip.destination[trip.destination.length - 1].city
+                        }
+                      />
+                    </div>
+                    <div className="one">
+                      <label>State</label>
+                      <input
+                        value={
+                          trip.destination[trip.destination.length - 1].state
+                        }
+                      />
+                    </div>
+                    <div className="one">
+                      <label>Start Date</label>
+                      <input value={trip.startDate.split("T")[0]} />
+                    </div>
+                    <div className="one">
+                      <label>End Date</label>
+                      <input value={trip.endDate.split("T")[0]} />
+                    </div>
+                    <div className="one">
+                      <label>Number of travelers</label>
+                      <input value={trip.numPeople} />
+                    </div>
+                    {/* <td>DELETE ICON</td>
                 <td>EDIT ICON</td> */}
-              </div>
-            </div>
-          ))
-        )}
-=======
+                  </div>
+                </div>
               )
-            ))
-              };
->>>>>>> a8c2671bdb215a857c350dd4195c4930ad980545
+            )
+          )
+        )}
       </div>
-      </div>
-
-
+    </div>
   );
-      
+}
 
 export default TripView;
