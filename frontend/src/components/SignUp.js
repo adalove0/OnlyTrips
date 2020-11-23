@@ -138,7 +138,7 @@ function SignUp() {
         <img src={logo} alt="OnlyTrips Logo" id="SignUpLogo"></img>
         <form id="SignUpForm">
           <input
-            style={{ marginTop: "50px" }}
+            style={{ marginTop: "75px" }}
             type="text"
             id="textbox"
             placeholder="Email"
