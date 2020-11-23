@@ -12,7 +12,7 @@ function Login() {
   const [show, setShow] = useState(true);
 
   const doLogin = async (event) => {
-    var visAlertDanger = document.getElementById("alertDanger");
+    var visAlertDanger = document.getElementById("alertDangerDiv");
     event.preventDefault();
 
     var data = { email: loginEmail.value, password: loginPassword.value };
@@ -68,10 +68,10 @@ function Login() {
 
   return (
     <div>
-      <Alert variant="danger" id="alertDanger">
+      <div id="alertDangerDiv">
         <p></p>
         <div></div>
-      </Alert>
+      </div>
       <div id="loginDiv">
         <img src={logo} alt="OnlyTrips Logo" id="logo"></img>
                 

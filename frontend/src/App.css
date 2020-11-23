@@ -71,9 +71,9 @@ body {
 }
 
 #alertDangerDiv {
-  padding: 5px;
+  padding: px;
   border: 1px solid transparent;
-  height: 5%; 
+  height: 8%; 
   visibility: hidden;
   margin: auto;
   position: absolute;
@@ -82,7 +82,7 @@ body {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   border-radius: 10px;
-  width: 600px;
+  width: 80%;
   align-items: center;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -96,7 +96,7 @@ body {
 #alertSuccessDiv {
   padding: 5px;
   border: 1px solid transparent;
-  height: 5%; 
+  height: 8%; 
   visibility: hidden;
   margin: auto;
   position: absolute;
@@ -105,7 +105,7 @@ body {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   border-radius: 10px;
-  width: 600px;
+  width: 80%;
   align-items: center;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -243,8 +243,9 @@ body {
 
 #logo {
   margin-bottom: -70px;
+  padding-bottom: 20px; 
   max-width: 100%;
-  width: 300px;
+  width: 50%;
   height: auto;
   margin-left: 55px;
   overflow: auto;
@@ -314,20 +315,22 @@ body {
 /*Sign Up CSS*/
 
 #signUpDiv {
-  max-width: 360px;
+  min-width: 50%;
   min-height: 400px;
   margin: auto;
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.6);
   transform: translate(-50%, -50%);
   border-radius: 10px;
-  width: 600px;
+  width: 50%;
+  height: 90%;
   padding-top: 10px;
   align-items: center;
   border: none;
+  overflow-y: auto;
 }
 
 #SignUpName {
