@@ -134,7 +134,7 @@ function TripView() {
             <div className = "TripTable">
               <div className = "buttons">
                 <div className="right-icons">
-                  <Link to="/UpdateTripPage/jamila"><div className = "edit-icon"><div className = "edit-icon">
+                  <div className = "edit-icon"><div className = "edit-icon">
                     <i className="fa">&#xf044;</i>
                   </div>
                   <div className = "delete-icon">
