@@ -73,7 +73,7 @@ function SignUp() {
 
     var js = JSON.stringify(obj);
     //alert(js);
-<<<<<<< HEAD
+
     const appName = "onlytrips";
     function buildPathSignUp(route) {
       if (process.env.NODE_ENV === "production") {
@@ -84,7 +84,7 @@ function SignUp() {
     }
     try {
       const response = await fetch(buildPathSignUp("signup"), {
-=======
+
     const appName = "onlytrips"
     function buildPathSignUp(route){
       if(process.ENV.NODE_ENV === "production"){
