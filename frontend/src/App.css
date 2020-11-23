@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 body {
   background: url(images/Plane.jpg) no-repeat center center fixed;
@@ -9,7 +12,48 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
-
+.addTrip {
+  font-family: "Roboto", sans-serif;
+  max-width: 360px;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.6);
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  width: 600px;
+  align-items: center;
+  border: none;
+  padding: 0;
+}
+.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before,
+.close:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 2px;
+  background-color: black;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
 #title {
   max-width: 360px;
   min-height: 400px;
@@ -24,22 +68,6 @@ body {
   width: 600px;
   padding-top: 10px;
   text-align: center;
-}
-
-#alertSuccess,
-#alertDanger {
-  visibility: hidden;
-  margin: auto;
-  position: absolute;
-  top: 4%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  border-radius: 10px;
-  width: 600px;
-  align-items: center;
-  border: none;
-  overflow-y: auto;
 }
 
 /*Login CSS*/
@@ -59,7 +87,76 @@ body {
   align-items: center;
   border: none;
 }
+.addTrip {
+  max-width: 800px;
+  box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.1);
+  padding-top: 0;
+  background: #f4f7f8;
+  border-radius: 8px;
+  width: 500px;
+  text-align: center;
+  min-height: 500px;
+}
+#add-container {
+  text-align: center;
+  border: 1px solid black;
+}
+.DateRangePicker {
+  display: block !important;
+  width: 100% !important;
+}
+.input-container {
+  margin-bottom: 30px;
+  width: 80%;
+  padding: 2px 0;
+  border: 2px solid #59bfff;
+  background: white;
+  height: 40px;
+}
+.input-text {
+  margin: 10px 0;
+  background: transparent;
+  border: 0px;
+  border-bottom: 2px solid #c5ecfd;
+  padding: 10px;
+  color: #c5ecfd;
+  width: 100%;
+}
 
+.addTrip .title {
+  text-transform: uppercase;
+  text-align: center;
+  color: #59bfff;
+  line-height: 48px;
+  padding-bottom: 20px;
+  font-size: 3em;
+  letter-spacing: 3px;
+  background: linear-gradient(125deg, #28a79c, #59bfff);
+  -webkit-background-clip: text;
+}
+.trip-form {
+  margin-top: 40px;
+  width: 80%;
+  display: inline-block;
+  margin: 0 auto;
+}
+.form-filed {
+  position: relative;
+  margin: 32px 0;
+  margin-bottom: 40px;
+}
+
+.trip-form .label {
+  position: absolute;
+  left: 20px;
+  bottom: 11px;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+  color: #59bfff;
+  cursor: text;
+  transition: transfoem 0.2s ease;
+}
 #textbox {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -102,11 +199,10 @@ body {
   margin-bottom: -70px;
   max-width: 100%;
   width: 300px;
-  height: 200px;
-  margin-left: 35px;
+  height: auto;
+  margin-left: 55px;
   overflow: auto;
   position: relative;
-  z-index: -1;
 }
 
 #signUpLink {
@@ -173,24 +269,24 @@ body {
 
 #signUpDiv {
   max-width: 360px;
-  height: 98%;
+  min-height: 400px;
   margin: auto;
   position: absolute;
-  top: 57%;
+  top: 50%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.6);
   transform: translate(-50%, -50%);
   border-radius: 10px;
   width: 600px;
+  padding-top: 10px;
   align-items: center;
   border: none;
-  overflow-y: auto;
 }
 
 #SignUpName {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   height: 35px;
   width: 70%;
   border: none;
@@ -223,14 +319,14 @@ body {
 }
 
 #SignUpButton {
-  width: 40%;
+  width: 70%;
   background: #59bfff;
   color: white;
   height: 50px;
   outline: none;
   border: none;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 15px;
+  margin-bottom: 13px;
   border-radius: 12px;
   font-family: "Fjalla One", sans-serif;
   cursor: pointer;
@@ -272,7 +368,7 @@ body {
 
 #tripTable {
   width: 700px;
-  height: auto;
+  height: 850px;
   margin: auto;
   position: absolute;
   top: 50%;
@@ -280,115 +376,66 @@ body {
   -ms-transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.6);
   transform: translate(-50%, -50%);
+  border: none;
   border-radius: 10px;
   padding-top: 10px;
-  padding: 0px;
   align-items: center;
   border: none;
-  z-index: 1;
 }
-/* For Nav Bar*/
+#navBar {
+  height: 30px;
+}
 #navBarLogo {
-  width: 10%;
-  height: 3.3%;
+  width: 300px;
+  height: 78px;
   align-items: left;
 }
 
 #LogOutButton {
   align-items: right;
-  height: 50px;
-  margin-right: 5px;
+  margin-left: 200px;
 }
-
-#addTripButton {
-  align-items: right;
-  height: 50px;
-  margin-right: 5px;
-}
-#searchButton {
-  align-items: right;
-  height: 50px;
-  margin-right: 5px;
-}
-#navSearchBar {
-  width: 50%
-}
-
-.cells{
-  padding: 0px;
-}
-  .minus
-  {
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    font-size: 26px;
-    font-weight: bold;
-    background-color: white;
-    border: none;
-    color: black;
-  }
-  .plus
-  {
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    font-size: 26px;
-    font-weight: bold;
-    background-color: white;
-    color: black;
-    border:none;
-  }
-  .input-text-counter{
-    border: none;
-  }
-  .number:after{
-  content: "";
-  display: table;
-  clear: both;
-  }
-  input[type=number]
-  {
-    text-align: center;
-  }
-#add-title
-  {
-    text-align: center;
-    font-weight: bold;
-    font-size: 40px;
-    margin-bottom:30px;
-  }
-  .number
-{
-  border-radius: 15px;
-  margin: 0 auto;
-  color: white;
-  border-radius: 50px;
-
-}
-#add-title{
+.down_count,
+.up_count {
+  width: 20px;
+  height: 20px;
+  background: #f2f2f2;
+  padding: 8px 5px 8px 5px;
+  border: 1px solid #ddd;
+  display: inline-block;
+  vertical-align: middle;
   text-align: center;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  color: #59bfff;
+}
+.counter {
+  height: 34px;
+  width: 100px;
+  text-align: center;
+  font-size: 26px;
+  border: 1px solid #ddd;
+  display: inline-block;
+  vertical-align: middle;
+}
+.num {
+  margin: 100px;
+}
+span {
+  cursor: pointer;
 }
 
-.num{
-  margin:100px;
-}
-span {cursor:pointer; }
-
-.minus, .plus{
-  height:52px;
-  border:1px solid black;
+.minus,
+.plus {
+  height: 52px;
+  border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  float:left;
+  float: left;
   width: 20%;
   cursor: pointer;
 }
-.input-text-counter input{
-  width:60%;
+.input-text-counter input {
+  width: 60%;
   height: 52px;
   background: white;
   border: none;
@@ -398,17 +445,92 @@ span {cursor:pointer; }
   align-items: center;
   text-align: center;
 }
-.header{
-    display: inline-block;
-    position: relative;
-    border: none;
-    height: 200px;
-    width: 100%;
-    margin-bottom: 0;
-    background-color: white;
- 
-  }
- #VerifyTable{
+.input-group {
+  margin-left: 10px;
+}
+.number {
+  border-radius: 15px;
+  margin: 0 auto;
+  color: white;
+  border-radius: 50px;
+}
+#add-title {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  color: #59bfff;
+}
+.customCSS.e-date-range-wrapper {
+  margin: 0;
+}
+.number:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+input[type="number"] {
+  text-align: center;
+}
+#add-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+textarea::placeholder {
+  color: red;
+}
+
+.column1 img {
+  margin: auto;
+  width: 400px;
+}
+.minus {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  font-size: 26px;
+  font-weight: bold;
+  background-color: white;
+  border: none;
+  color: black;
+}
+.plus {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  font-size: 26px;
+  font-weight: bold;
+  background-color: white;
+  color: black;
+  border: none;
+}
+.input-text-counter {
+  border: none;
+}
+.form1 {
+  max-height: 46px;
+  margin-top: 40px;
+}
+.form-filed {
+  margin-bottom: 50px;
+}
+.number {
+  margin-top: 0;
+  width: 280px;
+}
+.fix-margin {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.header {
+  display: inline-block;
+  position: relative;
+  border: none;
+  height: 200px;
+  width: 100%;
+  margin-bottom: 0;
+  background-color: white;
+}
+#VerifyTable {
   max-width: 800px;
   margin: auto;
   position: absolute;
@@ -416,36 +538,37 @@ span {cursor:pointer; }
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  box-shadow: 0 10px 30px 0px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.1);
   width: 800px;
   min-width: 200px;
   background-color: white;
- }
- #logo21{
+}
+#logo21 {
   position: absolute;
   margin: auto;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
- }
- .text-info{
-   display: inline-block;
-   font-size: 18px;
-   color:white;
-   width: 100%;
-   margin-top: 0;
-   background-color: #59bfff;
-   padding: 30px;
- }
- .text-info p{
-   color: white;
-   font-family: Arial, Helvetica, sans-serif;
- }
- #activate-btn, .submit-btn{
+}
+.text-info {
+  display: inline-block;
+  font-size: 18px;
+  color: white;
+  width: 100%;
+  margin-top: 0;
+  background-color: #59bfff;
+  padding: 30px;
+}
+.text-info p {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#activate-btn,
+.submit-btn {
   appearance: none;
   background-color: transparent;
-  color:#59bfff;
+  color: #59bfff;
   background-color: white;
   border: 2px solid #59bfff;
   cursor: pointer;
@@ -454,71 +577,74 @@ span {cursor:pointer; }
   margin: 20px;
   text-decoration: none;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   border-radius: 10px;
   width: 220px;
   height: 50px;
   float: right;
-  }
-  .submit-btn{
-    margin-top: 55px;
-    width: 150px;
-  }
-  
-  #activate-btn:hover,
-  #activate-btn:focus
-  {
-    color: white;
-    outline: 0;
-    background-position: 0;
-    border-color: white;
-    background-color: #59bfff;
-  }
-  .submit-btn:hover{
-    color: white;
-    outline: 0;
-    background-position: 0;
-    border-color: white;
-    background-color: #59bfff;
-  }
-  .submit-btn:focus{
-    outline: 0;
-  }
- #dest-title{
-   text-align:left;
- }
- .inputMaterial{
-   border: none;
-   padding-bottom: 15px;
-   height: 40px;
-   width: 65%;
-   padding-left: 5px;
-   background: #f4f7f8;
-   border-bottom: 2px solid #59bfff;
-   margin-bottom: 15px;
- }
- .inputMaterial:focus{
-   outline: none;
-   border-bottom:3px solid #4bb6f8;
- }
- #numPeople:focus{
-  outline: none;
- }
- .addTrip input[type="text"]::placeholder { /* Firefox, Chrome, Opera */ padding-left: 5px; color: #59bfff }
+}
+.submit-btn {
+  margin-top: 55px;
+  width: 150px;
+}
 
- .calendar{
-   width: 70%;
-   margin-left: auto;
-   margin-right: auto;
-   margin-top: 35px;
-   margin-bottom: 25px;
- }
- #numPeople{
+#activate-btn:hover,
+#activate-btn:focus {
+  color: white;
+  outline: 0;
+  background-position: 0;
+  border-color: white;
+  background-color: #59bfff;
+}
+.submit-btn:hover {
+  color: white;
+  outline: 0;
+  background-position: 0;
+  border-color: white;
+  background-color: #59bfff;
+}
+.submit-btn:focus {
+  outline: 0;
+}
+#dest-title {
+  text-align: left;
+}
+.inputMaterial {
+  border: none;
+  padding-bottom: 15px;
+  height: 40px;
+  width: 65%;
+  padding-left: 5px;
+  background: #f4f7f8;
+  border-bottom: 2px solid #59bfff;
+  margin-bottom: 15px;
+}
+.inputMaterial:focus {
+  outline: none;
+  border-bottom: 3px solid #4bb6f8;
+}
+#numPeople:focus {
+  outline: none;
+}
+input[type="text"]::placeholder {
+  /* Firefox, Chrome, Opera */
+  padding-left: 5px;
+  color: #59bfff;
+}
+
+.calendar {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 35px;
+  margin-bottom: 25px;
+}
+#numPeople {
   color: #4bb6f8;
   font-size: 18px;
- }
- #circle{
-   margin-top: 0 !important;
-   background: #8cd0fa;
- }
+}
+#circle {
+  margin-top: 0 !important;
+  background: #8cd0fa;
+}

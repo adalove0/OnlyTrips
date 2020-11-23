@@ -45,10 +45,26 @@ function TripView() {
 
   React.useEffect(() => {
     // To get trip array with ids
+    const appName = "onlytrips";
+    function buildPathTravel(route) {
+      if (process.env.NODE_ENV === "production") {
+        return "https://" + appName + ".herokuapp.com/" + route;
+      } else {
+        return "http://localhost:5000/travel";
+      }
+    }
+    const appName2 = "onlytrips";
+    function buildPathSingleTrip(route) {
+      if (process.env.NODE_ENV === "production") {
+        return "https://" + appName2 + ".herokuapp.com/" + route;
+      } else {
+        return "http://localhost:5000/singleTrip";
+      }
+    }
     async function getArrayData() {
       setLoading(true);
       try {
-        const request = await fetch("http://localhost:5000/travel", {
+        const request = await fetch(buildPathTravel("singleTrip"), {
           method: "POST",
           body: js,
           headers: { "Content-Type": "application/json" },
@@ -75,7 +91,7 @@ function TripView() {
       var data = { id: object };
       var js = JSON.stringify(data);
       try {
-        const request = await fetch("http://localhost:5000/singleTrip", {
+        const request = await fetch(buildPathSingleTrip("singleTrip"), {
           method: "POST",
           body: js,
           headers: { "Content-Type": "application/json" },
@@ -101,7 +117,7 @@ function TripView() {
   // normal functions getting called before async functions how to change
   return (
     <div>
-      <Table id="tripTable" reponsive striped bordered hover size="md">
+      <Table id="tripTable" reponsive striped bordered hover size="sm">
         <thead>
           <tr>
             <th>City</th>
