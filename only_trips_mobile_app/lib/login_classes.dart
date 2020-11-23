@@ -30,8 +30,6 @@ class User {
   List<Location> location;
   String email;
   String name;
-  String securityQuestionOne;
-  String securityQuestionTwo;
   String token;
 
   User(
@@ -42,8 +40,6 @@ class User {
       this.location,
       this.email,
       this.name,
-      this.securityQuestionOne,
-      this.securityQuestionTwo,
       this.token});
 
   User.fromJson(Map<String, dynamic> json) {
@@ -64,13 +60,11 @@ class User {
     }
     email = json['email'];
     name = json['name'];
-    securityQuestionOne = json['securityQuestionOne'];
-    securityQuestionTwo = json['securityQuestionTwo'];
     token = json['token'];
   }
 
   User.fromMyJson(Map<String, dynamic> json) {
-    userId = json['_id'];
+    userId = json['userId'];
     age = json['age'];
     confirmed = json['confirmed'];
     if (json['TripDetails'] != null) {
@@ -87,8 +81,6 @@ class User {
     }
     email = json['email'];
     name = json['name'];
-    securityQuestionOne = json['securityQuestionOne'];
-    securityQuestionTwo = json['securityQuestionTwo'];
     token = json['token'];
   }
 
@@ -105,8 +97,6 @@ class User {
     }
     data['email'] = this.email;
     data['name'] = this.name;
-    data['securityQuestionOne'] = this.securityQuestionOne;
-    data['securityQuestionTwo'] = this.securityQuestionTwo;
     data['token'] = this.token;
     return data;
   }

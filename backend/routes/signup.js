@@ -7,7 +7,6 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 let User = require("../models/User");
 
 // VALIDATION
-
 const Joi = require("@hapi/joi");
 const boolean = require("@hapi/joi/lib/types/boolean");
 
@@ -20,8 +19,6 @@ const valSchema = Joi.object({
   location: Joi.object(),
   confirmed: Joi.boolean(),
   token: Joi.string(),
-  securityQuestionOne: Joi.string(),
-  securityQuestionTwo: Joi.string()
 });
 router.post("/", (req, res, next) => {
   // makes sure the email is a valid email
@@ -59,8 +56,6 @@ router.post("/", (req, res, next) => {
         newUser.password = newUser.generateHash(req.body.password);
         newUser.age = req.body.age;
         newUser.location = req.body.location;
-        newUser.securityQuestionOne = req.body.securityQuestionOne;
-        newUser.securityQuestionTwo = req.body.securityQuestionTwo;
         newUser.confirmed = false;
         newUser.token = crypto.randomBytes(64).toString("hex");
 
@@ -70,13 +65,13 @@ router.post("/", (req, res, next) => {
           subject: "Onlytrips - verify your email",
           text: `
                 Hello, thank you for registering on our site. Please copy and paste the address below to verify
-                your account. www.onlytrips.xyz/verify-email?token=${newUser.token}
+                your account. http://onlytrips.herokuapp.com/VerifyPage?token=${newUser.token}
                 `,
           html: `
                     <h1>Hello,</h1>
                     <p>thank you for registering on our site.</p>
                     <p>Please click the link below to verify your account.</p>
-                    <a href ="www.onlytrips.xyz/verify-email?token=${newUser.token}" >Verify your account</a>
+                    <a href ="http://onlytrips.herokuapp.com/VerifyPage?token=${newUser.token}" >Verify your account</a>
                 `,
         };
 

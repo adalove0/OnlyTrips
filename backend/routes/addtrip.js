@@ -14,10 +14,8 @@ router.post('/', (req, res, next)=>{
     Trip.create(req.body.trip, function(err, finalTrip){
         if (err)
             return res.status(400).send(err);
-
         // finds the user based on the email and adds the trip object to the 
         // TripDetails array
-
         User.findOne({email: req.body.email.toLowerCase()}, function(error,obj){
             if (error)
                 return res.status(400).send(error);

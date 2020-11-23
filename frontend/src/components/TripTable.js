@@ -11,16 +11,25 @@ import { render } from "react-dom";
 // I dont know how to stop this from happening - Ahmed
 
 const newTrip = [];
+const array = [
+  { startDate: "0", endDate: "0", something: "idk" },
+  { startDate: "1", endDate: "0", something: "idk" },
+  { startDate: "2", endDate: "0", something: "idk" },
+  { startDate: "3", endDate: "0", something: "idk" },
+  { startDate: "4", endDate: "0", something: "idk" },
+  { startDate: "5", endDate: "0", something: "idk" },
+  { startDate: "6", endDate: "0", something: "idk" },
+  { startDate: "7", endDate: "0", something: "idk" },
+  { startDate: "8", endDate: "0", something: "idk" },
+];
+const lastData = [];
 //const newTrip = '{"someTrip":[{"name":"Justtin", "age":"21"}]}';
 
 function TripView() {
-
-  var trash = [
-    { startDate: "0", endDate: "0"}
-  ];
+  var trash = [{ startDate: "0", endDate: "0" }];
 
   const [tripData, setTripData] = useState([]);
-  
+  const [isLoading, setLoading] = useState(true);
 
   const userObj = localStorage.getItem("user_data");
   const localUser = JSON.parse(userObj);
@@ -34,116 +43,108 @@ function TripView() {
   console.log(newTrip);
   console.log(1);
 
-
   React.useEffect(() => {
-
     // To get trip array with ids
+    const appName = "onlytrips";
+    function buildPathTravel(route) {
+      if (process.env.NODE_ENV === "production") {
+        return "https://" + appName + ".herokuapp.com/" + route;
+      } else {
+        return "http://localhost:5000/travel";
+      }
+    }
+    const appName2 = "onlytrips";
+    function buildPathSingleTrip(route) {
+      if (process.env.NODE_ENV === "production") {
+        return "https://" + appName2 + ".herokuapp.com/" + route;
+      } else {
+        return "http://localhost:5000/singleTrip";
+      }
+    }
     async function getArrayData() {
+      setLoading(true);
       try {
-        const request = await fetch("http://localhost:5000/travel", {
+        const request = await fetch(buildPathTravel("travel"), {
           method: "POST",
           body: js,
           headers: { "Content-Type": "application/json" },
         });
         var res = await request.json();
-              const newTripID = res.trips;
-      // Loop Through array and pass every id to second api
+        const newTripID = res.trips;
+        // Loop Through array and pass every id to second api
         newTripID.map((trips) => {
-        console.log("2. current trip ID " + trips);
-        getSingleTripData(trips);
-        
-      });
+          console.log("2. current trip ID " + trips);
+          getSingleTripData(trips);
+        });
+        setLoading(false);
+
+        console.log(newTrip[newTrip.length - 1]);
+        lastData.push(newTrip[newTrip.length - 1]);
+        console.log("afidjwoeifjw");
+        console.log(lastData);
       } catch (err) {
         console.log(err);
       }
     }
-
-    
     async function getSingleTripData(object) {
       var tripInfo;
       var data = { id: object };
       var js = JSON.stringify(data);
-      const request = await fetch("http://localhost:5000/singleTrip", {
-        method: "POST",
-        body: js,
-        headers: { "Content-Type": "application/json" },
-      });
-      var res = await request.json();
+      try {
+        const request = await fetch(buildPathSingleTrip("singleTrip"), {
+          method: "POST",
+          body: js,
+          headers: { "Content-Type": "application/json" },
+        });
+        var res = await request.json();
 
-      // Res is my trip
-      const singletripData = res.trip;
-      tripInfo = JSON.stringify(singletripData);
-      console.log("3. This row contains " + tripInfo);
+        // Res is my trip
+        const singletripData = res.trip;
+        tripInfo = JSON.stringify(singletripData);
 
-      // Add to array and set its state
-      setTripData(tripData.push(singletripData));
-      newTrip.push(singletripData);
+        // Add to array and set its state
+        setTripData(tripData.push(singletripData));
+        newTrip.push(singletripData);
+        console.log("MY OTHER API");
+        console.log(newTrip);
+      } catch (err) {
+        console.log(err);
+      }
     }
-
     getArrayData();
-    console.log("newTrip length is now "+newTrip.length);
-
   }, []);
-
-  const goToUpdate = async (event) => {
-    event.preventDefault();
-    //window.location.href = "/updateTrip";
-  };
-
-  
-
-
-  /* THIS IS TEST*/
-/* END TEST*/
-
-  function testTable() {
-
-    // Test Array
-    const array = [
-      { startDate: "0", endDate: "0", something: "idk" },
-      { startDate: "1", endDate: "0", something: "idk" },
-      { startDate: "2", endDate: "0", something: "idk" },
-      { startDate: "3", endDate: "0", something: "idk" },
-      { startDate: "4", endDate: "0", something: "idk" },
-      { startDate: "5", endDate: "0", something: "idk" },
-      { startDate: "6", endDate: "0", something: "idk" },
-      { startDate: "7", endDate: "0", something: "idk" },
-      { startDate: "8", endDate: "0", something: "idk" },
-    ];
-    console.log("newTrip length is "+newTrip.length +" but array length is "+ array.length);
-    console.log(newTrip);
-   
-
-    return newTrip.map((trip, index) => {
-      //console.log("We got "+ JSON.stringify(trip));
-      console.log("pushing in "+ JSON.stringify(trip));
-      return (
-        <tr key= {index}>
-
-          <td > {trip.startDate}</td>
-          <td >{trip.endDate}</td>
-          <td >{trip.numPeople}</td>
-          <td><button onClick={goToUpdate}>Hello</button></td>
-        </tr>
-
-      );
-    });
-
-    
-  }
-
-  /*const LogOut = async (event) => {
-    event.preventDefault();
-    window.location.href = "/";
-  };*/
 
   // normal functions getting called before async functions how to change
   return (
     <div>
-      <table id="tripTable">
-        {/*{<tbody >{testTable()}</tbody>}*/ }{<tbody >{testTable()}</tbody>}
-        
-      </table>
+      <Table id="tripTable" reponsive striped bordered hover size="sm">
+        <thead>
+          <tr>
+            <th>City</th>
+            <th>State</th>
+            <th>Number of People</th>
+            <th>State Date</th>
+            <th>End Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {isLoading ? (
+            <h1>Loading...</h1>
+          ) : (
+            newTrip.map((trip, key) => (
+              <tr key={key}>
+                <td>{trip.destination[trip.destination.length - 1].city}</td>
+                <td>{trip.destination[trip.destination.length - 1].state}</td>
+                <td>{trip.numPeople}</td>
+                <td>{trip.startDate}</td>
+                <td>{trip.endDate}</td>
+                {/* <td>DELETE ICON</td>
+                <td>EDIT ICON</td> */}
+              </tr>
+            ))
+          )}
+        </tbody>
+      </Table>
     </div>
   );
 }

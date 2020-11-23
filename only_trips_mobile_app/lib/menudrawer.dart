@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'login_classes.dart';
 
 class NavDrawer extends StatelessWidget {
-  final User currUser = sharedPrefs.currUser;
+  final User testUser = sharedPrefs.currUser;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (_) => ProfilePage(currUser: currUser)))
+                      builder: (_) => ProfilePage(currUser: testUser)))
             },
           ),
           ListTile(
@@ -54,7 +54,8 @@ class NavDrawer extends StatelessWidget {
               title: Text('Logout'),
               onTap: () async {
                 sharedPrefs.clear(themeNotifier);
-                Navigator.push(context,
+                sharedPrefs.isLoggedIn = false;
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => StartPage()));
               }),
         ],

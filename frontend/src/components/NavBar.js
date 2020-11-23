@@ -14,7 +14,7 @@ function NavigationBar() {
 
   const addTrip = async (event) => {
     event.preventDefault();
-    window.location.href = "/addTrip";
+    window.location.href = "/AddTripPage";
   };
 
   const userObj = localStorage.getItem("user_data");
@@ -31,25 +31,29 @@ function NavigationBar() {
   return (
     <Navbar variant="dark" fixed="top">
       <h1> Welcome! {fullName}</h1>
-      <img
-        src={logo}
-        alt="OnlyTrips Logo"
-        id="navBarLogo"
-      ></img>
-      
-      <Form className="mb-3">
-      <Button variant="success" id="addTripButton" onClick={addTrip}>
-        Add Trip
-      </Button>
-      <Button variant="danger" id="LogOutButton" onClick={LogOut}>
-        Log Out
-      </Button>
+      <img src={logo} alt="OnlyTrips Logo" id="navBarLogo"></img>
 
-        <Button variant="outline-secondary" id = "searchButton" onKeyUp={searchFunction}>
+      <Form className="mb-3">
+        <Button variant="success" id="addTripButton" onClick={addTrip}>
+          Add Trip
+        </Button>
+        <Button variant="danger" id="LogOutButton" onClick={LogOut}>
+          Log Out
+        </Button>
+
+        <Button
+          variant="outline-secondary"
+          id="searchButton"
+          onKeyUp={searchFunction}
+        >
           Search
         </Button>
       </Form>
-      <Form.Control id="navSearchBar" type="text" placeholder="Search By City...." />
+      <Form.Control
+        id="navSearchBar"
+        type="text"
+        placeholder="Search By City...."
+      />
     </Navbar>
   );
 }

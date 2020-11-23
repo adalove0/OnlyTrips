@@ -122,49 +122,51 @@ class _RegisterPageState extends State<RegisterPage> {
               : FutureBuilder<Register>(
                   future: _response,
                   builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      if (snapshot.data.success) {
-                        return Column(
-                          children: <Widget>[
-                            Text(snapshot.data.message),
-                            Text(
-                              'A verification link has been sent to your email. Please click on it before attempting to log in.',
-                              maxLines: 3,
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            RaisedButton(
-                              child: Text('Go to login'),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginPage()));
-                              },
-                            ),
-                          ],
-                        );
-                      } else {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      if (snapshot.hasData) {
+                        if (snapshot.data.success) {
+                          return Column(
+                            children: <Widget>[
+                              Text(snapshot.data.message),
+                              Text(
+                                'A verification link has been sent to your email. Please click on it before attempting to log in.',
+                                maxLines: 3,
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              RaisedButton(
+                                child: Text('Go to login'),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginPage()));
+                                },
+                              ),
+                            ],
+                          );
+                        } else {
+                          return Column(
+                            children: <Widget>[
+                              Image.asset('assets/logo.png'),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Text(snapshot.data.message),
+                            ],
+                          );
+                        }
+                      } else if (snapshot.hasError) {
                         return Column(
                           children: <Widget>[
                             Image.asset('assets/logo.png'),
                             SizedBox(
                               height: 16,
                             ),
-                            Text(snapshot.data.message),
+                            Text(snapshot.error),
                           ],
                         );
                       }
-                    } else if (snapshot.hasError) {
-                      return Column(
-                        children: <Widget>[
-                          Image.asset('assets/logo.png'),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          Text(snapshot.error),
-                        ],
-                      );
                     }
                     return CircularProgressIndicator();
                   },

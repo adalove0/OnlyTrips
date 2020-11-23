@@ -22,7 +22,7 @@ router.post('/', (req, res, next)=>{
         
         if (obj.confirmed == false)
         {
-            return res.status(400).json({
+            return res.status(401).json({
                 success: false,
                 message: 'Please verify your email before resetting your password'
             })
@@ -30,7 +30,7 @@ router.post('/', (req, res, next)=>{
 
         if ((obj.securityQuestionOne.localCompare(req.bodysecurityQuestionOne) != 0)  || 
             (obj.securityQuestionTwo.localCompare(req.bodysecurityQuestionTwo) != 0)){
-                return res.status(400).json({
+                return res.status(402).json({
                     success: false,
                     message: 'Security answers do not match'
                 });

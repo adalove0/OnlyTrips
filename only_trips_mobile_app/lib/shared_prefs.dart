@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'login_classes.dart';
 import 'package:onlytrips/themes.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefs {
@@ -14,9 +13,9 @@ class SharedPrefs {
   }
 
   void clear(ThemeNotifier themeNotifier) async {
+    _sharedPrefs = await SharedPreferences.getInstance();
     await _sharedPrefs.clear();
     themeNotifier.setTheme(lightTheme);
-    _sharedPrefs.reload();
   }
 
   bool get isLoggedIn => _sharedPrefs.getBool(is_logged_in) ?? false;
