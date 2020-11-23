@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onlytrips/editprofile.dart';
 import 'login_classes.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -61,6 +62,15 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ],
           ),
+          actions: <Widget>[
+            FlatButton(
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) =>
+                            EditProfile(currUser: widget.currUser))),
+                child: Icon(Icons.create))
+          ],
         ),
         body: Column(children: <Widget>[
           createDisplayCard(
