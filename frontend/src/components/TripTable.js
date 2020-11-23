@@ -3,12 +3,9 @@ import App from "../App";
 import Alert from "react-bootstrap/Alert";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import logo from "../images/updated-logo.PNG";
 import { object } from "@hapi/joi";
 import { render } from "react-dom";
-
-// Reason for not working:
-// renderTable gets called before the array is filled hence not displaying
-// I dont know how to stop this from happening - Ahmed
 
 const newTrip = [];
 const array = [
@@ -116,36 +113,63 @@ function TripView() {
 
   // normal functions getting called before async functions how to change
   return (
-    <div>
-      <Table id="tripTable" reponsive striped bordered hover size="sm">
-        <thead>
-          <tr>
-            <th>City</th>
-            <th>State</th>
-            <th>Number of People</th>
-            <th>State Date</th>
-            <th>End Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          {isLoading ? (
-            <h1>Loading...</h1>
+    <div className = "trip-table">
+    <div class="container-header">
+      <div className="img-div"><img src={logo} alt="OnlyTrips Logo" id="navBarLogo"></img></div>
+        <div className="search-div">
+          <div className = "search">
+          <input type="text" className="searchTerm" placeholder="Search"/>
+          <button type="submit" className="searchButton">
+            <i className = "fa fa-search"></i>
+          </button>
+          </div>
+        </div>
+       <div className="add-div"><Button variant="success" className = "addButton">Add</Button></div>
+       <div className="log-div"><Button variant="success" className = "LogOutButton">Logout</Button></div>
+    </div>
+    <div className = "trip-tables-generated">
+      {isLoading ? (<h1>Loading...</h1>
           ) : (
             newTrip.map((trip, key) => (
-              <tr key={key}>
-                <td>{trip.destination[trip.destination.length - 1].city}</td>
-                <td>{trip.destination[trip.destination.length - 1].state}</td>
-                <td>{trip.numPeople}</td>
-                <td>{trip.startDate}</td>
-                <td>{trip.endDate}</td>
+            <div className = "TripTable">
+              <div className = "buttons">
+                <div className="right-icons">
+                  <Link to="/UpdateTripPage/jamila"><div className = "edit-icon"><div className = "edit-icon">
+                    <i className="fa">&#xf044;</i>
+                  </div>
+                  <div className = "delete-icon">
+                    <i className="fa">&#xf014;</i>
+                    </div>
+                </div>
+              </div>
+              <div className="one">
+                <label>City</label>
+                <input value={trip.destination[trip.destination.length - 1].city}/>
+              </div>
+              <div className="one">
+                <label>State</label>
+                <input value={trip.destination[trip.destination.length - 1].state}/>
+              </div>
+              <div className="one">
+                <label>Start Date</label>
+                <input value={trip.startDate}/>
+              </div>
+              <div className="one">
+                <label>End Date</label>
+                <input value={trip.endDate}/>
+              </div>
+              <div className="one">
+                <label>Number of travelers</label>
+                <input value={trip.numPeople}/>
+              </div>
                 {/* <td>DELETE ICON</td>
                 <td>EDIT ICON</td> */}
-              </tr>
-            ))
-          )}
-        </tbody>
-      </Table>
-    </div>
+          </div>
+          ))
+        )}
+        </div>
+      </div>
+
   );
 }
 
