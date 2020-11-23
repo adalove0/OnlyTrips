@@ -28,6 +28,7 @@ function TripView() {
     localStorage.removeItem("user_data");
     window.location.href = "/";
   };
+  
     const addTrip = async (event) => {
     event.preventDefault();
     window.location.href = "/AddTripPage";
@@ -67,6 +68,38 @@ function TripView() {
         return "http://localhost:5000/singleTrip";
       }
     }
+      async function doDeleteTrip(del_id){
+      //this.state.error = "";
+      const userObj = localStorage.getItem("user_data");
+      const localUser = JSON.parse(userObj); 
+      if(window.confirm("Are you sure you want to delete this trip?"))
+      {
+        var obj = {
+          email: localUser.email,
+          id: del_id,
+        };
+          var js = JSON.stringify(obj);
+          alert(js);
+        /*if(this.state.startDate == null || this.state.endDate == null ||this.state.city == "" || this.state.State == "")
+        {
+          this.setState({error : "NO"});
+          alert(this.state.error);
+          return;
+        }*/
+          try {
+              const response = await fetch("http://localhost:3000/deletetrip", {
+              method: "POST",
+              body: js,
+              headers: { "Content-Type": "application/json" },
+            });
+            var res = await response.text();
+            console.log(res);
+           }catch (e) {
+           alert(e.toString());
+          return;
+        }
+      }
+  };
 
     async function getArrayData() {
       setLoading(true);
@@ -144,7 +177,7 @@ function TripView() {
             <div className = "TripTable">
               <div className = "buttons">
                 <div className="right-icons">
-                 <div className = "edit-icon">
+                 <div className = "edit-icon" onClick = {doDeleteTrip(trip.id)}>
                     <i className="fa">&#xf044;</i>
                   </div>
                   <div className = "delete-icon">
