@@ -21,7 +21,7 @@ class GetTrip {
     return data;
   }
 }
-
+/*
 class Trip {
   Id iId;
   Id creator;
@@ -98,7 +98,7 @@ class Trip {
     return data;
   }
 }
-
+*/
 class Id {
   String oid;
 
@@ -114,7 +114,6 @@ class Id {
     return data;
   }
 }
-
 class NumPeople {
   int numberInt;
 
@@ -130,7 +129,6 @@ class NumPeople {
     return data;
   }
 }
-
 class StartDate {
   Date date;
 
@@ -148,7 +146,6 @@ class StartDate {
     return data;
   }
 }
-
 class Date {
   String numberLong;
 
@@ -164,8 +161,7 @@ class Date {
     return data;
   }
 }
-
-class Destination {
+/*class Destination {
   Id iId;
   String city;
   String state;
@@ -187,8 +183,8 @@ class Destination {
     data['state'] = this.state;
     return data;
   }
-}
-
+}*/
+/*
 class Budget {
   Id iId;
   Cost travelCost;
@@ -239,8 +235,7 @@ class Budget {
     return data;
   }
 }
-
-
+*/
 class Cost {
   double numberDouble;
 
@@ -255,8 +250,233 @@ class Cost {
     data['$numberDouble'] = this.numberDouble;
     return data;
   }
-}
 
+  @override toString() => numberDouble.toStringAsFixed(2);
+
+}
+/*
+class Trip {
+  String sId;
+  String creator;
+  int numPeople;
+  String startDate;
+  String endDate;
+  List<Destination> destination;
+  List<Budget> budget;
+  int iV;
+
+  Trip(
+      {this.sId,
+        this.creator,
+        this.numPeople,
+        this.startDate,
+        this.endDate,
+        this.destination,
+        this.budget,
+        this.iV});
+
+  Trip.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    creator = json['creator'];
+    numPeople = json['numPeople'];
+    startDate = json['startDate'];
+    endDate = json['endDate'];
+    if (json['destination'] != null) {
+      destination = new List<Destination>();
+      json['destination'].forEach((v) {
+        destination.add(new Destination.fromJson(v));
+      });
+    }
+    if (json['budget'] != null) {
+      budget = new List<Budget>();
+      json['budget'].forEach((v) {
+        budget.add(new Budget.fromJson(v));
+      });
+    }
+    iV = json['__v'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['creator'] = this.creator;
+    data['numPeople'] = this.numPeople;
+    data['startDate'] = this.startDate;
+    data['endDate'] = this.endDate;
+    if (this.destination != null) {
+      data['destination'] = this.destination.map((v) => v.toJson()).toList();
+    }
+    if (this.budget != null) {
+      data['budget'] = this.budget.map((v) => v.toJson()).toList();
+    }
+    data['__v'] = this.iV;
+    return data;
+  }
+}
+*/
+class Destination {
+  String sId;
+  String city;
+  String state;
+
+  Destination({this.sId, this.city, this.state});
+
+  Destination.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    city = json['city'];
+    state = json['state'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['city'] = this.city;
+    data['state'] = this.state;
+    return data;
+  }
+}
+class GetTripDetails {
+  bool success;
+  Trip trip;
+  String message;
+
+  GetTripDetails({this.success, this.trip, this.message});
+
+  GetTripDetails.fromJson(Map<String, dynamic> json) {
+    success = json['success'];
+    trip = json['trip'] != null ? new Trip.fromJson(json['trip']) : null;
+    message = json['message'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['success'] = this.success;
+    if (this.trip != null) {
+      data['trip'] = this.trip.toJson();
+    }
+    data['message'] = this.message;
+    return data;
+  }
+}
+class Trip {
+  String sId;
+  String creator;
+  int numPeople;
+  String startDate;
+  String endDate;
+  List<Destination> destination;
+  List<Budget> budget;
+  int iV;
+
+  @override
+  bool operator ==(other) {
+    return this.sId == other.sId;
+  }
+
+  @override
+  int get hashCode => sId.hashCode;
+
+  Trip(
+      {this.sId,
+        this.creator,
+        this.numPeople,
+        this.startDate,
+        this.endDate,
+        this.destination,
+        this.budget,
+        this.iV});
+
+  Trip.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    creator = json['creator'];
+    numPeople = json['numPeople'];
+    startDate = json['startDate'];
+    endDate = json['endDate'];
+    if (json['destination'] != null) {
+      destination = new List<Destination>();
+      json['destination'].forEach((v) {
+        destination.add(new Destination.fromJson(v));
+      });
+    }
+    if (json['budget'] != null) {
+      budget = new List<Budget>();
+      json['budget'].forEach((v) {
+        budget.add(new Budget.fromJson(v));
+      });
+    }
+    iV = json['__v'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['creator'] = this.creator;
+    data['numPeople'] = this.numPeople;
+    data['startDate'] = this.startDate;
+    data['endDate'] = this.endDate;
+    if (this.destination != null) {
+      data['destination'] = this.destination.map((v) => v.toJson()).toList();
+    }
+    if (this.budget != null) {
+      data['budget'] = this.budget.map((v) => v.toJson()).toList();
+    }
+    data['__v'] = this.iV;
+    return data;
+  }
+}
+class Budget {
+  String sId;
+  double travelCost;
+  double foodCost;
+  double lodgingCost;
+  double miscellaneousCost;
+
+  Budget(
+      {this.sId,
+        this.travelCost,
+        this.foodCost,
+        this.lodgingCost,
+        this.miscellaneousCost});
+
+  Budget.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    travelCost = double.parse(json['travelCost'].toString());
+    foodCost = double.parse(json['foodCost'].toString());
+    lodgingCost = double.parse(json['lodgingCost'].toString());
+    miscellaneousCost = double.parse(json['miscellaneousCost'].toString());
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['travelCost'] = this.travelCost;
+    data['foodCost'] = this.foodCost;
+    data['lodgingCost'] = this.lodgingCost;
+    data['miscellaneousCost'] = this.miscellaneousCost;
+    return data;
+  }
+}
+class GetTripList {
+  bool success;
+  List<String> trips;
+  String message;
+
+  GetTripList({this.success, this.trips, this.message});
+
+  GetTripList.fromJson(Map<String, dynamic> json) {
+    success = json['success'];
+    trips = json['trips'].cast<String>();
+    message = json['message'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['success'] = this.success;
+    data['trips'] = this.trips;
+    data['message'] = this.message;
+    return data;
+  }
+}
 // TODO: ADD IF BUDGET IS FIXED IN MONGODB
 
 /*

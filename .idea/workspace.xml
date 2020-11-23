@@ -28,12 +28,13 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ef26a7a-6d36-42dc-a043-aa5a7c402d97" name="Default Changelist" comment="I don't remember what I did.">
+    <list default="true" id="4ef26a7a-6d36-42dc-a043-aa5a7c402d97" name="Default Changelist" comment="Trips successfully add to user's trip list from addTrip">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/only_trips_mobile_app/lib/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/only_trips_mobile_app/lib/home.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/only_trips_mobile_app/lib/login_classes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/only_trips_mobile_app/lib/login_classes.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/only_trips_mobile_app/lib/menudrawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/only_trips_mobile_app/lib/menudrawer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/only_trips_mobile_app/lib/newtrip.dart" beforeDir="false" afterPath="$PROJECT_DIR$/only_trips_mobile_app/lib/newtrip.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/only_trips_mobile_app/lib/shared_prefs.dart" beforeDir="false" afterPath="$PROJECT_DIR$/only_trips_mobile_app/lib/shared_prefs.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/only_trips_mobile_app/lib/trip.dart" beforeDir="false" afterPath="$PROJECT_DIR$/only_trips_mobile_app/lib/trip.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/only_trips_mobile_app/lib/tripview.dart" beforeDir="false" afterPath="$PROJECT_DIR$/only_trips_mobile_app/lib/tripview.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,7 +288,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606100387791</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Trips successfully add to user's trip list from addTrip">
+      <created>1606111187403</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1606111187403</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -315,7 +323,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added sharedPrefs to catch userID and email for session usage." />
     <MESSAGE value="Changed from arrow notation to add init for shared prefs and to add a notifier for theme data." />
     <MESSAGE value="Merged with main" />
     <MESSAGE value="Created a settings page and added a dark mode switch." />
@@ -340,9 +347,14 @@
     <MESSAGE value="Got the trips list to populat" />
     <MESSAGE value="Added code in case Mongodb changed." />
     <MESSAGE value="I don't remember what I did." />
-    <option name="LAST_COMMIT_MESSAGE" value="I don't remember what I did." />
+    <MESSAGE value="Trips successfully add to user's trip list from addTrip" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trips successfully add to user's trip list from addTrip" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="652" y="256" key="#OnlyTrips" timestamp="1606119675643">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="652" y="256" key="#OnlyTrips/0.0.1920.1040@0.0.1920.1040" timestamp="1606119675643" />
     <state x="790" y="375" key="#com.intellij.debugger.actions.ViewTextAction" timestamp="1606056113146">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -379,14 +391,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="779" y="266" key="AndroidProcessChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606021176997" />
-    <state width="649" height="466" key="DebuggerActiveHint" timestamp="1606108294029">
+    <state width="649" height="466" key="DebuggerActiveHint" timestamp="1606128789341">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="649" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1606108294029" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1606030587098">
+    <state width="649" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1606128789341" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1606119191748">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606030587098" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606119191748" />
     <state x="740" y="261" key="FileChooserDialogImpl" timestamp="1606098402583">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -395,22 +407,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="806" y="421" key="GitRewordDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605742864230" />
-    <state width="1877" height="350" key="GridCell.Tab.0.bottom" timestamp="1606110650222">
+    <state width="1877" height="350" key="GridCell.Tab.0.bottom" timestamp="1606128907127">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="350" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606110650222" />
-    <state width="1877" height="350" key="GridCell.Tab.0.center" timestamp="1606110650222">
+    <state width="1877" height="350" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606128907127" />
+    <state width="1877" height="350" key="GridCell.Tab.0.center" timestamp="1606128907126">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="350" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606110650222" />
-    <state width="1877" height="350" key="GridCell.Tab.0.left" timestamp="1606110650222">
+    <state width="1877" height="350" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606128907126" />
+    <state width="1877" height="350" key="GridCell.Tab.0.left" timestamp="1606128907126">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="350" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606110650222" />
-    <state width="1877" height="350" key="GridCell.Tab.0.right" timestamp="1606110650222">
+    <state width="1877" height="350" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606128907126" />
+    <state width="1877" height="350" key="GridCell.Tab.0.right" timestamp="1606128907127">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="350" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606110650222" />
+    <state width="1877" height="350" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606128907127" />
     <state x="184" y="86" key="MergeDialog" timestamp="1606030121106">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -423,22 +435,22 @@
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
     <state x="201" y="210" key="SettingsEditor/0.23.1792.1097@0.23.1792.1097" timestamp="1604627067256" />
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1606100397281">
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1606111189437">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606100397281" />
-    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1606053175438">
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606111189437" />
+    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1606123373725">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1606053175438" />
+    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1606123373725" />
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606104305217">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606104305217" />
-    <state x="529" y="256" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1606097120379">
+    <state x="529" y="256" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1606126011973">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="529" y="256" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040@0.0.1920.1040" timestamp="1606097120379" />
+    <state x="529" y="256" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040@0.0.1920.1040" timestamp="1606126011973" />
     <state x="1096" y="242" key="run.anything.popup" timestamp="1605731787750">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -447,10 +459,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="752" y="379" width="490" height="396" key="scopes/0.0.1920.1040@0.0.1920.1040" timestamp="1606098442534" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1606102012499">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1606125957092">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606102012499" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606125957092" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -497,43 +509,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/newtrip.dart</url>
-          <line>323</line>
-          <option name="timeStamp" value="187" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/newtrip.dart</url>
-          <line>326</line>
-          <option name="timeStamp" value="189" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/newtrip.dart</url>
           <line>346</line>
           <option name="timeStamp" value="190" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/newtrip.dart</url>
-          <line>347</line>
-          <option name="timeStamp" value="191" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/newtrip.dart</url>
-          <line>348</line>
-          <option name="timeStamp" value="192" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/newtrip.dart</url>
-          <line>257</line>
-          <option name="timeStamp" value="200" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/login.dart</url>
-          <line>108</line>
-          <option name="timeStamp" value="205" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/login.dart</url>
-          <line>109</line>
-          <option name="timeStamp" value="206" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/menudrawer.dart</url>
@@ -559,6 +536,21 @@
           <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/themes.dart</url>
           <line>19</line>
           <option name="timeStamp" value="215" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/home.dart</url>
+          <line>73</line>
+          <option name="timeStamp" value="277" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/home.dart</url>
+          <line>75</line>
+          <option name="timeStamp" value="278" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/home.dart</url>
+          <line>74</line>
+          <option name="timeStamp" value="280" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

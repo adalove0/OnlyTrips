@@ -39,6 +39,8 @@ class SharedPrefs {
     _sharedPrefs.setString(keyUser, encoded);
   }
 
+
+
 }
 
 final sharedPrefs = SharedPrefs();

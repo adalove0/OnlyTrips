@@ -14,18 +14,51 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      new GlobalKey<RefreshIndicatorState>();
 
-  List<Trip> trips = new List<Trip>();
+  // Used to hold trip ID Strings
+  List<String> tripList = new List<String>();
+
+  // Holds all trip details after getting them with tripList values
+  List<Trip> tripDetails = new List<Trip>();
 
   @override
   void initState() {
     super.initState();
-    sharedPrefs.currUser.tripDetails.forEach((element) {
-      fetchTrips(element.id);
-    });
+    _getData();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => _refreshIndicatorKey.currentState.show());
   }
 
-  void fetchTrips(String tripId) async {
+  Future<void> _getData() async {
+    await updateTrips();
+    setState(() {
+      tripList.forEach((element) async {
+        await fetchTrips(element);
+      });
+    });
+    return;
+  }
+
+  Future<void> updateTrips() async {
+    final http.Response response =
+        await http.post('https://onlytrips.herokuapp.com/travel',
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: jsonEncode({
+              'email': sharedPrefs.currUser.email,
+            }));
+    if (response.statusCode == 200) {
+      tripList = GetTripList.fromJson(jsonDecode(response.body)).trips;
+      return;
+    } else {
+      throw Exception('Unable to get trips');
+    }
+  }
+
+  Future<void> fetchTrips(String tripId) async {
     final http.Response response =
         await http.post('https://onlytrips.herokuapp.com/singleTrip',
             headers: <String, String>{
@@ -35,11 +68,10 @@ class _HomePageState extends State<HomePage> {
               'id': tripId,
             }));
     if (response.statusCode == 200) {
-      GetTrip trip = GetTrip.fromJson(jsonDecode(response.body));
-      Trip innerTrip = trip.trip;
-        setState(() {
-          trips.add(innerTrip);
-        });
+      Trip newTrip = GetTripDetails.fromJson(jsonDecode(response.body)).trip;
+      if (!tripDetails.contains(newTrip))
+        tripDetails.add(newTrip);
+      return;
     } else {
       throw Exception('Unable to get trips');
     }
@@ -80,43 +112,57 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.search,
+            icon: Icon(
+              Icons.search,
               semanticLabel: 'search',
             ),
-            onPressed: () {},
+            onPressed: () {
+              _getData();
+            },
           ),
         ],
       ),
       drawer: new NavDrawer(),
-      body: ListView.builder(
-        itemCount: trips.length,
-        itemBuilder: (BuildContext context, int index) {
-          return GestureDetector(
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => TripView(currTrip: trips[index]))),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Card(
-                color: Colors.lightBlueAccent[400],
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(50.0),
-                    child: Center(
-                        child: Text(
-                      trips[index].destination.elementAt(0).city,
-                      style: TextStyle(
-                        fontFamily: 'Gotham Regular Light',
-                        fontSize: 40.0,
-                      ),
-                    )),
-                  )),
-            ),
-          );
+      body: RefreshIndicator(
+        key: _refreshIndicatorKey,
+        onRefresh: () async {
+          return await _getData();
         },
+        child: ListView.builder(
+          physics: const AlwaysScrollableScrollPhysics(),
+          itemCount: tripDetails.length,
+          itemBuilder: (BuildContext context, int index) {
+            return GestureDetector(
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => TripView(currTrip: tripDetails[index]))),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Card(
+                    color: Colors.lightBlueAccent[400],
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(50.0),
+                      child: Center(
+                          child: Text(
+                        tripDetails
+                            .elementAt(index)
+                            .destination
+                            .elementAt(0)
+                            .city,
+                        style: TextStyle(
+                          fontFamily: 'Gotham Regular Light',
+                          fontSize: 40.0,
+                        ),
+                      )),
+                    )),
+              ),
+            );
+          },
+        ),
       ),
       resizeToAvoidBottomInset: false,
       floatingActionButton: new FloatingActionButton(
