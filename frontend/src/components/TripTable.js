@@ -165,12 +165,12 @@ function TripView() {
                 {/* <td>DELETE ICON</td>
                 <td>EDIT ICON</td> */}
           </div>
-          ))
-        )}
-        </div>
+          </div>
+       ))
+      )}
       </div>
-
-  );
+    </div>
+    );
 }
 
 export default TripView;
