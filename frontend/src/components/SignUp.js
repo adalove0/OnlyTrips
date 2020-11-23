@@ -28,28 +28,33 @@ function SignUp() {
   const [message, setMessage] = useState("");
   const [show, setShow] = useState(false);
 
-
   const doSignUp = async (event) => {
     var visAlertSuccess = document.getElementById("alertSuccessDiv");
     var visAlertDanger = document.getElementById("alertDangerDiv");
     event.preventDefault();
-    if(loginEmail.value === "" || confirmEmail.value === '' || firstLastName.value === '' || loginPassword.value === '' || confirmPassword.value === '' || age.value === '' || locationCity.value === '' || locationCountry.value === '' || locationState.value === '' || locationZip.value === '' ) {
+    if (
+      loginEmail.value === "" ||
+      confirmEmail.value === "" ||
+      firstLastName.value === "" ||
+      loginPassword.value === "" ||
+      confirmPassword.value === "" ||
+      age.value === "" ||
+      locationCity.value === "" ||
+      locationCountry.value === "" ||
+      locationState.value === "" ||
+      locationZip.value === ""
+    ) {
       visAlertDanger.style.visibility = "visible";
       visAlertDanger.innerHTML += "Please fill in all blanks";
-    }
-    else if (loginEmail.value !== confirmEmail.value) {
+    } else if (loginEmail.value !== confirmEmail.value) {
       visAlertDanger.style.visibility = "visible";
       visAlertDanger.innerHTML = "Login Emails don't match";
       // return;
-    }
-    else if (loginPassword.value !== confirmPassword.value) {
+    } else if (loginPassword.value !== confirmPassword.value) {
       visAlertDanger.style.visibility = "visible";
       visAlertDanger.innerHTML = "Passwords don't match";
       // return;
-    }
-
-    else
-    {
+    } else {
       visAlertSuccess.style.visibility = "visible";
     }
 
@@ -74,8 +79,16 @@ function SignUp() {
 
     var js = JSON.stringify(obj);
     //alert(js);
+    const appName = "onlytrips";
+    function buildPathSignUp(route) {
+      if (process.env.NODE_ENV === "production") {
+        return "https://" + appName + ".herokuapp.com/" + route;
+      } else {
+        return "http://localhost:5000/signup";
+      }
+    }
     try {
-      const response = await fetch("http://localhost:5000/signup", {
+      const response = await fetch(buildPathSignUp("signup"), {
         method: "POST",
         body: js,
         headers: { "Content-Type": "application/json" },
@@ -109,84 +122,62 @@ function SignUp() {
     console.log("Hello");
     visAlertDanger.style.visibility = "hidden";
     visAlertSuccess.style.visibility = "hidden";
-    
-  }
+  };
 
   function saveQuestion(question) {
     var qClass;
     var dropDown;
-    if (question >=1 && question <= 3){
+    if (question >= 1 && question <= 3) {
       qClass = document.getElementById("secQ1");
       dropDown = document.getElementsByClassName("dropdown-content1")[0];
       console.log(dropDown.style.block);
-      if (question == 1)
-      {
+      if (question == 1) {
         console.log(qClass.placeholder);
         qClass.value = "What is your mother's maiden name?";
         secQ1 = "What is your mother's maiden name?";
-      }
-      else if (question == 2)
-      {
+      } else if (question == 2) {
         console.log(2);
         qClass.value = "What is the name of your first pet?";
         secQ1 = "What is the name of your first pet?";
-      }
-      else
-      {
+      } else {
         console.log(3);
         qClass.value = "What is the make of your first car?";
         secQ1 = "What is the make of your first car?";
       }
 
       //dropDown.removeClass('hover');
-
-    }
-    else if (question >=4 && question <= 6){
+    } else if (question >= 4 && question <= 6) {
       qClass = document.getElementById("secQ2");
-      if (question == 4)
-      {
+      if (question == 4) {
         console.log(4);
         qClass.value = "What middle school did you attend?";
         secQ2 = "What middle school did you attend?";
-      }
-      else if (question == 5)
-      {
+      } else if (question == 5) {
         console.log(5);
         qClass.value = "Where would you like to travel?";
         secQ2 = "Where would you like to travel?";
-      }
-      else
-      {
+      } else {
         console.log(6);
         qClass.value = "What is your favorite color?";
         secQ2 = "What is your favorite color?";
       }
-    }
-    else{
+    } else {
       qClass = document.getElementById("secQ3");
-      if (question == 7)
-      {
+      if (question == 7) {
         console.log(7);
         qClass.value = "What is your favorite TV show?";
         secQ3 = "What is your favorite TV show?";
-      }
-      else if (question == 8)
-      {
+      } else if (question == 8) {
         console.log(8);
         qClass.value = "What did you want to be when you were growing up?";
         secQ3 = "What did you want to be when you were growing up?";
-      }
-      else
-      {
+      } else {
         console.log(9);
         qClass.value = "What month was your father born in?";
         secQ3 = "What month was your father born in?";
       }
     }
-    
   }
-
-  
 
   const goToLogin = async (event) => {
     event.preventDefault();
@@ -194,24 +185,21 @@ function SignUp() {
   };
 
   return (
-    
     <div>
-      
-      <div id="alertDangerDiv"> 
-        <p>
-            
-        </p> 
+      <div id="alertDangerDiv">
+        <p></p>
       </div>
-      <div id="alertSuccessDiv" > 
+      <div id="alertSuccessDiv">
         <p>
-            Thank you for signing up! Please check your email for a verification link! <button onClick={closeAlert}> x </button>
+          Thank you for signing up! Please check your email for a verification
+          link! <button onClick={closeAlert}> x </button>
         </p>
       </div>
       <div id="signUpDiv">
         <img src={logo} alt="OnlyTrips Logo" id="SignUpLogo"></img>
         <form id="SignUpForm">
           <input
-            style={{marginTop: "50px"}}
+            style={{ marginTop: "50px" }}
             type="text"
             id="textbox"
             placeholder="Email"
@@ -253,7 +241,7 @@ function SignUp() {
             ref={(c) => (age = c)}
           />
           <br />
-            <p>Location information</p>
+          <p>Location information</p>
           <br />
           <input
             type="text"
@@ -361,10 +349,9 @@ function SignUp() {
           <a id="Link" href="/" /*onClick={goToLogin}*/>
             Log In!
           </a>
-        </p>  
+        </p>
       </div>
     </div>
-
   );
 }
 
