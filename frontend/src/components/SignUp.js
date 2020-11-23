@@ -73,12 +73,21 @@ function SignUp() {
 
     var js = JSON.stringify(obj);
     //alert(js);
+<<<<<<< HEAD
     var appName = "onlytrips";
     function buildPathSignUp(route) {
       if (process.env.NODE_ENV === "production") {
         return "https://" + appName + ".herokuapp.com/" + route;
       } else {
         return "http://localhost:5000/signup";
+=======
+    const appName = "onlytrips"
+    function buildPathSignUp(route){
+      if(process.ENV.NODE_ENV === "production"){
+        return "https://" + appName + ".herokuapp.com/" + route;
+      } else {
+        return "https://localhost:5000/signup";
+>>>>>>> 866796b1e0b1c01b68bb205460adadf499836079
       }
     }
     try {

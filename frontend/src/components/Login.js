@@ -56,7 +56,6 @@ function Login() {
           id: res.user._id,
         };
         localStorage.setItem("user_data", JSON.stringify(user));
-        alert(JSON.stringify(user));
         setMessage("");
         window.location.href = "/TripView";
       }
@@ -78,6 +77,7 @@ function Login() {
         <form id="loginForm" onSubmit={doLogin}>
                  {" "}
           <input
+            style={{marginTop: "50px"}}
             type="text"
             id="textbox"
             placeholder="Username"
