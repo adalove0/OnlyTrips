@@ -32,31 +32,6 @@ function SignUp() {
     var visAlertSuccess = document.getElementById("alertSuccessDiv");
     var visAlertDanger = document.getElementById("alertDangerDiv");
     event.preventDefault();
-    if (
-      loginEmail.value === "" ||
-      confirmEmail.value === "" ||
-      firstLastName.value === "" ||
-      loginPassword.value === "" ||
-      confirmPassword.value === "" ||
-      age.value === "" ||
-      locationCity.value === "" ||
-      locationCountry.value === "" ||
-      locationState.value === "" ||
-      locationZip.value === ""
-    ) {
-      visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML += "Please fill in all blanks";
-    } else if (loginEmail.value !== confirmEmail.value) {
-      visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML = "Login Emails don't match";
-      // return;
-    } else if (loginPassword.value !== confirmPassword.value) {
-      visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML = "Passwords don't match";
-      // return;
-    } else {
-      visAlertSuccess.style.visibility = "visible";
-    }
 
     var obj = {
       email: loginEmail.value,
@@ -70,6 +45,38 @@ function SignUp() {
         zip: locationZip.value,
       },
     };
+
+    if (
+      loginEmail.value === "" ||
+      confirmEmail.value === "" ||
+      firstLastName.value === "" ||
+      loginPassword.value === "" ||
+      confirmPassword.value === "" ||
+      age.value === "" ||
+      locationCity.value === "" ||
+      locationCountry.value === "" ||
+      locationState.value === "" ||
+      locationZip.value === ""
+    ) {
+      visAlertDanger.style.visibility = "visible";
+      visAlertDanger.innerHTML = "Please fill in all blanks";
+    }
+    else if (loginEmail.value !== confirmEmail.value) {
+      visAlertDanger.style.visibility = "visible";
+      visAlertDanger.innerHTML = "Login Emails don't match";
+      // return;
+    } else if (loginPassword.value !== confirmPassword.value) {
+      visAlertDanger.style.visibility = "visible";
+      visAlertDanger.innerHTML = "Passwords don't match";
+      // return;
+    }
+    //else if (res.success == false){
+    //  visAlertDanger.innerHTML = res.message;
+    //}
+    else {
+      console.log(res);
+      visAlertSuccess.style.visibility = "visible";
+    }
 
     var js = JSON.stringify(obj);
     //alert(js);
@@ -92,7 +99,7 @@ function SignUp() {
       console.log(res);
 
       if (res.id <= 0) {
-        setMessage("User/Password combination incorrect");
+        setMessage("Su");
       } else {
         var user = {
           firstName: res.firstName,
@@ -107,6 +114,8 @@ function SignUp() {
       //alert(e.toString());
       return;
     }
+
+
   };
 
   const closeAlert = async (event) => {
