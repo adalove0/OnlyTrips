@@ -222,6 +222,7 @@ function TripView() {
                         <i className="fa">&#xf014;</i>
                       </div>
                     </div>
+              </div>
                     <div className="one">
                       <label>City</label>
                       <input
@@ -253,7 +254,6 @@ function TripView() {
                     </div>
                     {/* <td>DELETE ICON</td>
                 <td>EDIT ICON</td> */}
-                  </div>
                 </div>
               )
             )
