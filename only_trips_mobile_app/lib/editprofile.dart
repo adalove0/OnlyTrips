@@ -57,92 +57,186 @@ class CustomFormState extends State<CustomForm> {
     // Build a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
         children: <Widget>[
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: "Name",
-            ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-            initialValue: currUser.name,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: "Email",
-            ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-            initialValue: currUser.email,
-            keyboardType: TextInputType.emailAddress,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: "Age",
-            ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-            initialValue: currUser.age.toString(),
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: "City",
-            ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-            initialValue: currUser.location[0].city,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: "State",
-            ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-            initialValue: currUser.location[0].state,
-          ),
-          TextFormField(
-              decoration: InputDecoration(
-                labelText: "Country",
+          Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            color: Colors.blue[100],
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    labelText: "Name", border: InputBorder.none),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+                initialValue: currUser.name,
               ),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter some text';
-                }
-                return null;
-              },
-              initialValue: currUser.location[0].country),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: "Zip Code",
             ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-            initialValue: currUser.location[0].zip.toString(),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            color: Colors.blue[100],
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    labelText: "Email", border: InputBorder.none),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+                initialValue: currUser.email,
+                keyboardType: TextInputType.emailAddress,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            color: Colors.blue[100],
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    labelText: "Password", border: InputBorder.none),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+                initialValue: currUser.name,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            color: Colors.blue[100],
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: TextFormField(
+                decoration:
+                    InputDecoration(labelText: "Age", border: InputBorder.none),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+                initialValue: currUser.age.toString(),
+                keyboardType: TextInputType.number,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            color: Colors.blue[100],
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    labelText: "City", border: InputBorder.none),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+                initialValue: currUser.location[0].city,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            color: Colors.blue[100],
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    labelText: "State", border: InputBorder.none),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+                initialValue: currUser.location[0].state,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            color: Colors.blue[100],
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: TextFormField(
+                  decoration: InputDecoration(
+                      labelText: "Country", border: InputBorder.none),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                  initialValue: currUser.location[0].country),
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            color: Colors.blue[100],
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    labelText: "Zip Code", border: InputBorder.none),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+                initialValue: currUser.location[0].zip.toString(),
+                keyboardType: TextInputType.number,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
