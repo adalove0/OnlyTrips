@@ -138,7 +138,7 @@ function SignUp() {
         <img src={logo} alt="OnlyTrips Logo" id="SignUpLogo"></img>
         <form id="SignUpForm">
           <input
-            style={{ marginTop: "50px" }}
+            style={{ marginTop: "75px" }}
             type="text"
             id="textbox"
             placeholder="Email"
@@ -170,6 +170,7 @@ function SignUp() {
             type="password"
             id="textbox"
             placeholder="Confirm Password"
+            color="#59bfff;"
             ref={(c) => (confirmPassword = c)}
           />
           <br />
