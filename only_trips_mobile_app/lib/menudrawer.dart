@@ -54,7 +54,8 @@ class NavDrawer extends StatelessWidget {
               title: Text('Logout'),
               onTap: () async {
                 sharedPrefs.clear(themeNotifier);
-                Navigator.push(context,
+                sharedPrefs.isLoggedIn = false;
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => StartPage()));
               }),
         ],

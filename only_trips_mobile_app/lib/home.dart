@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    super.initState();
     sharedPrefs.currUser.tripDetails.forEach((element) {
       fetchTrips(element.id);
     });
@@ -36,9 +37,9 @@ class _HomePageState extends State<HomePage> {
     if (response.statusCode == 200) {
       GetTrip trip = GetTrip.fromJson(jsonDecode(response.body));
       Trip innerTrip = trip.trip;
-      setState(() {
-        trips.add(innerTrip);
-      });
+        setState(() {
+          trips.add(innerTrip);
+        });
     } else {
       throw Exception('Unable to get trips');
     }

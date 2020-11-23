@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onlytrips/home.dart';
 import 'dart:convert'; // Used for json serialization
-import 'package:crypto/crypto.dart'; // Use for password hashing
 // ignore: avoid_web_libraries_in_flutter
 import 'package:http/http.dart' as http; // Use to post to the api server
 import 'package:email_validator/email_validator.dart';
@@ -16,6 +15,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String _email, _password = "";
   Future<Login> _response;
+
+  void _onAfterBuild(BuildContext context){
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => HomePage()));
+  }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -99,25 +105,10 @@ class _LoginPageState extends State<LoginPage> {
                   future: _response,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      // TODO: If user isn't verified, handle appropriately
                       if (snapshot.data.success) {
-                        // TODO: Change true to snapshot.data.success prior to deployment to handle errors in the credentials
                         sharedPrefs.currUser = snapshot.data.user;
                         sharedPrefs.isLoggedIn = true;
-                        return Column(
-                          children: <Widget>[
-                            Text(snapshot.data.message),
-                            RaisedButton(
-                              child: Text('Go to homepage'),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => HomePage()));
-                              },
-                            ),
-                          ],
-                        );
+                        WidgetsBinding.instance.addPostFrameCallback((_) => _onAfterBuild(context));
                       } else {
                         return Column(
                           children: <Widget>[
@@ -236,14 +227,15 @@ Future<Login> submitLogin(String _email, String _password) async {
   if (response.statusCode == 200) {
     return Login.fromJson(jsonDecode(response.body));
   } else if (response.statusCode == 400) {
-    throw Exception('Unable to log in, check username and password and try again');
+    throw (
+        'Unable to log in, check username and password and try again');
   } else if (response.statusCode == 401) {
-    throw Exception('No account registered with that email');
+    throw ('No account registered with that email');
   } else if (response.statusCode == 402) {
-    throw Exception('Please verify your email and try again');
+    throw ('Please verify your email and try again');
   } else if (response.statusCode == 403) {
-    throw Exception('Incorrect email and/or password');
+    throw ('Incorrect email and/or password');
   } else {
-    throw Exception('Failed to login');
+    throw ('Failed to login');
   }
 }
