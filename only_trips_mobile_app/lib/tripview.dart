@@ -17,11 +17,9 @@ class TripView extends StatefulWidget {
 class _TripViewState extends State<TripView> {
   Future<Delete> _response;
 
-  void _onAfterBuild(BuildContext context){
+  void _onAfterBuild(BuildContext context) {
     Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => HomePage()));
+        context, MaterialPageRoute(builder: (context) => HomePage()));
   }
 
   @override
@@ -55,7 +53,48 @@ class _TripViewState extends State<TripView> {
       ),
       body: (_response == null)
           ? SingleChildScrollView(
-            child: Column(children: <Widget>[
+              child: Column(children: <Widget>[
+              Card(
+                margin: EdgeInsets.all(10.0),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                color: Colors.blue[200],
+                child: ListTile(
+                  leading: Icon(
+                    Icons.date_range,
+                    size: 35.0,
+                  ),
+                  title: Text(
+                    "Travel Dates",
+                    style: TextStyle(
+                      fontFamily: 'Gotham Light Regular',
+                      fontSize: 20.0,
+                    ),
+                  ),
+                  subtitle: Row(
+                    children: [
+                      Text(
+                        "${widget.currTrip.startDate.substring(0, 10)}",
+                        style: TextStyle(
+                          fontFamily: 'Gotham Light Regular',
+                          fontSize: 20.0,
+                        ),
+                      ),
+                      Icon(
+                        Icons.arrow_right_alt,
+                        color: Colors.grey[600],
+                      ),
+                      Text(
+                        "${widget.currTrip.endDate.substring(0, 10)}",
+                        style: TextStyle(
+                          fontFamily: 'Gotham Light Regular',
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               Card(
                 margin: EdgeInsets.all(10.0),
                 shape: RoundedRectangleBorder(
@@ -140,7 +179,8 @@ class _TripViewState extends State<TripView> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   if (snapshot.data.success) {
-                    WidgetsBinding.instance.addPostFrameCallback((_) => _onAfterBuild(context));
+                    WidgetsBinding.instance
+                        .addPostFrameCallback((_) => _onAfterBuild(context));
                   } else {
                     return Column(
                       children: <Widget>[
