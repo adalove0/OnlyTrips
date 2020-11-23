@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http; // Use to post to the api server
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:onlytrips/login_classes.dart';
-import 'package:onlytrips/shared_prefs.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:onlytrips/profile.dart';
+import 'package:onlytrips/home.dart';
 
 class EditProfile extends StatelessWidget {
   final User currUser;
@@ -38,6 +38,10 @@ class EditProfile extends StatelessWidget {
               ),
             ],
           ),
+          leading: FlatButton(
+              onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => HomePage())),
+              child: Icon(Icons.arrow_back)),
           backgroundColor: Colors.lightBlueAccent[400],
           centerTitle: true,
         ),
@@ -280,20 +284,28 @@ class CustomFormState extends State<CustomForm> {
           SizedBox(
             height: 10.0,
           ),
-          Card(
-            margin: EdgeInsets.all(10.0),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0)),
-            color: Colors.green,
-            child: ListTile(
-              leading: Icon(
-                Icons.done_outline,
-                size: 35.0,
-              ),
-              title: Text(
-                "CONFIRM",
-                style: TextStyle(
-                  fontSize: 20.0,
+          GestureDetector(
+            onTap: () => {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => ProfilePage(currUser: widget.currUser))),
+            },
+            child: Card(
+              margin: EdgeInsets.all(10.0),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              color: Colors.green,
+              child: ListTile(
+                leading: Icon(
+                  Icons.done_outline,
+                  size: 35.0,
+                ),
+                title: Text(
+                  "CONFIRM",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
                 ),
               ),
             ),
