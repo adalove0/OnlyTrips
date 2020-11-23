@@ -170,7 +170,7 @@ class _HomePageState extends State<HomePage> {
             context, MaterialPageRoute(builder: (_) => NewTrip())),
         tooltip: 'New Trip',
         child: new Icon(Icons.add),
-        backgroundColor: Colors.lightBlueAccent[400],
+        backgroundColor: Theme.of(context).buttonColor,
       ),
     );
   }
