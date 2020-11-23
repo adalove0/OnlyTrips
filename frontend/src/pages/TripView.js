@@ -6,7 +6,6 @@ import Modal from "../components/Modal";
 const TripView = () => {
   return (
     <div>
-       <NavBar />
       <TripTable />             
     </div>
   );
