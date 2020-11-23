@@ -18,6 +18,13 @@ function SignUp() {
   var locationCountry;
   var locationZip;
 
+  var secQ1;
+  var ans1;
+  var secQ2;
+  var ans2;
+  var secQ3;
+  var ans3;
+
   const [message, setMessage] = useState("");
   const [show, setShow] = useState(false);
 
@@ -99,6 +106,12 @@ function SignUp() {
     
   }
 
+  const saveQuestion = async (question) => {
+    //event.preventDefault();
+    console.log(question);
+    
+  }
+
   const goToLogin = async (event) => {
     event.preventDefault();
     window.location.href = "/";
@@ -122,7 +135,7 @@ function SignUp() {
         <img src={logo} alt="OnlyTrips Logo" id="SignUpLogo"></img>
         <form id="SignUpForm">
           <input
-            style={{paddingtop: "50px"}}
+            style={{marginTop: "50px"}}
             type="text"
             id="textbox"
             placeholder="Email"
@@ -164,7 +177,7 @@ function SignUp() {
             ref={(c) => (age = c)}
           />
           <br />
-          <p>Location information</p>
+            <p>Location information</p>
           <br />
           <input
             type="text"
@@ -190,6 +203,72 @@ function SignUp() {
             placeholder="ZipCode"
             ref={(c) => (locationZip = c)}
           />
+          <br />
+          {/* SECURITY QUESTIONS */}
+          <p>Security Questions</p>
+          <div className="dropdown">
+            <button
+              className="dropbtn1"
+              id="secQ"
+              ref={(c) => (secQ1 = c)}
+            > Security Question 1</button>
+
+            <div className="dropdown-content1">
+              <a href="#" onClick={saveQuestion(this)}>What is your mother's maiden name?</a>
+              <a href="#">What is the name of your first pet?</a>
+              <a href="#">What make was your first car?</a>
+            </div>
+            
+            <input
+              type="text"
+              id="textbox"
+              placeholder="Answer"
+              ref={(c) => (ans1 = c)}
+            />
+
+          </div> 
+          <div className="dropdown">
+            <button
+              className="dropbtn2"
+              id="secQ"
+              placeholder="Security Question 2"
+              ref={(c) => (secQ2 = c)}
+            >Security Question 2</button>
+
+            <div className="dropdown-content2">
+              <a href="#">What middle school did you attend?</a>
+              <a href="#">Where would you like to travel to?</a>
+              <a href="#">What is your favorite color?</a>
+            </div>
+
+            <input
+              type="text"
+              id="textbox"
+              placeholder="Answer"
+              ref={(c) => (ans2 = c)}
+            />
+          </div> 
+          
+          <div className="dropdown">
+            <button
+                className="dropbtn3"
+                id="secQ"
+                ref={(c) => (secQ3 = c)}
+              >Security Question 3</button>
+              
+              <div className="dropdown-content3">
+                <a href="#">What is your favorite TV show?</a>
+                <a href="#">What did you want to be growing up?</a>
+                <a href="#">What month was your father born in?</a>
+              </div>
+
+              <input
+                type="text"
+                id="textbox"
+                placeholder="Answer"
+                ref={(c) => (ans3 = c)}
+              />
+          </div>
           <br />
           <br />
 
