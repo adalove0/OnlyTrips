@@ -155,6 +155,7 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Card(
+                    borderOnForeground: true,
                     color: Colors.lightBlueAccent[400],
                     elevation: 5.0,
                     shape: RoundedRectangleBorder(
@@ -176,16 +177,14 @@ class _HomePageState extends State<HomePage> {
                               fontSize: 40.0,
                             ),
                           ),
-                          Card(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.hourglass_empty,
-                                  size: 50.0,
-                                ),
-                                countDown(tripDetails[index])
-                              ],
-                            ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.hourglass_empty,
+                                size: 50.0,
+                              ),
+                              countDown(tripDetails[index])
+                            ],
                           )
                         ],
                       ),

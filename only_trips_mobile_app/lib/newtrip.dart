@@ -69,7 +69,6 @@ class _NewTripState extends State<NewTrip> {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.lightBlueAccent[400],
               centerTitle: true,
               title: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -86,6 +85,8 @@ class _NewTripState extends State<NewTrip> {
                     'Trip',
                     style: TextStyle(
                       fontFamily: 'Marguerite',
+                      fontSize: 20.0,
+                      color: Colors.lightBlueAccent[400],
                     ),
                   ),
                 ],

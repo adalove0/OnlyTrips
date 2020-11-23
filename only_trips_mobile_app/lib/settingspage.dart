@@ -41,7 +41,12 @@ class _SettingsPageState extends State<SettingsPage> {
       body: ListView(
         children: <Widget>[
           ListTile(
-            title: Text('Dark Theme'),
+            title: Text(
+              'Dark Theme',
+              style: TextStyle(
+                fontFamily: "Gotham Light Regular",
+              ),
+            ),
             contentPadding: const EdgeInsets.only(left: 16.0),
             trailing: Transform.scale(
               scale: 0.4,
