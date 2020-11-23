@@ -866,3 +866,7 @@ input[type="text"]::placeholder {
 .one input{
   font-size: 18px;
 }
+.header h1{
+      padding: 75px;
+    text-align: center;
+}
