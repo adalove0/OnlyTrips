@@ -82,7 +82,7 @@ function SignUp() {
       }
     }
     try {
-      const response = await fetch(buildPathSingUp("signup"), {
+      const response = await fetch(buildPathSignUp("signup"), {
         method: "POST",
         body: js,
         headers: { "Content-Type": "application/json" },
