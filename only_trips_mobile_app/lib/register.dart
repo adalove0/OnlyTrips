@@ -29,33 +29,15 @@ class _RegisterPageState extends State<RegisterPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.lightBlueAccent[400],
           centerTitle: true,
           title: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Only',
-                style: TextStyle(
-                  fontFamily: 'Gotham Light Regular',
-                  fontSize: 25.0,
-                ),
-              ),
-              Text(
-                'Trips',
-                style: TextStyle(
-                  fontFamily: 'Marguerite',
-                ),
-              ),
-              Container(
-                width: 50.0,
-              ),
-              Text(
                 'Registration',
                 style: TextStyle(
-                  fontFamily: 'Heebo',
-                ),
+                    fontFamily: 'Gotham Light Regular', fontSize: 25.0),
               ),
             ],
           ),
