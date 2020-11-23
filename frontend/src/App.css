@@ -42,6 +42,52 @@ body {
   overflow-y: auto;
 }
 
+#alertDangerDiv {
+  padding: 5px;
+  border: 1px solid transparent;
+  height: 5%; 
+  visibility: hidden;
+  margin: auto;
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  width: 600px;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  overflow-y: auto;
+  
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+}
+
+#alertSuccessDiv {
+  padding: 5px;
+  border: 1px solid transparent;
+  height: 5%; 
+  visibility: hidden;
+  margin: auto;
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  width: 600px;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  overflow-y: auto;
+
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
+}
+
 /*Login CSS*/
 #loginDiv {
   max-width: 360px;

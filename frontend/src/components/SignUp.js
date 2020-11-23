@@ -23,8 +23,8 @@ function SignUp() {
 
 
   const doSignUp = async (event) => {
-    var visAlertSuccess = document.getElementById("alertSuccess");
-    var visAlertDanger = document.getElementById("alertDanger");
+    var visAlertSuccess = document.getElementById("alerSuccessDiv");
+    var visAlertDanger = document.getElementById("alertDangerDiv");
     event.preventDefault();
     if(loginEmail.value === "" || confirmEmail.value === '' || firstLastName.value === '' || loginPassword.value === '' || confirmPassword.value === '' || age.value === '' || locationCity.value === '' || locationCountry.value === '' || locationState.value === '' || locationZip.value === '' ) {
       visAlertDanger.style.visibility = "visible";
@@ -90,8 +90,8 @@ function SignUp() {
   };
 
   const closeAlert = async (event) => {
-    var visAlertSuccess = document.getElementById("alertSuccess");
-    var visAlertDanger = document.getElementById("alertDanger");
+    var visAlertSuccess = document.getElementById("alertSuccessDiv");
+    var visAlertDanger = document.getElementById("alertDangerDiv");
     event.preventDefault();
     visAlertSuccess.style.visibility = "hidden";
     visAlertDanger.style.visibility = "hidden";
@@ -106,22 +106,22 @@ function SignUp() {
     
     <div>
       
-      <Alert variant="danger" id="alertDanger"> 
+      <div id="alertDangerDiv"> 
         <p>
             
         </p> 
         <div >
               
             </div>
-      </Alert>
-      <Alert variant="success" id="alertSuccess"> 
+      </div>
+      <div id="alertSuccessDiv"> 
         <p>
-            Thank you for signing up! Please check your email for a verification link! <Button onClick={closeAlert} variant="outline-success"> x </Button>
+            Thank you for signing up! Please check your email for a verification link! <Button onClick={closeAlert}> x </Button>
         </p> 
         <div >
               
             </div>
-      </Alert>
+      </div>
       <div id="signUpDiv">
         <img src={logo} alt="OnlyTrips Logo" id="logo"></img>
         <form id="SignUpForm">

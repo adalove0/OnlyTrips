@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+//THis is what I would like to do --> import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstra‌​p.min.css";
 
 import LoginPage from "./pages/LoginPage";
 import TripView from "./pages/TripView";
