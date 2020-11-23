@@ -64,7 +64,7 @@ function TripView() {
     async function getArrayData() {
       setLoading(true);
       try {
-        const request = await fetch(buildPathTravel("singleTrip"), {
+        const request = await fetch(buildPathTravel("travel"), {
           method: "POST",
           body: js,
           headers: { "Content-Type": "application/json" },
