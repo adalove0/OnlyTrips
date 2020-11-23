@@ -78,6 +78,14 @@ class _HomePageState extends State<HomePage> {
           ),
           onPressed: () => _scaffoldKey.currentState.openDrawer(),
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search,
+              semanticLabel: 'search',
+            ),
+            onPressed: () {},
+          ),
+        ],
       ),
       drawer: new NavDrawer(),
       body: ListView.builder(
@@ -91,6 +99,7 @@ class _HomePageState extends State<HomePage> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
+                color: Colors.lightBlueAccent[400],
                   elevation: 5.0,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0)),
@@ -100,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                         child: Text(
                       trips[index].destination.elementAt(0).city,
                       style: TextStyle(
-                        fontFamily: 'Marguerite',
+                        fontFamily: 'Gotham Regular Light',
                         fontSize: 40.0,
                       ),
                     )),

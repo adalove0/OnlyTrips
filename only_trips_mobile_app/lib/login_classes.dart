@@ -64,7 +64,7 @@ class User {
   }
 
   User.fromMyJson(Map<String, dynamic> json) {
-    userId = json['_id'];
+    userId = json['userId'];
     age = json['age'];
     confirmed = json['confirmed'];
     if (json['TripDetails'] != null) {
