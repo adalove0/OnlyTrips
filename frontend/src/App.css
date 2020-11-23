@@ -768,6 +768,7 @@ input[type="text"]::placeholder {
 .one input{
   float: right;
   border: none;
+  background: inherit;
 }
 .one label{
   margin-left: 30px;
@@ -875,7 +876,7 @@ input[type="text"]::placeholder {
   outline: none;
 }
 .one{
-  background-color: rgba(255, 255, 255, 0.6);
+  background: inherit;
 }
 
 .delete-icon:hover{
