@@ -9,8 +9,10 @@ import logo from "../images/updated-logo.PNG";
 function Verify() {
 
   const doVerify = async (event) => {
-    var js = new URLSearchParams(window.location.search).get('token');
-    alert(js);
+    var tokenVal = new URLSearchParams(window.location.search).get('token');
+    var obj = {token: tokenVal};
+    JSON.stringify(obj);
+    alert(obj);
 
     const appName = "onlytrips";
     function buildPath(route) {
@@ -23,7 +25,7 @@ function Verify() {
     try {
       const response = await fetch(buildPath("verify"), {
         method: "POST",
-        body: js,
+        body: obj,
         headers: { "Content-Type": "application/json" },
       });
 
