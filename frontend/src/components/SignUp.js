@@ -21,33 +21,28 @@ function SignUp() {
   const [message, setMessage] = useState("");
   const [show, setShow] = useState(false);
 
+
   const doSignUp = async (event) => {
-    var visAlertSuccess = document.getElementById("alertSuccess");
-    var visAlertDanger = document.getElementById("alertDanger");
+    var visAlertSuccess = document.getElementById("alerSuccessDiv");
+    var visAlertDanger = document.getElementById("alertDangerDiv");
     event.preventDefault();
-    if (
-      loginEmail.value === "" ||
-      confirmEmail.value === "" ||
-      firstLastName.value === "" ||
-      loginPassword.value === "" ||
-      confirmPassword.value === "" ||
-      age.value === "" ||
-      locationCity.value === "" ||
-      locationCountry.value === "" ||
-      locationState.value === "" ||
-      locationZip.value === ""
-    ) {
+    if(loginEmail.value === "" || confirmEmail.value === '' || firstLastName.value === '' || loginPassword.value === '' || confirmPassword.value === '' || age.value === '' || locationCity.value === '' || locationCountry.value === '' || locationState.value === '' || locationZip.value === '' ) {
       visAlertDanger.style.visibility = "visible";
       visAlertDanger.innerHTML = "Please fill in all blanks";
-    } else if (loginEmail.value !== confirmEmail.value) {
+    }
+    else if (loginEmail.value !== confirmEmail.value) {
       visAlertDanger.style.visibility = "visible";
       visAlertDanger.innerHTML = "Login Emails don't match";
       // return;
-    } else if (loginPassword.value !== confirmPassword.value) {
+    }
+    else if (loginPassword.value !== confirmPassword.value) {
       visAlertDanger.style.visibility = "visible";
       visAlertDanger.innerHTML = "Passwords dont match";
       // return;
-    } else {
+    }
+
+    else
+    {
       visAlertSuccess.style.visibility = "visible";
     }
 
@@ -66,16 +61,8 @@ function SignUp() {
 
     var js = JSON.stringify(obj);
     //alert(js);
-    const appName = "onlytrips";
-    function buildPath(route) {
-      if (process.env.NODE_ENV === "production") {
-        return "https://" + appName + ".herokuapp.com/" + route;
-      } else {
-        return "http://localhost:5000/signup";
-      }
-    }
     try {
-      const response = await fetch(buildPath("signup"), {
+      const response = await fetch("http://localhost:5000/signup", {
         method: "POST",
         body: js,
         headers: { "Content-Type": "application/json" },
@@ -103,12 +90,12 @@ function SignUp() {
   };
 
   const closeAlert = async (event) => {
-    var visAlertSuccess = document.getElementById("alertSuccess");
-    var visAlertDanger = document.getElementById("alertDanger");
+    var visAlertSuccess = document.getElementById("alertSuccessDiv");
+    var visAlertDanger = document.getElementById("alertDangerDiv");
     event.preventDefault();
     visAlertSuccess.style.visibility = "hidden";
     visAlertDanger.style.visibility = "hidden";
-  };
+  }
 
   const goToLogin = async (event) => {
     event.preventDefault();
@@ -116,22 +103,25 @@ function SignUp() {
   };
 
   return (
+    
     <div>
-      <Alert variant="danger" id="alertDanger">
-        <p></p>
-        <div></div>
-      </Alert>
-      <Alert variant="success" id="alertSuccess">
+      
+      <div id="alertDangerDiv"> 
         <p>
-          Thank you for signing up! Please check your email for a verification
-          link!{" "}
-          <Button onClick={closeAlert} variant="outline-success">
-            {" "}
-            x{" "}
-          </Button>
-        </p>
-        <div></div>
-      </Alert>
+            
+        </p> 
+        <div >
+              
+            </div>
+      </div>
+      <div id="alertSuccessDiv"> 
+        <p>
+            Thank you for signing up! Please check your email for a verification link! <Button onClick={closeAlert}> x </Button>
+        </p> 
+        <div >
+              
+            </div>
+      </div>
       <div id="signUpDiv">
         <img src={logo} alt="OnlyTrips Logo" id="logo"></img>
         <form id="SignUpForm">
@@ -213,12 +203,13 @@ function SignUp() {
         <p id="loginLink">
           {" "}
           Have an account?{" "}
-          <a id="Link" href="/" onClick={goToLogin}>
+          <a id="Link" href="/" /*onClick={goToLogin}*/>
             Log In!
           </a>
-        </p>
+        </p>  
       </div>
     </div>
+
   );
 }
 
