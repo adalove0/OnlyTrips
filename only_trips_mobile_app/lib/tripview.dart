@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http; // Use to post to the api server
 import 'package:flutter/material.dart';
+import 'package:onlytrips/edit_budget.dart';
 import 'package:onlytrips/home.dart';
 import 'package:onlytrips/shared_prefs.dart';
 import 'package:onlytrips/trip.dart';
@@ -334,6 +335,31 @@ class _TripViewState extends State<TripView> {
                 style: TextStyle(
                   fontFamily: 'Gotham Light Regular',
                   fontSize: 20.0,
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () => {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => BudgetEdit(currTrip: widget.currTrip)))
+            },
+            child: Card(
+              margin: EdgeInsets.all(10.0),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              color: Colors.green,
+              child: ListTile(
+                leading: Icon(
+                  Icons.edit,
+                  size: 35.0,
+                ),
+                title: Text(
+                  "Edit Budget",
+                  style: TextStyle(
+                    fontFamily: 'Gotham Light Bold',
+                    fontSize: 20.0,
+                  ),
                 ),
               ),
             ),
