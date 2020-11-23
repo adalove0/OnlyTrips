@@ -756,4 +756,107 @@ input[type="text"]::placeholder {
   margin-top: 0 !important;
   background: #8cd0fa;
 }
+.TripTable{
+  width: 400px;
+  margin: 20px;
+  border-radius: 10px;
+  height: 250px;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.6);
+}
+.one input{
+  float: right;
+  border: none;
+}
+.one label{
+  margin-left: 30px;
+}
+.buttons{
+  font-size: 26px;
+  height: 35px;
+  width: 100%;
+  display: inline-block;
+}.right-icons{
+  float:right;
+  width: 15%;
+}
+.right-icons div{
+  text-align: right;
+}
+.edit-icon{
+  float:left;
+  margin-right: 10px;
+}
+.delete-icon{
+  float:left;
+}
+.container-header{
+  height: 100px;
+  border: none;
+  border-bottom: 2px solid  #59bfff;
+  width: 100%;
+  margin: 0;
+  background: white;
+}
+.search {
+  width: 80%;
+  position: relative;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  height: 80px;
+}
 
+.searchTerm {
+  width: 100%;
+  border: 3px solid  #59bfff;
+  border-right: none;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  width: 40px;
+  height: 40px;
+  border: 1px solid  #59bfff;
+  background:  #59bfff;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+.col-sm{
+  border: 1px solid black;
+}
+.add-div, .search-div, .log-div, .img-div{
+  display: inline-block;
+  float: left;
+  text-align: center;
+  height: 50px;
+}
+.log-div, .add-div, .search-div{
+  margin-top: 30px;
+}
+.search{
+  width: 80%;
+
+}
+.img-div{
+  width: 20%;
+  height: 100%;
+}
+.search-div{
+  width: 40%;
+}
+.add-div, .log-div{
+  width: 20%;
+}
