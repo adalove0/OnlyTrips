@@ -32,31 +32,6 @@ function SignUp() {
     var visAlertSuccess = document.getElementById("alertSuccessDiv");
     var visAlertDanger = document.getElementById("alertDangerDiv");
     event.preventDefault();
-    if (
-      loginEmail.value === "" ||
-      confirmEmail.value === "" ||
-      firstLastName.value === "" ||
-      loginPassword.value === "" ||
-      confirmPassword.value === "" ||
-      age.value === "" ||
-      locationCity.value === "" ||
-      locationCountry.value === "" ||
-      locationState.value === "" ||
-      locationZip.value === ""
-    ) {
-      visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML += "Please fill in all blanks";
-    } else if (loginEmail.value !== confirmEmail.value) {
-      visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML = "Login Emails don't match";
-      // return;
-    } else if (loginPassword.value !== confirmPassword.value) {
-      visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML = "Passwords don't match";
-      // return;
-    } else {
-      visAlertSuccess.style.visibility = "visible";
-    }
 
     var obj = {
       email: loginEmail.value,
@@ -71,23 +46,46 @@ function SignUp() {
       },
     };
 
+    if (
+      loginEmail.value === "" ||
+      confirmEmail.value === "" ||
+      firstLastName.value === "" ||
+      loginPassword.value === "" ||
+      confirmPassword.value === "" ||
+      age.value === "" ||
+      locationCity.value === "" ||
+      locationCountry.value === "" ||
+      locationState.value === "" ||
+      locationZip.value === ""
+    ) {
+      visAlertDanger.style.visibility = "visible";
+      visAlertDanger.innerHTML = "Please fill in all blanks";
+    }
+    else if (loginEmail.value !== confirmEmail.value) {
+      visAlertDanger.style.visibility = "visible";
+      visAlertDanger.innerHTML = "Login Emails don't match";
+      // return;
+    } else if (loginPassword.value !== confirmPassword.value) {
+      visAlertDanger.style.visibility = "visible";
+      visAlertDanger.innerHTML = "Passwords don't match";
+      // return;
+    }
+    //else if (res.success == false){
+    //  visAlertDanger.innerHTML = res.message;
+    //}
+    else {
+      console.log(res);
+      visAlertSuccess.style.visibility = "visible";
+    }
+
     var js = JSON.stringify(obj);
     //alert(js);
-<<<<<<< HEAD
-    var appName = "onlytrips";
+    const appName = "onlytrips";
     function buildPathSignUp(route) {
       if (process.env.NODE_ENV === "production") {
         return "https://" + appName + ".herokuapp.com/" + route;
       } else {
         return "http://localhost:5000/signup";
-=======
-    const appName = "onlytrips"
-    function buildPathSignUp(route){
-      if(process.ENV.NODE_ENV === "production"){
-        return "https://" + appName + ".herokuapp.com/" + route;
-      } else {
-        return "https://localhost:5000/signup";
->>>>>>> 866796b1e0b1c01b68bb205460adadf499836079
       }
     }
     try {
@@ -101,7 +99,7 @@ function SignUp() {
       console.log(res);
 
       if (res.id <= 0) {
-        setMessage("User/Password combination incorrect");
+        setMessage("Su");
       } else {
         var user = {
           firstName: res.firstName,
@@ -116,6 +114,8 @@ function SignUp() {
       //alert(e.toString());
       return;
     }
+
+
   };
 
   const closeAlert = async (event) => {
@@ -147,7 +147,7 @@ function SignUp() {
         <img src={logo} alt="OnlyTrips Logo" id="SignUpLogo"></img>
         <form id="SignUpForm">
           <input
-            style={{ marginTop: "50px" }}
+            style={{ marginTop: "75px" }}
             type="text"
             id="textbox"
             placeholder="Email"
@@ -179,6 +179,7 @@ function SignUp() {
             type="password"
             id="textbox"
             placeholder="Confirm Password"
+            color="#59bfff;"
             ref={(c) => (confirmPassword = c)}
           />
           <br />

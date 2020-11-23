@@ -27,7 +27,6 @@ class _TripViewState extends State<TripView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBlueAccent[400],
         centerTitle: true,
         title: Row(
           mainAxisSize: MainAxisSize.min,
@@ -47,6 +46,8 @@ class _TripViewState extends State<TripView> {
               'Details',
               style: TextStyle(
                 fontFamily: 'Marguerite',
+                fontSize: 20.0,
+                color: Colors.lightBlueAccent[400],
               ),
             ),
           ],
@@ -342,7 +343,10 @@ class _TripViewState extends State<TripView> {
           GestureDetector(
             onTap: () => {
               Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => BudgetEdit(currTrip: widget.currTrip)))
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          BudgetEdit(currTrip: widget.currTrip)))
             },
             child: Card(
               margin: EdgeInsets.all(10.0),

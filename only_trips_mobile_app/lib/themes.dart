@@ -22,6 +22,8 @@ class ThemeNotifier with ChangeNotifier {
 }
 
 final darkTheme = ThemeData(
+  appBarTheme: AppBarTheme(
+      color: Colors.grey[900], textTheme: Typography.whiteCupertino),
   primarySwatch: MaterialColor(4280361249, {
     50: Color(0xfff2f2f2),
     100: Color(0xffe6e6e6),
@@ -518,6 +520,8 @@ final darkTheme = ThemeData(
 );
 
 final lightTheme = ThemeData(
+  appBarTheme:
+      AppBarTheme(color: Colors.white, textTheme: Typography.blackCupertino),
   primarySwatch: MaterialColor(4280923894, {
     50: Color(0xffe7f7fe),
     100: Color(0xffceeefd),
