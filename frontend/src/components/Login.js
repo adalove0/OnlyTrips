@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import App from "../App";
-import logo from "../images/OnlyTrips.svg";
+import logo from "../images/OnlyTrips.png";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 
