@@ -152,11 +152,11 @@ function TripView() {
               </div>
               <div className="one">
                 <label>Start Date</label>
-                <input value={trip.startDate}/>
+                <input value={trip.startDate.split('T')[0]}/>
               </div>
               <div className="one">
                 <label>End Date</label>
-                <input value={trip.endDate}/>
+                <input value={trip.endDate.split('T')[0]}/>
               </div>
               <div className="one">
                 <label>Number of travelers</label>
