@@ -23,6 +23,11 @@ const lastData = [];
 //const newTrip = '{"someTrip":[{"name":"Justtin", "age":"21"}]}';
 
 function TripView() {
+    const LogOut = async (event) => {
+    event.preventDefault();
+    localStorage.removeItem("user_data");
+    window.location.href = "/";
+  };
   var trash = [{ startDate: "0", endDate: "0" }];
 
   const [tripData, setTripData] = useState([]);
@@ -58,11 +63,6 @@ function TripView() {
         return "http://localhost:5000/singleTrip";
       }
     }
-      const LogOut = async (event) => {
-    event.preventDefault();
-    localStorage.removeItem("user_data");
-    window.location.href = "/";
-  };
 
     async function getArrayData() {
       setLoading(true);
