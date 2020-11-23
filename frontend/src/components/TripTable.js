@@ -124,8 +124,8 @@ function TripView() {
           </button>
           </div>
         </div>
-       <div className="add-div"><Button variant="success" className = "addButton">Add</Button></div>
-       <div className="log-div"><Button variant="success" className = "LogOutButton">Logout</Button></div>
+       <div className="add-div"><Button  className = "addButton">Add</Button></div>
+       <div className="log-div"><Button  className = "LogOutButton" onClick={LogOut}>Logout</Button></div>
     </div>
     <div className = "trip-tables-generated">
       {isLoading ? (<h1>Loading...</h1>
