@@ -47,19 +47,7 @@ const UserSchema = new mongoose.Schema({
   TripDetails: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Trips' 
-  }],
-
-  securityQuestionOne:{
-    type: String,
-    trim: true,
-    required: true
-  },
-  securityQuestionTwo:{
-    type: String,
-    trim: true,
-    required: true
-  }
-
+  }]
 });
 
 UserSchema.methods.generateHash = function (password) {
