@@ -170,6 +170,7 @@ function SignUp() {
             type="password"
             id="textbox"
             placeholder="Confirm Password"
+            color="#59bfff;"
             ref={(c) => (confirmPassword = c)}
           />
           <br />

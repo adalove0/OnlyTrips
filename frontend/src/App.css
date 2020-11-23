@@ -735,7 +735,7 @@ textarea::placeholder {
 #numPeople:focus {
   outline: none;
 }
-input[type="text"]::placeholder {
+input[type="text"]::placeholder, input[type="password"]::placeholder,input[type="number"]::placeholder {
   /* Firefox, Chrome, Opera */
   padding-left: 5px;
   color: #59bfff;
