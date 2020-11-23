@@ -28,6 +28,10 @@ function TripView() {
     localStorage.removeItem("user_data");
     window.location.href = "/";
   };
+    const addTrip = async (event) => {
+    event.preventDefault();
+    window.location.href = "/AddTripPage";
+  };
   var trash = [{ startDate: "0", endDate: "0" }];
 
   const [tripData, setTripData] = useState([]);
@@ -130,7 +134,7 @@ function TripView() {
           </button>
           </div>
         </div>
-       <div className="add-div"><Button  className = "addButton">Add</Button></div>
+       <div className="add-div"><Button  className = "addButton" onClick={addTrip}>Add</Button></div>
        <div className="log-div"><Button  className = "LogOutButton" onClick={LogOut}>Logout</Button></div>
     </div>
     <div className = "trip-tables-generated">
@@ -147,6 +151,7 @@ function TripView() {
                     <i className="fa">&#xf014;</i>
                     </div>
                 </div>
+              </div>
               </div>
               <div className="one">
                 <label>City</label>
@@ -170,7 +175,6 @@ function TripView() {
               </div>
                 {/* <td>DELETE ICON</td>
                 <td>EDIT ICON</td> */}
-          </div>
           </div>
        ))
       )}
