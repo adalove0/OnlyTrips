@@ -35,7 +35,7 @@ function SignUp() {
     event.preventDefault();
     if(loginEmail.value === "" || confirmEmail.value === '' || firstLastName.value === '' || loginPassword.value === '' || confirmPassword.value === '' || age.value === '' || locationCity.value === '' || locationCountry.value === '' || locationState.value === '' || locationZip.value === '' ) {
       visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML += "Please fill in all blanks";
+      visAlertDanger.innerHTML = "Please fill in all blanks";
     }
     else if (loginEmail.value !== confirmEmail.value) {
       visAlertDanger.style.visibility = "visible";
@@ -64,12 +64,12 @@ function SignUp() {
         country: locationCountry.value,
         zip: locationZip.value,
       },
-      securityQ1: secQ1.value,
+      /*securityQ1: secQ1.value,
       answer1: ans1.value,
-      secerityQ2: secQ1.value,
+      securityQ2: secQ1.value,
       ans2: ans2.value,
-      secQ3: secq3.value,
-      ans3: ans3.value,
+      securityQ3: secq3.value,
+      ans3: ans3.value,*/
     };
 
     var js = JSON.stringify(obj);

@@ -129,7 +129,6 @@ function TripView() {
         var res = await response.text();
         console.log(res);
       } catch (e) {
-        alert(e.toString());
         return;
       }
     }
@@ -231,9 +230,10 @@ function TripView() {
                         }
                       />
                     </div>
-                    <div className="one">
+                    <div background="inherit" className="one">
                       <label>State</label>
                       <input
+                      background="inherit"
                         value={
                           trip.destination[trip.destination.length - 1].state
                         }
@@ -241,7 +241,7 @@ function TripView() {
                     </div>
                     <div className="one">
                       <label>Start Date</label>
-                      <input value={trip.startDate.split("T")[0]} />
+                      <input width="10%" value={trip.startDate.split("T")[0]} />
                     </div>
                     <div className="one">
                       <label>End Date</label>
