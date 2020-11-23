@@ -863,3 +863,6 @@ input[type="text"]::placeholder {
 .one label{
   font-size: 18px;
 }
+.one input{
+  font-size: 18px;
+}
