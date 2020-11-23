@@ -215,8 +215,20 @@ function TripView() {
                     onClick={() => doDeleteTrip(trip._id)}
                   >
                     <i className="fa">&#xf014;</i>
+<<<<<<< HEAD
+=======
+                    </div>
                   </div>
                 </div>
+                  <div className="one">
+                    <label>City</label>
+                    <input
+                      value={trip.destination[trip.destination.length - 1].city}
+                    />
+>>>>>>> a8c2671bdb215a857c350dd4195c4930ad980545
+                  </div>
+                </div>
+<<<<<<< HEAD
                 <div className="one">
                   <label>City</label>
                   <input
@@ -247,9 +259,16 @@ function TripView() {
             </div>
           ))
         )}
+=======
+              )
+            ))
+              };
+>>>>>>> a8c2671bdb215a857c350dd4195c4930ad980545
       </div>
-    </div>
+      </div>
+
+
   );
-}
+      
 
 export default TripView;

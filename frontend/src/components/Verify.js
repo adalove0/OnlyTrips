@@ -32,6 +32,7 @@ function Verify() {
 
       var res = await response.json();
       console.log(res);
+      window.location.href = "/";
     } catch (e) {
       alert(e.toString());
       return;
