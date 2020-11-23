@@ -73,6 +73,7 @@ function SignUp() {
 
     var js = JSON.stringify(obj);
     //alert(js);
+<<<<<<< HEAD
     const appName = "onlytrips";
     function buildPathSignUp(route) {
       if (process.env.NODE_ENV === "production") {
@@ -83,6 +84,18 @@ function SignUp() {
     }
     try {
       const response = await fetch(buildPathSignUp("signup"), {
+=======
+    const appName = "onlytrips"
+    function buildPathSignUp(route){
+      if(process.ENV.NODE_ENV === "production"){
+        return "https://" + appName + ".herokuapp.com/" + route;
+      } else {
+        return "https://localhost:5000/signup";
+      }
+    }
+    try {
+      const response = await fetch(buildPathSingUp("signup"), {
+>>>>>>> 65f9e5a3c12ba90ab28e0de04e3a5b0f5952e724
         method: "POST",
         body: js,
         headers: { "Content-Type": "application/json" },
