@@ -85,7 +85,7 @@ class _TripViewState extends State<TripView> {
                 ),
               ),
               trailing: Text(
-                " ${widget.currTrip.numPeople.numberInt}",
+                " ${widget.currTrip.numPeople.toString()}",
                 style: TextStyle(
                   fontFamily: 'Gotham Light Regular',
                   fontSize: 20.0,
@@ -93,32 +93,138 @@ class _TripViewState extends State<TripView> {
               ),
             ),
           ),
-          Container(
-              child: Text(
-            "Budgeting:",
-            style: TextStyle(
-              fontFamily: 'Gotham Light Regular',
-              fontSize: 20.0,
-            ),
-          )),
-          Expanded(
-            child: ListView.builder(
-              itemCount: widget.currTrip.budget.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                    child: Center(
-                        child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "${widget.currTrip.budget.elementAt(index).toString()}: \$${widget.currTrip.budget.elementAt(index).foodCost}",
-                    style: TextStyle(
-                      fontFamily: 'Gotham Light Regular',
-                    ),
-                  ),
-                )));
-              },
+          if (widget.currTrip.budget.isNotEmpty)
+            budgetCards(), // Print budget if budget isn't empty
+        ]));
+  }
+  Widget budgetCards() {
+    return Column (
+      children: <Widget>[
+        Container(
+            child: Text(
+              "Budgeting:",
+              style: TextStyle(
+                fontFamily: 'Gotham Light Regular',
+                fontSize: 20.0,
+              ),
+            )),
+        Column(children: <Widget>[
+          Card(
+            margin: EdgeInsets.all(10.0),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            color: Colors.blue[100],
+            child: ListTile(
+              leading: Icon(
+                Icons.attach_money,
+                size: 35.0,
+              ),
+              title: Text(
+                "Travel:",
+                style: TextStyle(
+                  fontFamily: 'Gotham Light Regular',
+                  fontSize: 20.0,
+                ),
+              ),
+              trailing: Text(
+                '\$' +
+                    widget.currTrip.budget.elementAt(0).travelCost.toString(),
+                style: TextStyle(
+                  fontFamily: 'Gotham Light Regular',
+                  fontSize: 20.0,
+                ),
+              ),
             ),
           ),
-        ]));
+          Card(
+            margin: EdgeInsets.all(10.0),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            color: Colors.blue[100],
+            child: ListTile(
+              leading: Icon(
+                Icons.attach_money,
+                size: 35.0,
+              ),
+              title: Text(
+                "Food:",
+                style: TextStyle(
+                  fontFamily: 'Gotham Light Regular',
+                  fontSize: 20.0,
+                ),
+              ),
+              trailing: Text(
+                '\$' +
+                    widget.currTrip.budget.elementAt(0).foodCost.toString(),
+                style: TextStyle(
+                  fontFamily: 'Gotham Light Regular',
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
+          ),
+          Card(
+            margin: EdgeInsets.all(10.0),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            color: Colors.blue[100],
+            child: ListTile(
+              leading: Icon(
+                Icons.attach_money,
+                size: 35.0,
+              ),
+              title: Text(
+                "Lodging:",
+                style: TextStyle(
+                  fontFamily: 'Gotham Light Regular',
+                  fontSize: 20.0,
+                ),
+              ),
+              trailing: Text(
+                '\$' +
+                    widget.currTrip.budget
+                        .elementAt(0)
+                        .lodgingCost
+                        .toString(),
+                style: TextStyle(
+                  fontFamily: 'Gotham Light Regular',
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
+          ),
+          Card(
+            margin: EdgeInsets.all(10.0),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            color: Colors.blue[100],
+            child: ListTile(
+              leading: Icon(
+                Icons.attach_money,
+                size: 35.0,
+              ),
+              title: Text(
+                "Misc:",
+                style: TextStyle(
+                  fontFamily: 'Gotham Light Regular',
+                  fontSize: 20.0,
+                ),
+              ),
+              trailing: Text(
+                '\$' +
+                    widget.currTrip.budget
+                        .elementAt(0)
+                        .miscellaneousCost
+                        .toString(),
+                style: TextStyle(
+                  fontFamily: 'Gotham Light Regular',
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
+          ),
+        ])
+      ],
+    );
   }
 }
