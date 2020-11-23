@@ -15,31 +15,50 @@ class _SettingsPageState extends State<SettingsPage> {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
     return SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            title: Text("Settings"),
-          ),
-          body: ListView(
-            children: <Widget>[
-              ListTile(
-                title: Text('Dark Theme'),
-                contentPadding: const EdgeInsets.only(left: 16.0),
-                trailing: Transform.scale(
-                  scale: 0.4,
-                  child: DayNightSwitch(
-                    value: sharedPrefs.isDarkMode,
-                    onChanged: (val) {
-                      setState(() {
-                        sharedPrefs.isDarkMode = val;
-                      });
-                      onThemeChanged(val, themeNotifier);
-                    },
-                  ),
-                ),
-              )
-            ],
-          ),
-        )
-    );
+      appBar: AppBar(
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Only',
+              style: TextStyle(
+                fontFamily: 'Gotham Light Regular',
+                fontSize: 25.0,
+              ),
+            ),
+            Text(
+              'Settings',
+              style: TextStyle(
+                fontFamily: 'Marguerite',
+                fontSize: 20.0,
+                color: Colors.lightBlueAccent[400],
+              ),
+            ),
+          ],
+        ),
+      ),
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            title: Text('Dark Theme'),
+            contentPadding: const EdgeInsets.only(left: 16.0),
+            trailing: Transform.scale(
+              scale: 0.4,
+              child: DayNightSwitch(
+                value: sharedPrefs.isDarkMode,
+                onChanged: (val) {
+                  setState(() {
+                    sharedPrefs.isDarkMode = val;
+                  });
+                  onThemeChanged(val, themeNotifier);
+                },
+              ),
+            ),
+          )
+        ],
+      ),
+    ));
   }
 
   void onThemeChanged(bool value, ThemeNotifier themeNotifier) async {

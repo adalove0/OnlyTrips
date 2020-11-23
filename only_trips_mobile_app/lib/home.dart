@@ -96,7 +96,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.lightBlueAccent[400],
         centerTitle: true,
         title: Row(
           mainAxisSize: MainAxisSize.min,
@@ -113,6 +112,8 @@ class _HomePageState extends State<HomePage> {
               'Trips',
               style: TextStyle(
                 fontFamily: 'Marguerite',
+                fontSize: 20.0,
+                color: Colors.lightBlueAccent[400],
               ),
             ),
           ],
