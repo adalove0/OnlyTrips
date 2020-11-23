@@ -104,7 +104,7 @@ class AddTrip extends Component {
 
       var res = await response.text();
       console.log(res);
-      console.log(res);
+      window.location.href = "/TripView";
     } catch (e) {
       alert(e.toString());
       return;
