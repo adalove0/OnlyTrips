@@ -69,12 +69,6 @@ function SignUp() {
         country: locationCountry.value,
         zip: locationZip.value,
       },
-      securityQ1: secQ1.value,
-      answer1: ans1.value,
-      secerityQ2: secQ1.value,
-      ans2: ans2.value,
-      secQ3: secq3.value,
-      ans3: ans3.value,
     };
 
     var js = JSON.stringify(obj);
@@ -123,61 +117,6 @@ function SignUp() {
     visAlertDanger.style.visibility = "hidden";
     visAlertSuccess.style.visibility = "hidden";
   };
-
-  function saveQuestion(question) {
-    var qClass;
-    var dropDown;
-    if (question >= 1 && question <= 3) {
-      qClass = document.getElementById("secQ1");
-      dropDown = document.getElementsByClassName("dropdown-content1")[0];
-      console.log(dropDown.style.block);
-      if (question == 1) {
-        console.log(qClass.placeholder);
-        qClass.value = "What is your mother's maiden name?";
-        secQ1 = "What is your mother's maiden name?";
-      } else if (question == 2) {
-        console.log(2);
-        qClass.value = "What is the name of your first pet?";
-        secQ1 = "What is the name of your first pet?";
-      } else {
-        console.log(3);
-        qClass.value = "What is the make of your first car?";
-        secQ1 = "What is the make of your first car?";
-      }
-
-      //dropDown.removeClass('hover');
-    } else if (question >= 4 && question <= 6) {
-      qClass = document.getElementById("secQ2");
-      if (question == 4) {
-        console.log(4);
-        qClass.value = "What middle school did you attend?";
-        secQ2 = "What middle school did you attend?";
-      } else if (question == 5) {
-        console.log(5);
-        qClass.value = "Where would you like to travel?";
-        secQ2 = "Where would you like to travel?";
-      } else {
-        console.log(6);
-        qClass.value = "What is your favorite color?";
-        secQ2 = "What is your favorite color?";
-      }
-    } else {
-      qClass = document.getElementById("secQ3");
-      if (question == 7) {
-        console.log(7);
-        qClass.value = "What is your favorite TV show?";
-        secQ3 = "What is your favorite TV show?";
-      } else if (question == 8) {
-        console.log(8);
-        qClass.value = "What did you want to be when you were growing up?";
-        secQ3 = "What did you want to be when you were growing up?";
-      } else {
-        console.log(9);
-        qClass.value = "What month was your father born in?";
-        secQ3 = "What month was your father born in?";
-      }
-    }
-  }
 
   const goToLogin = async (event) => {
     event.preventDefault();
@@ -267,78 +206,6 @@ function SignUp() {
             placeholder="ZipCode"
             ref={(c) => (locationZip = c)}
           />
-          <br />
-          {/* SECURITY QUESTIONS */}
-          {/*
-          <p>Security Questions</p>
-          <div className="dropdown">
-            <input
-              className="dropbtn1"
-              id="secQ1"
-              value="Security Question 1"
-              ref={(c) => (secQ1 = c)}
-            /> 
-
-            <div id="ddown1" className="dropdown-content1">
-              <a href="#" onClick={()=> saveQuestion(1)}>What is your mother's maiden name?</a>
-              <a href="#" onClick={()=> saveQuestion(2)}>What is the name of your first pet?</a>
-              <a href="#" onClick={()=> saveQuestion(3)}>What make was your first car?</a>
-            </div>
-            
-            <input
-              type="text"
-              id="textbox"
-              placeholder="Answer"
-              ref={(c) => (ans1 = c)}
-            />
-
-          </div> 
-          <div className="dropdown">
-            <input
-              className="dropbtn2"
-              id="secQ2"
-              value="Security Question 2"
-              ref={(c) => (secQ2 = c)}
-            />
-
-            <div className="dropdown-content2">
-              <a href="#" onClick={()=> saveQuestion(4)}>What middle school did you attend?</a>
-              <a href="#" onClick={()=> saveQuestion(5)}>Where would you like to travel to?</a>
-              <a href="#" onClick={()=> saveQuestion(6)}>What is your favorite color?</a>
-            </div>
-
-            <input
-              type="text"
-              id="textbox"
-              placeholder="Answer"
-              ref={(c) => (ans2 = c)}
-            />
-          </div> 
-          
-          <div className="dropdown">
-            <input
-                className="dropbtn3"
-                id="secQ3"
-                value="Security Question 3"
-                ref={(c) => (secQ3 = c)}
-              />
-              
-              <div className="dropdown-content3">
-                <a href="#" onClick={()=> saveQuestion(7)}>What is your favorite TV show?</a>
-                <a href="#" onClick={()=> saveQuestion(8)}>What did you want to be growing up?</a>
-                <a href="#" onClick={()=> saveQuestion(9)}>What month was your father born in?</a>
-              </div>
-
-              <input
-                type="text"
-                id="textbox"
-                placeholder="Answer"
-                ref={(c) => (ans3 = c)}
-              />
-          </div>
-          <br /> */}
-          <br />
-
           <Button id="SignUpButton" type="button" onClick={doSignUp}>
             Sign Up
           </Button>
