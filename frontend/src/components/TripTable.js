@@ -140,7 +140,7 @@ function TripView() {
           return;
         }*/
           try {
-              const response = await fetch("http://localhost:5000/deletetrip" {
+              const response = await fetch("http://localhost:5000/deletetrip" ,{
               method: "POST",
               body: js,
               headers: { "Content-Type": "application/json" },
