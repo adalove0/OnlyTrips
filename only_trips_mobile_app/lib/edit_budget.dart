@@ -243,10 +243,14 @@ class _BudgetEditState extends State<BudgetEdit> {
                                               .state,
                                           widget.currTrip.destination
                                               .elementAt(0)
-                                              .state,
+                                              .city,
                                           widget.currTrip.startDate,
                                           widget.currTrip.endDate,
-                                          sharedPrefs.currUser.userId);
+                                          sharedPrefs.currUser.userId,
+                                          _travelBudget,
+                                          _foodBudget,
+                                          _lodgingBudget,
+                                          _miscBudget);
                                     });
                                   }),
                                 }
@@ -284,12 +288,6 @@ class _BudgetEditState extends State<BudgetEdit> {
                                 child: Column(
                               children: <Widget>[
                                 Text(snapshot.data.message),
-                                Text(
-                                  'Trip added successfully!',
-                                  maxLines: 3,
-                                  textAlign: TextAlign.center,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
                                 RaisedButton(
                                   child: Text('Okay!'),
                                   onPressed: () {
@@ -325,8 +323,18 @@ class _BudgetEditState extends State<BudgetEdit> {
   }
 }
 
-Future<BudgetChange> submitUpdate(String tripId, int numPeople, String state,
-    String city, String startDate, String endDate, String userId) async {
+Future<BudgetChange> submitUpdate(
+    String tripId,
+    int numPeople,
+    String state,
+    String city,
+    String startDate,
+    String endDate,
+    String userId,
+    double travelBudget,
+    double foodBudget,
+    double lodgingBudget,
+    double miscBudget) async {
   final http.Response response =
       await http.post('https://onlytrips.herokuapp.com/updateTrip',
           headers: <String, String>{
@@ -344,10 +352,10 @@ Future<BudgetChange> submitUpdate(String tripId, int numPeople, String state,
                 'state': state,
               },
               'budget': {
-                'travelCost': '0.00',
-                'foodCost': '0.00',
-                'lodgingCost': '0.00',
-                'miscellaneousCost': '0.00'
+                'travelCost': travelBudget,
+                'foodCost': foodBudget,
+                'lodgingCost': lodgingBudget,
+                'miscellaneousCost': miscBudget
               },
             }
           }));
