@@ -236,7 +236,7 @@ class _NewTripState extends State<NewTrip> {
                                           "Submit",
                                           style: TextStyle(color: Colors.white),
                                         ),
-                                        color: Theme.of(context).primaryColor,
+                                        color: Theme.of(context).accentColor,
                                         onPressed: () {
                                           if (_formKey.currentState
                                               .validate()) {
@@ -272,7 +272,8 @@ class _NewTripState extends State<NewTrip> {
                                   ConnectionState.done) {
                                 if (snapshot.hasData) {
                                   if (snapshot.data.success) {
-                                    return Column(
+                                    return Center(
+                                        child: Column(
                                       children: <Widget>[
                                         Text(snapshot.data.message),
                                         Text(
@@ -292,7 +293,7 @@ class _NewTripState extends State<NewTrip> {
                                           },
                                         ),
                                       ],
-                                    );
+                                    ));
                                   } else {
                                     return Column(
                                       children: <Widget>[
