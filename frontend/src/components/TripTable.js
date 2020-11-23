@@ -140,7 +140,7 @@ function TripView() {
           return;
         }*/
           try {
-              const response = await fetch("http://localhost:3000/deletetrip", {
+              const response = await fetch("http://localhost:5000/deletetrip" || "http://www.onlytrips.xyz/deletetrip"  {
               method: "POST",
               body: js,
               headers: { "Content-Type": "application/json" },
@@ -180,7 +180,7 @@ function TripView() {
                  <div className = "edit-icon">
                     <i className="fa">&#xf044;</i>
                   </div>
-                  <div className = "delete-icon" onClick={() => doDeleteTrip(trip.creator)}>
+                  <div className = "delete-icon" onClick={() => doDeleteTrip(trip._id)}>
                     <i className="fa">&#xf014;</i>
                     </div>
               </div>
