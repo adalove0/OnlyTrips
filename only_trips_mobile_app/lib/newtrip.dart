@@ -172,25 +172,6 @@ class _NewTripState extends State<NewTrip> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       TextFormField(
-                                        validator: (state) {
-                                          Pattern pattern =
-                                              '^[a-zA-Z]+(?:(?:[\',. -][a-zA-Z ])?[a-zA-Z]*)*\$';
-                                          RegExp regex = new RegExp(pattern);
-                                          if (!regex.hasMatch(state))
-                                            return 'Please input state name with alphabetic characters only.';
-                                          else
-                                            return null;
-                                        },
-                                        textCapitalization:
-                                            TextCapitalization.words,
-                                        onSaved: (state) => _state = state,
-                                        keyboardType: TextInputType.text,
-                                        textInputAction: TextInputAction.next,
-                                        decoration: InputDecoration(
-                                            labelText: "State",
-                                            hintText: "e.g. Arizona"),
-                                      ),
-                                      TextFormField(
                                         onSaved: (city) => _city = city,
                                         textCapitalization:
                                             TextCapitalization.words,
@@ -209,6 +190,25 @@ class _NewTripState extends State<NewTrip> {
                                           labelText: "City",
                                           hintText: "Bisbee",
                                         ),
+                                      ),
+                                      TextFormField(
+                                        validator: (state) {
+                                          Pattern pattern =
+                                              '^[a-zA-Z]+(?:(?:[\',. -][a-zA-Z ])?[a-zA-Z]*)*\$';
+                                          RegExp regex = new RegExp(pattern);
+                                          if (!regex.hasMatch(state))
+                                            return 'Please input state name with alphabetic characters only.';
+                                          else
+                                            return null;
+                                        },
+                                        textCapitalization:
+                                            TextCapitalization.words,
+                                        onSaved: (state) => _state = state,
+                                        keyboardType: TextInputType.text,
+                                        textInputAction: TextInputAction.next,
+                                        decoration: InputDecoration(
+                                            labelText: "State",
+                                            hintText: "e.g. Arizona"),
                                       ),
                                       TextFormField(
                                         onSaved: (numPeople) =>

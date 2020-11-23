@@ -494,7 +494,7 @@ body {
   height: 30px;
 }
 #navBarLogo {
-  width: 300px;
+  width: 200px;
   height: 78px;
   align-items: left;
 }
@@ -865,4 +865,24 @@ input[type="text"]::placeholder {
 }
 .one input{
   font-size: 18px;
+  background: hsla(0,0%,100%,.6);
+}
+.header h1{
+      padding: 75px;
+    text-align: center;
+}
+.one input:focus {
+  outline: none;
+}
+.one{
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.delete-icon:hover{
+  color: red;
+  cursor: pointer;
+}
+.edit-icon:hover{
+  color:green;
+  cursor:pointer;
 }

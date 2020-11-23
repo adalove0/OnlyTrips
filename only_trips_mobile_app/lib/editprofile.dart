@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http; // Use to post to the api server
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:onlytrips/login_classes.dart';
-import 'package:onlytrips/shared_prefs.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:onlytrips/profile.dart';
+import 'package:onlytrips/home.dart';
 
 class EditProfile extends StatelessWidget {
   final User currUser;
@@ -19,7 +19,31 @@ class EditProfile extends StatelessWidget {
       title: appTitle,
       home: Scaffold(
         appBar: AppBar(
-          title: Text(appTitle),
+          title: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Edit',
+                style: TextStyle(
+                  fontFamily: 'Gotham Light Regular',
+                  fontSize: 25.0,
+                ),
+              ),
+              Text(
+                'Profile',
+                style: TextStyle(
+                  fontFamily: 'Marguerite',
+                ),
+              ),
+            ],
+          ),
+          leading: FlatButton(
+              onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => HomePage())),
+              child: Icon(Icons.arrow_back)),
+          backgroundColor: Colors.lightBlueAccent[400],
+          centerTitle: true,
         ),
         body: CustomForm(currUser: currUser),
       ),
@@ -43,6 +67,7 @@ class CustomForm extends StatefulWidget {
 // This class holds data related to the form.
 class CustomFormState extends State<CustomForm> {
   User currUser;
+  bool _secureText = true;
 
   CustomFormState({this.currUser});
   // Create a global key that uniquely identifies the Form widget
@@ -61,6 +86,7 @@ class CustomFormState extends State<CustomForm> {
         physics: const AlwaysScrollableScrollPhysics(),
         children: <Widget>[
           Card(
+            margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
             color: Colors.blue[100],
@@ -83,6 +109,7 @@ class CustomFormState extends State<CustomForm> {
             height: 10.0,
           ),
           Card(
+            margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
             color: Colors.blue[100],
@@ -90,7 +117,9 @@ class CustomFormState extends State<CustomForm> {
               padding: const EdgeInsets.only(left: 8.0, right: 8.0),
               child: TextFormField(
                 decoration: InputDecoration(
-                    labelText: "Email", border: InputBorder.none),
+                  labelText: "Email",
+                  border: InputBorder.none,
+                ),
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Please enter some text';
@@ -106,6 +135,7 @@ class CustomFormState extends State<CustomForm> {
             height: 10.0,
           ),
           Card(
+            margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
             color: Colors.blue[100],
@@ -113,7 +143,18 @@ class CustomFormState extends State<CustomForm> {
               padding: const EdgeInsets.only(left: 8.0, right: 8.0),
               child: TextFormField(
                 decoration: InputDecoration(
-                    labelText: "Password", border: InputBorder.none),
+                    labelText: "Password",
+                    border: InputBorder.none,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                          _secureText ? Icons.remove_red_eye : Icons.security),
+                      onPressed: () {
+                        setState(() {
+                          _secureText = !_secureText;
+                        });
+                      },
+                    )),
+                obscureText: _secureText,
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Please enter some text';
@@ -128,6 +169,7 @@ class CustomFormState extends State<CustomForm> {
             height: 10.0,
           ),
           Card(
+            margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
             color: Colors.blue[100],
@@ -151,6 +193,7 @@ class CustomFormState extends State<CustomForm> {
             height: 10.0,
           ),
           Card(
+            margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
             color: Colors.blue[100],
@@ -173,6 +216,7 @@ class CustomFormState extends State<CustomForm> {
             height: 10.0,
           ),
           Card(
+            margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
             color: Colors.blue[100],
@@ -195,6 +239,7 @@ class CustomFormState extends State<CustomForm> {
             height: 10.0,
           ),
           Card(
+            margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
             color: Colors.blue[100],
@@ -216,6 +261,7 @@ class CustomFormState extends State<CustomForm> {
             height: 10.0,
           ),
           Card(
+            margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
             color: Colors.blue[100],
@@ -238,19 +284,30 @@ class CustomFormState extends State<CustomForm> {
           SizedBox(
             height: 10.0,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                // Validate returns true if the form is valid, or false
-                // otherwise.
-                if (_formKey.currentState.validate()) {
-                  // If the form is valid, display a Snackbar.
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text('Processing Data')));
-                }
-              },
-              child: Text('Submit'),
+          GestureDetector(
+            onTap: () => {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => ProfilePage(currUser: widget.currUser))),
+            },
+            child: Card(
+              margin: EdgeInsets.all(10.0),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              color: Colors.green,
+              child: ListTile(
+                leading: Icon(
+                  Icons.done_outline,
+                  size: 35.0,
+                ),
+                title: Text(
+                  "CONFIRM",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
             ),
           ),
         ],
