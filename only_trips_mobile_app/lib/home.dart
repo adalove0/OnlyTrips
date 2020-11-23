@@ -13,6 +13,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Text countDown(Trip cardTrip) {
+    int startYear = int.parse(cardTrip.startDate.substring(0, 4));
+    int startMonth = int.parse(cardTrip.startDate.substring(5, 7));
+    int startDay = int.parse(cardTrip.startDate.substring(8, 10));
+
+    DateTime startDate = new DateTime(startYear, startMonth, startDay);
+
+    Duration diff = startDate.difference(DateTime.now());
+
+    return Text(
+      (diff.inDays + 1).toString(),
+      style: TextStyle(fontSize: 40.0, fontFamily: "Gotham Light Regular"),
+    );
+  }
+
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       new GlobalKey<RefreshIndicatorState>();
@@ -69,8 +84,7 @@ class _HomePageState extends State<HomePage> {
             }));
     if (response.statusCode == 200) {
       Trip newTrip = GetTripDetails.fromJson(jsonDecode(response.body)).trip;
-      if (!tripDetails.contains(newTrip))
-        tripDetails.add(newTrip);
+      if (!tripDetails.contains(newTrip)) tripDetails.add(newTrip);
       return;
     } else {
       throw Exception('Unable to get trips');
@@ -145,19 +159,35 @@ class _HomePageState extends State<HomePage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0)),
                     child: Padding(
-                      padding: const EdgeInsets.all(50.0),
-                      child: Center(
-                          child: Text(
-                        tripDetails
-                            .elementAt(index)
-                            .destination
-                            .elementAt(0)
-                            .city,
-                        style: TextStyle(
-                          fontFamily: 'Gotham Regular Light',
-                          fontSize: 40.0,
-                        ),
-                      )),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 40, horizontal: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            tripDetails
+                                .elementAt(index)
+                                .destination
+                                .elementAt(0)
+                                .city,
+                            style: TextStyle(
+                              fontFamily: 'Gotham Light Regular',
+                              fontSize: 40.0,
+                            ),
+                          ),
+                          Card(
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.hourglass_empty,
+                                  size: 50.0,
+                                ),
+                                countDown(tripDetails[index])
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     )),
               ),
             );
