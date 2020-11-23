@@ -150,7 +150,6 @@ function TripView() {
                   <div className = "delete-icon">
                     <i className="fa">&#xf014;</i>
                     </div>
-                </div>
               </div>
               </div>
               <div className="one">
