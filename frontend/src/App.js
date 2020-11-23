@@ -13,7 +13,7 @@ import LoginPage from "./pages/LoginPage";
 import TripView from "./pages/TripView";
 import SignUpPage from "./pages/SignUpPage";
 import VerifyPage from "./pages/VerifyPage";
-import AddTripPage from "./pages/AddTripPage";
+//import AddTripPage from "./pages/AddTripPage";
 
 function App() {
   console.log("Starting Front End");
@@ -26,9 +26,9 @@ function App() {
         <Route path="/SignUpPage" exact>
           <SignUpPage />
         </Route>
-        <Route path="/AddTripPage" exact>
+        {/*<Route path="/AddTripPage" exact>
           <AddTripPage />
-        </Route>
+  </Route>*/}
         <Route path="/TripView" exact>
           <TripView />
         </Route>

@@ -23,21 +23,21 @@ function SignUp() {
 
 
   const doSignUp = async (event) => {
-    var visAlertSuccess = document.getElementById("alerSuccessDiv");
+    var visAlertSuccess = document.getElementById("alertSuccessDiv");
     var visAlertDanger = document.getElementById("alertDangerDiv");
     event.preventDefault();
     if(loginEmail.value === "" || confirmEmail.value === '' || firstLastName.value === '' || loginPassword.value === '' || confirmPassword.value === '' || age.value === '' || locationCity.value === '' || locationCountry.value === '' || locationState.value === '' || locationZip.value === '' ) {
       visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML = "Please fill in all blanks";
+      visAlertDanger.innerHTML += "Please fill in all blanks";
     }
     else if (loginEmail.value !== confirmEmail.value) {
       visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML = "Login Emails don't match";
+      visAlertDanger.innerHTML += "Login Emails don't match";
       // return;
     }
     else if (loginPassword.value !== confirmPassword.value) {
       visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML = "Passwords dont match";
+      visAlertDanger.innerHTML += "Passwords don't match";
       // return;
     }
 
@@ -93,8 +93,10 @@ function SignUp() {
     var visAlertSuccess = document.getElementById("alertSuccessDiv");
     var visAlertDanger = document.getElementById("alertDangerDiv");
     event.preventDefault();
-    visAlertSuccess.style.visibility = "hidden";
+    console.log("Hello");
     visAlertDanger.style.visibility = "hidden";
+    visAlertSuccess.style.visibility = "hidden";
+    
   }
 
   const goToLogin = async (event) => {
@@ -110,17 +112,11 @@ function SignUp() {
         <p>
             
         </p> 
-        <div >
-              
-            </div>
       </div>
-      <div id="alertSuccessDiv"> 
+      <div id="alertSuccessDiv" > 
         <p>
-            Thank you for signing up! Please check your email for a verification link! <Button onClick={closeAlert}> x </Button>
-        </p> 
-        <div >
-              
-            </div>
+            Thank you for signing up! Please check your email for a verification link! <button onClick={closeAlert}> x </button>
+        </p>
       </div>
       <div id="signUpDiv">
         <img src={logo} alt="OnlyTrips Logo" id="logo"></img>
