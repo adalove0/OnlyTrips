@@ -11,8 +11,8 @@ function Verify() {
   const doVerify = async (event) => {
     var tokenVal = new URLSearchParams(window.location.search).get('token');
     var obj = {token: tokenVal};
-    JSON.stringify(obj);
-    alert(obj);
+    var js = JSON.stringify(obj);
+    alert(js);
 
     const appName = "onlytrips";
     function buildPath(route) {
@@ -25,7 +25,7 @@ function Verify() {
     try {
       const response = await fetch(buildPath("verify"), {
         method: "POST",
-        body: obj,
+        body: js,
         headers: { "Content-Type": "application/json" },
       });
 
