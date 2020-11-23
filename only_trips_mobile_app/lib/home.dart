@@ -27,18 +27,18 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _getData();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => _refreshIndicatorKey.currentState.show());
+    Future.delayed(const Duration(milliseconds: 100), () async {
+      return _refreshIndicatorKey.currentState.show();
+    });
   }
 
-  Future<void> _getData() async {
+  Future _getData() async {
     await updateTrips();
     setState(() {
       tripList.forEach((element) async {
         await fetchTrips(element);
       });
     });
-    return;
   }
 
   Future<void> updateTrips() async {
@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
       body: RefreshIndicator(
         key: _refreshIndicatorKey,
         onRefresh: () async {
-          return await _getData();
+          await _getData();
         },
         child: ListView.builder(
           physics: const AlwaysScrollableScrollPhysics(),
