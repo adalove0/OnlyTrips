@@ -40,21 +40,13 @@ function Verify() {
 
   return (
     <div id="VerifyTable">
-      <div className="header">
-        <img src={logo} alt="OnlyTrips Logo" id="logo21"></img>
-      </div>
-      <div className="text-info">
-        <p id="congrats-text">Congratulations, {name}</p>
-        <p id="confirm-text">
-          {" "}
-          You're one step away from joining the onlyTrips family, activate your
-          account by clicking on the button below:
-        </p>
-        <div>
-          <button id="activate-btn">Activate account</button>
+    <div className ="header"><img src={logo} alt="OnlyTrips Logo" id="logo21"></img></div><div className = "text-info"><p id = "congrats-text">Congratulations, {name}</p>
+          <p id = "confirm-text"> You're one step away from joining the onlyTrips family, activate your account by clicking on the button below:</p>
+          <div>
+            <button id = "activate-btn">ACTIVATE ACCOUNT</button>
         </div>
       </div>
-    </div>
+      </div>
   );
 }
 
