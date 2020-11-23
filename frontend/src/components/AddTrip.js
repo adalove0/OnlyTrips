@@ -114,7 +114,7 @@ class AddTrip extends Component {
     return (
       <div class="addTrip">
         <div id="circle">
-          <a href="#" class="close" />
+          <a href={"http://www.onlytrips.xyz/TripView"} className="close" />
           <img src={logo} alt="OnlyTrips Logo" id="logo"></img>
         </div>
         <h1 id="add-title">ADD TRIP</h1>
