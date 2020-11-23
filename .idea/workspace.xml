@@ -29,9 +29,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ef26a7a-6d36-42dc-a043-aa5a7c402d97" name="Default Changelist" comment="Home page properly loads on open, and on change now.">
-      <change afterPath="$PROJECT_DIR$/only_trips_mobile_app/lib/edit_budget.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/only_trips_mobile_app/lib/tripview.dart" beforeDir="false" afterPath="$PROJECT_DIR$/only_trips_mobile_app/lib/tripview.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/only_trips_mobile_app/lib/edit_budget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/only_trips_mobile_app/lib/edit_budget.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -491,22 +490,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="806" y="421" key="GitRewordDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605742864230" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1606170771160">
+    <state width="1877" height="350" key="GridCell.Tab.0.bottom" timestamp="1606171592924">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606170771160" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1606170771160">
+    <state width="1877" height="350" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606171592924" />
+    <state width="1877" height="350" key="GridCell.Tab.0.center" timestamp="1606171592924">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606170771160" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1606170771160">
+    <state width="1877" height="350" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606171592924" />
+    <state width="1877" height="350" key="GridCell.Tab.0.left" timestamp="1606171592924">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606170771160" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1606170771160">
+    <state width="1877" height="350" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606171592924" />
+    <state width="1877" height="350" key="GridCell.Tab.0.right" timestamp="1606171592924">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606170771160" />
+    <state width="1877" height="350" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606171592924" />
     <state x="184" y="86" key="MergeDialog" timestamp="1606030121106">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -600,6 +599,21 @@
           <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/themes.dart</url>
           <line>19</line>
           <option name="timeStamp" value="215" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/edit_budget.dart</url>
+          <line>361</line>
+          <option name="timeStamp" value="295" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/edit_budget.dart</url>
+          <line>362</line>
+          <option name="timeStamp" value="296" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/only_trips_mobile_app/lib/edit_budget.dart</url>
+          <line>363</line>
+          <option name="timeStamp" value="297" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
