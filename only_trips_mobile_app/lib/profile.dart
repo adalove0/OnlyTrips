@@ -16,7 +16,6 @@ class _ProfilePageState extends State<ProfilePage> {
     return Card(
       margin: EdgeInsets.all(10.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-      color: Colors.blue[100],
       child: ListTile(
         leading: icon,
         title: Text(
@@ -86,7 +85,6 @@ class _ProfilePageState extends State<ProfilePage> {
             margin: EdgeInsets.all(10.0),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
-            color: Colors.blue[100],
             child: ListTile(
               leading: Icon(
                 Icons.alternate_email,
