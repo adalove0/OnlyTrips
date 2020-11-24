@@ -11,6 +11,7 @@ function Verify() {
   const doVerify = async (event) => {
     var tokenVal = new URLSearchParams(window.location.search).get('token');
     var obj = {token: tokenVal};
+    alert(obj);
     var js = JSON.stringify(obj);
     alert(js);
 
