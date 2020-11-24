@@ -77,7 +77,6 @@ class AddTrip extends Component {
     };
     var js = JSON.stringify(obj);
     localStorage.setItem("trip_data", JSON.stringify(js));
-    alert(js);
     console.log(js);
     /*if(this.state.startDate == null || this.state.endDate == null ||this.state.city == "" || this.state.State == "")
       {
