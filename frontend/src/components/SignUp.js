@@ -45,31 +45,6 @@ function SignUp() {
         zip: locationZip.value,
       },
     };
-
-    if (
-      loginEmail.value === "" ||
-      confirmEmail.value === "" ||
-      firstLastName.value === "" ||
-      loginPassword.value === "" ||
-      confirmPassword.value === "" ||
-      age.value === "" ||
-      locationCity.value === "" ||
-      locationCountry.value === "" ||
-      locationState.value === "" ||
-      locationZip.value === ""
-    ) {
-      visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML = "Please fill in all blanks";
-    }
-    else if (loginEmail.value !== confirmEmail.value) {
-      visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML = "Login Emails don't match";
-      // return;
-    } else if (loginPassword.value !== confirmPassword.value) {
-      visAlertDanger.style.visibility = "visible";
-      visAlertDanger.innerHTML = "Passwords don't match";
-      // return;
-    }
     //else if (res.success == false){
     //  visAlertDanger.innerHTML = res.message;
     //}
@@ -118,6 +93,31 @@ function SignUp() {
     catch (e) {
       //alert(e.toString());
       return;
+    }
+
+    if (
+      loginEmail.value === "" ||
+      confirmEmail.value === "" ||
+      firstLastName.value === "" ||
+      loginPassword.value === "" ||
+      confirmPassword.value === "" ||
+      age.value === "" ||
+      locationCity.value === "" ||
+      locationCountry.value === "" ||
+      locationState.value === "" ||
+      locationZip.value === ""
+    ) {
+      visAlertDanger.style.visibility = "visible";
+      visAlertDanger.innerHTML = "Please fill in all blanks";
+    }
+    else if (loginEmail.value !== confirmEmail.value) {
+      visAlertDanger.style.visibility = "visible";
+      visAlertDanger.innerHTML = "Login Emails don't match";
+      // return;
+    } else if (loginPassword.value !== confirmPassword.value) {
+      visAlertDanger.style.visibility = "visible";
+      visAlertDanger.innerHTML = "Passwords don't match";
+      // return;
     }
 
     if (res.success === true)
