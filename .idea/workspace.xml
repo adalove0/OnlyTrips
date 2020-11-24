@@ -30,7 +30,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4ef26a7a-6d36-42dc-a043-aa5a7c402d97" name="Default Changelist" comment="Change delay for init to support initial load.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/only_trips_mobile_app/lib/tripview.dart" beforeDir="false" afterPath="$PROJECT_DIR$/only_trips_mobile_app/lib/tripview.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
