@@ -73,9 +73,6 @@ function SignUp() {
     //else if (res.success == false){
     //  visAlertDanger.innerHTML = res.message;
     //}
-    else {
-      visAlertSuccess.style.visibility = "visible";
-    }
 
     var js = JSON.stringify(obj);
     //alert(js);
@@ -100,10 +97,12 @@ function SignUp() {
       
       var res = await response.json();
 
-      console.log("1" + res.email);
+      console.log(res.success);
 
-      if (res.success!==true) {
-        setMessage("Sucky");
+      if (res.success !== true) {
+        visAlertDanger.style.visibility = "visible";
+        visAlertDanger.innerHTML = "Email is already taken";
+        
       } else {
         var user = {
           firstName: res.firstName,
@@ -121,6 +120,10 @@ function SignUp() {
       return;
     }
 
+    if (res.success === true)
+    {
+      visAlertSuccess.style.visibility = "visible";
+    }
 
   };
 
@@ -128,7 +131,6 @@ function SignUp() {
     var visAlertSuccess = document.getElementById("alertSuccessDiv");
     var visAlertDanger = document.getElementById("alertDangerDiv");
     event.preventDefault();
-    console.log("Hello");
     visAlertDanger.style.visibility = "hidden";
     visAlertSuccess.style.visibility = "hidden";
   };
