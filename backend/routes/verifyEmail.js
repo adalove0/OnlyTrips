@@ -5,9 +5,9 @@ const User = require('../models/User');
 router.post('/', (req, res, next)=>{
 
     User.findOne({token: req.body.token}, function(error,obj){
-        User.token = null;
-        User.confirmed = true;
-        User.save((err, user) => {
+        obj.token = null;
+        obj.confirmed = true;
+        obj.save((err, user) => {
           if (err) {
             console.log(err);
             return res.send({
