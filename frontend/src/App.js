@@ -32,9 +32,6 @@ function App() {
         <Route path="/TripView" exact>
           <TripView />
         </Route>
-        <Route path="/UpdateTripPage" exact>
-         <UpdateTripPage />  
-        </Route>
         <Route path="/VerifyPage" exact>
           <VerifyPage />
         </Route>
