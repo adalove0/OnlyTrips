@@ -60,7 +60,6 @@ class _TripViewState extends State<TripView> {
                 margin: EdgeInsets.all(10.0),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
-                color: Colors.blue[200],
                 child: ListTile(
                   leading: Icon(
                     Icons.date_range,
@@ -101,7 +100,6 @@ class _TripViewState extends State<TripView> {
                 margin: EdgeInsets.all(10.0),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
-                color: Colors.blue[200],
                 child: ListTile(
                   leading: Icon(
                     Icons.location_on,
@@ -127,7 +125,6 @@ class _TripViewState extends State<TripView> {
                 margin: EdgeInsets.all(10.0),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
-                color: Colors.blue[200],
                 child: ListTile(
                   leading: Icon(
                     Icons.accessibility_new,
@@ -234,7 +231,6 @@ class _TripViewState extends State<TripView> {
             margin: EdgeInsets.all(10.0),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
-            color: Colors.blue[200],
             child: ListTile(
               leading: Icon(
                 Icons.attach_money,
@@ -261,7 +257,6 @@ class _TripViewState extends State<TripView> {
             margin: EdgeInsets.all(10.0),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
-            color: Colors.blue[200],
             child: ListTile(
               leading: Icon(
                 Icons.attach_money,
@@ -287,7 +282,6 @@ class _TripViewState extends State<TripView> {
             margin: EdgeInsets.all(10.0),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
-            color: Colors.blue[200],
             child: ListTile(
               leading: Icon(
                 Icons.attach_money,
@@ -314,7 +308,6 @@ class _TripViewState extends State<TripView> {
             margin: EdgeInsets.all(10.0),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
-            color: Colors.blue[200],
             child: ListTile(
               leading: Icon(
                 Icons.attach_money,

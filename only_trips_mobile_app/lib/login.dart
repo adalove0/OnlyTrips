@@ -16,11 +16,9 @@ class _LoginPageState extends State<LoginPage> {
   String _email, _password = "";
   Future<Login> _response;
 
-  void _onAfterBuild(BuildContext context){
+  void _onAfterBuild(BuildContext context) {
     Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => HomePage()));
+        context, MaterialPageRoute(builder: (context) => HomePage()));
   }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -33,32 +31,16 @@ class _LoginPageState extends State<LoginPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.lightBlueAccent[400],
           centerTitle: true,
           title: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Only',
+                'Login',
                 style: TextStyle(
                   fontFamily: 'Gotham Light Regular',
                   fontSize: 25.0,
-                ),
-              ),
-              Text(
-                'Trips',
-                style: TextStyle(
-                  fontFamily: 'Marguerite',
-                ),
-              ),
-              Container(
-                width: 50.0,
-              ),
-              Text(
-                'Login',
-                style: TextStyle(
-                  fontFamily: 'Heebo',
                 ),
               ),
             ],
@@ -108,7 +90,8 @@ class _LoginPageState extends State<LoginPage> {
                       if (snapshot.data.success) {
                         sharedPrefs.currUser = snapshot.data.user;
                         sharedPrefs.isLoggedIn = true;
-                        WidgetsBinding.instance.addPostFrameCallback((_) => _onAfterBuild(context));
+                        WidgetsBinding.instance.addPostFrameCallback(
+                            (_) => _onAfterBuild(context));
                       } else {
                         return Column(
                           children: <Widget>[
@@ -227,8 +210,7 @@ Future<Login> submitLogin(String _email, String _password) async {
   if (response.statusCode == 200) {
     return Login.fromJson(jsonDecode(response.body));
   } else if (response.statusCode == 400) {
-    throw (
-        'Unable to log in, check username and password and try again');
+    throw ('Unable to log in, check username and password and try again');
   } else if (response.statusCode == 401) {
     throw ('No account registered with that email');
   } else if (response.statusCode == 402) {

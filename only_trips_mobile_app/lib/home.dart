@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _getData();
-    Future.delayed(const Duration(milliseconds: 100), () async {
+    Future.delayed(const Duration(milliseconds: 500), () async {
       return _refreshIndicatorKey.currentState.show();
     });
   }
@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Card(
-                    color: Colors.lightBlueAccent[400],
+                    borderOnForeground: true,
                     elevation: 5.0,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0)),
@@ -176,16 +176,14 @@ class _HomePageState extends State<HomePage> {
                               fontSize: 40.0,
                             ),
                           ),
-                          Card(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.hourglass_empty,
-                                  size: 50.0,
-                                ),
-                                countDown(tripDetails[index])
-                              ],
-                            ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.hourglass_empty,
+                                size: 50.0,
+                              ),
+                              countDown(tripDetails[index])
+                            ],
                           )
                         ],
                       ),
@@ -201,7 +199,7 @@ class _HomePageState extends State<HomePage> {
             context, MaterialPageRoute(builder: (_) => NewTrip())),
         tooltip: 'New Trip',
         child: new Icon(Icons.add),
-        backgroundColor: Theme.of(context).buttonColor,
+        backgroundColor: Colors.lightBlueAccent[400],
       ),
     );
   }
