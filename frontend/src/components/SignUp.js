@@ -81,24 +81,29 @@ function SignUp() {
     //alert(js);
     const appName = "onlytrips";
     function buildPathSignUp(route) {
+      
       if (process.env.NODE_ENV === "production") {
         return "https://" + appName + ".herokuapp.com/" + route;
       } else {
         return "http://localhost:5000/signup";
       }
     }
+    console.log("hello");
     try {
+      console.log("2 "+res);
       const response = await fetch(buildPathSignUp("signup"), {
         method: "POST",
         body: js,
         headers: { "Content-Type": "application/json" },
       });
-
+      
+      
       var res = await response.json();
-      console.log(res);
 
-      if (res.id <= 0) {
-        setMessage("Su");
+      console.log("1" + res.email);
+
+      if (res.success!==true) {
+        setMessage("Sucky");
       } else {
         var user = {
           firstName: res.firstName,
@@ -108,9 +113,10 @@ function SignUp() {
         localStorage.setItem("user_data", JSON.stringify(user));
         setMessage(res.id + "" + res.email);
         window.location.href = "#/onlytrips";
-        console.log(res.success);
+        //console.log(js);
       }
-    } catch (e) {
+    } 
+    catch (e) {
       //alert(e.toString());
       return;
     }
