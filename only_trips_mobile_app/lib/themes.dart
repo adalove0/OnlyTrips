@@ -22,6 +22,9 @@ class ThemeNotifier with ChangeNotifier {
 }
 
 final darkTheme = ThemeData(
+  cardTheme: CardTheme(
+    color: Colors.lightBlueAccent[400],
+  ),
   appBarTheme: AppBarTheme(
       color: Colors.grey[900], textTheme: Typography.whiteCupertino),
   primarySwatch: MaterialColor(4280361249, {
@@ -520,6 +523,9 @@ final darkTheme = ThemeData(
 );
 
 final lightTheme = ThemeData(
+  cardTheme: CardTheme(
+    color: Colors.blue[100],
+  ),
   appBarTheme:
       AppBarTheme(color: Colors.white, textTheme: Typography.blackCupertino),
   primarySwatch: MaterialColor(4280923894, {

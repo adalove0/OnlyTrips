@@ -156,7 +156,6 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: Card(
                     borderOnForeground: true,
-                    color: Colors.lightBlueAccent[400],
                     elevation: 5.0,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0)),
@@ -200,7 +199,7 @@ class _HomePageState extends State<HomePage> {
             context, MaterialPageRoute(builder: (_) => NewTrip())),
         tooltip: 'New Trip',
         child: new Icon(Icons.add),
-        backgroundColor: Theme.of(context).buttonColor,
+        backgroundColor: Colors.lightBlueAccent[400],
       ),
     );
   }

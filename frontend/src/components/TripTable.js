@@ -34,7 +34,7 @@ function TripView() {
   const array1 = newTrip;
   // Incude fontawesome icon
   // change array.map to tripData.map to test
-
+  
   React.useEffect(() => {
     // To get trip array with ids
     const appName = "onlytrips";
@@ -166,7 +166,19 @@ function TripView() {
     if (res.user.length === 0) console.log("No trip found");
     console.log(newTrip);
   };
-
+  
+  async function goUpdate(tripId,num,start,end,c,s) {
+    //this.state.error = "";
+    localStorage.setItem("trip_data",tripId);
+    localStorage.setItem("num_data",num);
+    localStorage.setItem("start_data",start);
+    localStorage.setItem("end_data",end);
+    localStorage.setItem("c_data",c);
+    localStorage.setItem("s_data",s);
+    window.location.href = "/UpdateTripPage";
+  }
+  
+  
   return (
     <div className="trip-table">
       <div class="container-header">
@@ -212,7 +224,7 @@ function TripView() {
                 <div className="TripTable" key={index}>
                   <div className="buttons">
                     <div className="right-icons">
-                      <div className="edit-icon">
+                      <div className="edit-icon" onClick={() => goUpdate(trip._id,trip.numPeople,trip.startDate.split("T")[0],trip.endDate.split("T")[0]),trip.destination[trip.destination.length - 1].city,trip.destination[trip.destination.length - 1].state}>
                         <i className="fa">&#xf044;</i>
                       </div>
                       <div
