@@ -14,7 +14,6 @@ import TripView from "./pages/TripView";
 import SignUpPage from "./pages/SignUpPage";
 import VerifyPage from "./pages/VerifyPage";
 import AddTripPage from "./pages/AddTripPage";
-import UpdateTripPage from "./pages/UpdateTripPage";
 
 function App() {
   console.log("Starting Front End");
