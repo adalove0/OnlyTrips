@@ -110,7 +110,6 @@ function TripView() {
         id: tripId,
       };
       var js = JSON.stringify(obj);
-      alert(js);
       const appName = "onlytrips";
       function buildPathDelete(route) {
         if (process.env.NODE_ENV === "production") {

@@ -245,7 +245,7 @@ class _TripViewState extends State<TripView> {
               ),
               trailing: Text(
                 '\$' +
-                    widget.currTrip.budget.elementAt(0).travelCost.toString(),
+                    widget.currTrip.budget.elementAt(0).travelCost.toStringAsFixed(2),
                 style: TextStyle(
                   fontFamily: 'Gotham Light Regular',
                   fontSize: 20.0,
@@ -270,7 +270,7 @@ class _TripViewState extends State<TripView> {
                 ),
               ),
               trailing: Text(
-                '\$' + widget.currTrip.budget.elementAt(0).foodCost.toString(),
+                '\$' + widget.currTrip.budget.elementAt(0).foodCost.toStringAsFixed(2),
                 style: TextStyle(
                   fontFamily: 'Gotham Light Regular',
                   fontSize: 20.0,
@@ -296,7 +296,7 @@ class _TripViewState extends State<TripView> {
               ),
               trailing: Text(
                 '\$' +
-                    widget.currTrip.budget.elementAt(0).lodgingCost.toString(),
+                    widget.currTrip.budget.elementAt(0).lodgingCost.toStringAsFixed(2),
                 style: TextStyle(
                   fontFamily: 'Gotham Light Regular',
                   fontSize: 20.0,
@@ -325,7 +325,7 @@ class _TripViewState extends State<TripView> {
                     widget.currTrip.budget
                         .elementAt(0)
                         .miscellaneousCost
-                        .toString(),
+                        .toStringAsFixed(2),
                 style: TextStyle(
                   fontFamily: 'Gotham Light Regular',
                   fontSize: 20.0,
